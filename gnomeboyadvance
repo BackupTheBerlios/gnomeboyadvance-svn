@@ -16,7 +16,7 @@ COPYRIGHT = 'Jay Graves (c) 2003'
 DATADIR = '/usr/share/gnomeboyadvance/'
 SETTINGSFILE = os.path.expanduser("~") + "/.gnomeBoyAdvance"
 LOGOFILE = 'gnomeBoyAdvance.png'
-theGame = 'Hello world'
+theGame = ''
 
 class setting:
 	def __init__(self): # Type sert a rien, a virer.
