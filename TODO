@@ -51,3 +51,4 @@ TODO
 * make a FAQ and a MAN
 * add a IPS patch tab (??)
 * add slideshow of screenshot instead of just showing the first
+* add a Druide to configure romsDir, binary, etc at the first launch
