@@ -231,17 +231,20 @@ class GUI(gtk.glade.XML):
 		gtk.main_quit()
 
 	def on_playGame_clicked(*args):
-		if theGame:
-			launch = ""
-			launch +=  mySettings.settings['binary']
-			if mySettings.settings['configFile']:
-				launch += ' --config=' + mySettings.settings['configFile']
-			launch += ' "' + os.path.join(mySettings.settings['romsDir'],theGame) + '"'
-			print launch
-			app.appBar.set_status('playing ' + theGame)
-			os.system(launch)
-		else : 
-			app.appBar.set_status('No game selected')
+		if os.access(mySettings.settings['binary'], os.W_OK ):
+			if theGame:
+				launch = ""
+				launch +=  mySettings.settings['binary']
+				if mySettings.settings['configFile']:
+					launch += ' --config=' + mySettings.settings['configFile']
+				launch += ' "' + os.path.join(mySettings.settings['romsDir'],theGame) + '"'
+				print launch
+				app.appBar.set_status('playing ' + theGame)
+				os.system(launch)
+			else : 
+				app.appBar.set_status('No game selected')
+		else :  # TODO: Replace that by a popup info
+			app.appBar.set_status('Invalide path to VBA or not an executable, please fit it in preference')
 	def on_clear_clicked(*args):
 		theGameList.clear()
 	def on_reload_gamelist_activate(*args):
