@@ -6,7 +6,7 @@ Build-Depends: debhelper (>= 4.0.0)
 Standards-Version: 3.6.1
 
 Package: gnomeboyadvance
-Architecture: any
+Architecture: all
 Depends: ${python:Depends}, python-gnome2, python-glade2, visualboyadvance
 Description: GNOME2 frontend for the VisualBoyAdvance emulator
  GnomeBoyAdvance is a frontend for VisualBoyAdvance emulator,
