@@ -1,1 +1,1 @@
-?package(gnomeboyadvance): needs="X11" section="Apps/Emulators" title="GnomeBoyAdvance" command="/usr/bin/gnomeboyadvance"
+?package(gnomeboyadvance): needs="X11" section="Apps/Emulators" title="GnomeBoyAdvance" command="/usr/bin/gnomeboyadvance" icon="/usr/share/pixmaps/gba48.png"
