@@ -253,6 +253,7 @@
 			  <property name="rules_hint">False</property>
 			  <property name="reorderable">False</property>
 			  <property name="enable_search">True</property>
+			  <signal name="row_activated" handler="on_game_double_click" last_modification_time="Mon, 23 Aug 2004 20:34:09 GMT"/>
 			</widget>
 		      </child>
 		    </widget>
