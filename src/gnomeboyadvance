@@ -204,8 +204,11 @@ class gameList:
 		global theGame
 		if self.sel:
 			self.model, self.iter = self.sel
-			self.module = self.model.get_value(self.iter, 0)
-			theGame = self.model.get_value(self.iter,0)
+			if self.iter:
+				self.module = self.model.get_value(self.iter, 0)
+				theGame = self.model.get_value(self.iter,0)
+			else:
+				theGame = ''
 		if mySettings.settings.has_key('captureDir') and os.path.isdir(mySettings.settings['captureDir']):
 			theImage = os.path.join(mySettings.settings['captureDir'], theGame[:-4] + '01.png')
 			gameImage = app.get_widget("gameImage")
@@ -213,7 +216,7 @@ class gameList:
 				gameImage.set_from_file(theImage)
 			else:
 				gameImage.set_from_file( os.path.join(DATADIR, LOGOFILE))
-			app.appBar.set_status(theGame)
+		app.appBar.set_status(theGame)
 		
 
 
