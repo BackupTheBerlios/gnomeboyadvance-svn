@@ -22,10 +22,8 @@ class GameList:
 		self.gameList.append_column(self.col)
 		self.selection.set_mode('single')
 		self.selection.connect('changed' ,self.selectGame)
-		self.gameList.connect('row-activated', self.on_game_double_click)
+		
 
-	def on_game_double_click(self, treeView, no, treeViewColumn):
-		print "double click"
 		
 
         def populate(self, romsDir, tosearch=''):

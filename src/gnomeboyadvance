@@ -28,7 +28,7 @@ CHOOSE_WIDG = ['captureFormat', 'video', 'ifbType', 'soundVolume', 'saveType', '
 BOOL_WIDG = ['fullScreen', 'colorOption', 'borderAutomatic', 'autoFrameSkip', 'soundEcho', 'soundLowPass', 'soundReverse', 'soundOff', 'showSpeedTransparent', 'rtcEnabled', 'useBios', 'skipBios', 'disableStatus', 'pauseWhenInactive', 'agbPrint', 'borderOn', 'disableMMX']
 CONTROL_WIDG = ['Joy0_Left', 'Joy0_Right', 'Joy0_Up', 'Joy0_Down', 'Joy0_A', 'Joy0_B', 'Joy0_L', 'Joy0_R', 'Joy0_Start', 'Joy0_Select', 'Joy0_Speed', 'Joy0_Capture']
 #TODO: we will use Settings.CONTROL_OPTIONS when the motions settings will be configurable with widgets
-CALLBACKS = ['on_about1_activate', 'on_quit1_activate', 'on_playGame_clicked', 'on_reload_gamelist_activate', 'on_search_changed', 'on_preferences_activate', 'on_preferences_close_button_clicked', 'on_import_activate', 'on_export_activate', 'on_configure_control_clicked', 'on_binding_press_event', 'on_joy_enable_toggled']
+CALLBACKS = ['on_about1_activate', 'on_quit1_activate', 'on_playGame_clicked', 'on_reload_gamelist_activate', 'on_search_changed', 'on_preferences_activate', 'on_preferences_close_button_clicked', 'on_import_activate', 'on_export_activate', 'on_configure_control_clicked', 'on_binding_press_event', 'on_joy_enable_toggled','on_game_double_click']
 
 
 def find_glade():
@@ -97,21 +97,28 @@ class GnomeBoyAdvance:
 		gtk.main_quit()
 
 	def on_playGame_clicked(self, button):
+		if self.gameList.theGame:
+			self.playGame(self.gameList.theGame)
+		else : 
+			self.appBar.set_status('No game selected')
+	
+	def playGame(self, rom):
 		if os.access(self.mySettings.settings['binary'], os.X_OK ):
-			if self.gameList.theGame:
+			if rom:
 				launch =  self.mySettings.settings['binary']
 				if self.mySettings.settings['commandLineOptions']:
 					launch += ' ' + self.mySettings.settings['commandLineOptions']
 				launch += ' --config='+ self.mySettings.confFile()
-				launch += ' "' + os.path.join(self.mySettings.settings['romsDir'], self.gameList.theGame) + '" &'
+				launch += ' "' + os.path.join(self.mySettings.settings['romsDir'], rom) + '" &'
 				
 				print launch
-				self.appBar.set_status('playing ' + self.gameList.theGame)
+				self.appBar.set_status('playing ' + rom)
 				os.system(launch)
 			else : 
 				self.appBar.set_status('No game selected')
 		else :  
 			self.appBar.set_status('Invalide path to VBA or not an executable, please fit it in preference')
+
 
 	def on_reload_gamelist_activate(self, menuItem):
 		self.gameList.populate(self.mySettings.settings['romsDir'])
@@ -297,7 +304,12 @@ class GnomeBoyAdvance:
 			#TODO: it's dirty. This info is also in the glade file. Correct this!
 			self.joy = None
 		
-
+	def on_game_double_click(self, treeView, path, treeViewColumn):
+		
+		model = treeView.get_model()
+		iter = model.get_iter(path)
+		rom =model.get_value(iter,0)
+		self.playGame(rom)
 		
 #not callback
 def popupError(msg):
