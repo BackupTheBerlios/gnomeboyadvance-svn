@@ -16,6 +16,43 @@ Usage
 3: select a game
 4: click the "Play Game" button
 
+Configuration of keys
+=====================
+all numbers are in hexadecimal!
+Keys values are in the format YXXX where Y is the device number. 0 means
+keyborad and XXX is the SDL define for the desired key (read SDL_keysym.h).
+
+If Y is greater than 0, it means joystick number Y-1 and it uses the
+following format for XXX:
+
+- if XXX < 20, XXX is the axis number multiplied by 2. An even number means
+  movement to the negative side (on the X axis, it means left). An odd
+  number means movement to the positive side (on the X axis, it mean
+  right). For the Y axis, negative means up and positive means down.
+  X axis is usally axis number 0 and Y is axis number 1.
+- if 20 >= XXX > 30, then XXX is the HAT number multiplied by 4 plus the
+  direction: 0 for up, 1 for down, 2 for right and 3 for left. Example:
+  0021 is HAT 0 down, 0026 is HAT 1 right.
+- if 80 >= XXX > 100, XXX is the joystick button number (XXX-080).
+
+Default key configuration is (value in parenthesis):
+
+Left          Left Arrow  (0114)
+Right         Right Arrow (0113)
+Up            Up Arrow    (0111)
+Down          Down Arrow  (0112)
+A             Q
+B             S
+L             A           (0061)
+R             Z
+Start         ENTER       (000d)
+Select        BACKSPACE   (0008)
+Speed up      SPACE       (0020)
+Capture       F12         (0125)
+
+It will be improved in the next release!
+
+
 How to report bugs
 =================
 Use the "Submit A Bug" function here : http://developer.berlios.de/bugs/?group_id=1650

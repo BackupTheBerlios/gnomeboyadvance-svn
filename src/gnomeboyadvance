@@ -17,7 +17,7 @@ except:
 	print 'You must have python-gtk2, python-gnome2 and python-glade2 installed.'
 	sys.exit()
 
-from Settings import Settings, CONTROL_OPTIONS  #TODO: drop CONTROL_OPTIONS
+from Settings import Settings, CONTROL_OPTIONS  
 
 NAME = 'gnomeBoyAdvance'
 VERSION = '0.3'
@@ -34,7 +34,7 @@ ENTRY_WIDG = ['binary', 'romsDir', 'batteryDir', 'captureDir', 'saveDir', 'throt
 CHOOSE_WIDG = ['captureFormat', 'video', 'ifbType', 'soundVolume', 'saveType', 'flashSize', 'emulatorType', 'showSpeed']
 BOOL_WIDG = ['fullScreen', 'colorOption', 'borderAutomatic', 'autoFrameSkip', 'soundEcho', 'soundLowPass', 'soundReverse', 'soundOff', 'showSpeedTransparent', 'rtcEnabled', 'useBios', 'skipBios', 'disableStatus', 'pauseWhenInactive', 'agbPrint', 'borderOn', 'disableMMX']
 
-gnome.init('gnomeBoyAdvance', VERSION)
+gnome.init('GnomeBoyAdvance', VERSION)
 theGame = None
 
 
@@ -201,7 +201,7 @@ class GUI(gtk.glade.XML):
 		mySettings.settings['soundQuality'] = snd
 
 		#soundEnable
-		snd = app.get_widget('soundQuality').get_history()
+		snd = app.get_widget('soundEnable').get_history()
 		if snd == 0: snd='1'
 		elif snd == 1: snd='2'
 		elif snd == 2: snd='4'
@@ -210,7 +210,7 @@ class GUI(gtk.glade.XML):
 		elif snd == 5: snd='200'
 		elif snd == 6: snd='30f'
 		elif snd == 7: snd='0'
-		mySettings.settings['soundQuality'] = snd
+		mySettings.settings['soundEnable'] = snd
 
 		for widg in BOOL_WIDG:
 			if(app.get_widget(widg).get_active()): ok = '1'
