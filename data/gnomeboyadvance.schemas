@@ -23,8 +23,8 @@
       </locale>
     </schema>
       <schema>
-      <key>/schemas/apps/gnomeboyadvance/general/romDir</key>
-      <applyto>/apps/gomeboyadvance/general/romDir</applyto>
+      <key>/schemas/apps/gnomeboyadvance/general/romsDir</key>
+      <applyto>/apps/gomeboyadvance/general/romsDir</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
       <locale name="C">
