@@ -1,4 +1,6 @@
+etc/gconf/schemas
 usr/bin
+usr/lib/gnomeboyadvance
 usr/share/applications
 usr/share/gnomeboyadvance
 usr/share/bug/gnomeboyadvance
