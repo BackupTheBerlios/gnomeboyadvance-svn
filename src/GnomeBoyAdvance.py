@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#authors cass@skynet.be, jay@socialistsoftware.com
+#authors gnomeboyadvance-devel@lists.berlios.de
 #web http://developer.berlios.de/projects/gnomeboyadvance/
 #license GPL http://www.gnu.org/copyleft/gpl.html
 
