@@ -1,53 +1,12 @@
 TODO
 
-* add some of the more advanced settings:
-	** Control:
-		- keys bindings
-		- joystick control
-	** graphics:
-		- gbFrameSkip
-		- filter
-		- colorOption
-		- captureFormat
-		- ifbType
-		- autoFrameSkip
-		- borderAutomatic
-	** sound:
-		- soundQuality
-		- soundEcho
-		- soundLowPass
-		- soundReverse
-		- soundVolume
-		- soundOff
-		- soundEnable
-	** misc:
-		- disableMMX
-		- useBios
-		- biosFile
-		- disableStatus
-		- borderOn
-		- emulatorType
-		- flashsize	
-		- showSpeed
-		- showSpeedTransparent
-		- pauseWhenInactive
-		- agbPrint
-		- rtcEnabled
-		- skipBios
-		- rewindTimer
-	** dir:
-		- saveDir
-		- batteryDir
-		
-	
-* give default value for the settings
+* add user friendly keys bindings and joystick configuration
 * launch a game by double click on the name
-* use gconf to save the configuration of gnomeboyadvance
 * remake the install script. 
 * separate the source in differents files.
 * can easily associate a screenshot to a game
 * add translation support
-* make packages (Mandrake, Gentoo, ...)
+* update the gentoo ebuild
 * make a FAQ and a MAN
 * add a IPS patch tab (??)
 * add slideshow of screenshot instead of just showing the first
