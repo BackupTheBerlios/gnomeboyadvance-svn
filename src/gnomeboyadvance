@@ -24,7 +24,7 @@ SETTINGSFILE = os.path.join(os.path.expanduser("~"), ".gnomeBoyAdvance")
 LOGOFILE = 'gnomeboyadvance.png'
 ICONFILE = '/usr/share/pixmaps/gba48.png'
 
-SETTINGS_WIDGETS = ['romsDir', 'binary', 'scale', 'captureDir', 'filter', 'frameSkip', 'throttle', 'yuv', 'configFile', 'saveType']
+SETTINGS_WIDGETS = ['romsDir', 'binary', 'scale', 'captureDir', 'filter', 'frameSkip', 'throttle', 'configFile', 'saveType']
 
 gnome.init('gnomeBoyAdvance', VERSION)
 theGame = None
