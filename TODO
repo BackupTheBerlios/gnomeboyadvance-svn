@@ -1,9 +1,8 @@
 TODO
 
-* add user friendly keys bindings and joystick configuration
 * launch a game by double click on the name
-* remake the install script. 
-* separate the source in differents files.
+* remake the install script 
+* separate the source in differents files
 * can easily associate a screenshot to a game
 * add translation support
 * update the gentoo ebuild

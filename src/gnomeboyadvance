@@ -30,9 +30,15 @@ LOGOFILE = 'gnomeboyadvance.png'
 ICONFILE = '/usr/share/pixmaps/gba48.png'
 
 
-ENTRY_WIDG = ['binary', 'romsDir', 'batteryDir', 'captureDir', 'saveDir', 'throttle', 'gbFrameSkip', 'frameSkip', 'biosFile', 'rewindTimer', 'commandLineOptions'] + CONTROL_OPTIONS
+ENTRY_WIDG = ['binary', 'romsDir', 'batteryDir', 'captureDir', 'saveDir', 'throttle', 'gbFrameSkip', 'frameSkip', 'biosFile', 'rewindTimer', 'commandLineOptions', 'Joy0_Left', 'Joy0_Right', 'Joy0_Up', 'Joy0_Down', 'Joy0_A', 'Joy0_B', 'Joy0_L', 'Joy0_R', 'Joy0_Start', 'Joy0_Select', 'Joy0_Speed', 'Joy0_Capture']
 CHOOSE_WIDG = ['captureFormat', 'video', 'ifbType', 'soundVolume', 'saveType', 'flashSize', 'emulatorType', 'showSpeed']
 BOOL_WIDG = ['fullScreen', 'colorOption', 'borderAutomatic', 'autoFrameSkip', 'soundEcho', 'soundLowPass', 'soundReverse', 'soundOff', 'showSpeedTransparent', 'rtcEnabled', 'useBios', 'skipBios', 'disableStatus', 'pauseWhenInactive', 'agbPrint', 'borderOn', 'disableMMX']
+
+gtk_to_sdl = {65027:313, 65288:8, 65289:9, 65293:13, 65360:278, 65361:276, 65362:273, 65363:275, 65364:274, 65365:280, 
+65366:281, 65367:279, 65379:277, 65421:271, 65450:268, 65451:270, 65453:269, 65454:266, 65455:267, 65456:256, 
+65457:257, 65458:258, 65459:259, 65460:260, 65461:261, 65462:262, 65463:263, 65464:264, 65465:265, 65505:304,
+65506:303, 65507:306, 65508:305, 65535:127}
+
 
 gnome.init('GnomeBoyAdvance', VERSION)
 theGame = None
@@ -264,9 +270,12 @@ class GUI(gtk.glade.XML):
 			res = dial.run()
 			dial.hide()
 			if res not in (-4, 65307):  #-4: close the window, 65307: ESC
-				print res
-				print "name", gtk.gdk.keyval_name(res)
-				entry.set_text("%04x" % res)
+				try:
+					res_sdl = gtk_to_sdl[res]
+				except KeyError:
+					res_sdl = res
+	#			print "name", gtk.gdk.keyval_name(res)
+				entry.set_text("%04x" % res_sdl)
 
 	def on_binding_press_event(*args):
 		event =  args[1]
