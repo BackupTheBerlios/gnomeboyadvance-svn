@@ -285,10 +285,6 @@ class GUI(gtk.glade.XML):
 		if(mySettings.write()):
 			app.appBar.set_status('Could not save settings to disk')
 
-		#test
-		widg = app.get_widget('combo7')
-		print dir(widg)
-	
 if __name__ == "__main__":
 	app = GUI()
 	mySettings = Settings()
