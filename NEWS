@@ -1,7 +1,9 @@
 GnomeBoyAdvance NEWS
 
+version 0.3
+
 01/05/04 version 0.2
-	Projet is restarted on 2004-Apr-08 with a new team and is now hosted on berlios.de
+	Project is restarted on 2004-Apr-08 with a new team and is now hosted on berlios.de
 	* Beginning of code cleaning.
 	* Fixed lot of bugs with the configuration system (most of the work was here).
 	+ Added a search function to filter the roms
