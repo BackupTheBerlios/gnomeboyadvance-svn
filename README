@@ -3,11 +3,13 @@ General Information
 GnomeBoyAdvance is a Gnome 2 frontend for the VisualVoy Advance emulator.  
 You can get VisualBoy Advance from http://vba.ngemu.com/index.shtml
 
+
 Installation
 ============
 1: make sure you have  at least Python 2.2, and the python-gnome, python-glade packages installed
 2: tar -jxf gnomeboyadvance-x.x.tar.bz2 where ever you like
 3: become root and run the install.py
+
 
 Usage
 =====
@@ -15,6 +17,20 @@ Usage
 2: go to settings menu and fill in the locations for the visual boy advance binary, config file, roms and shots dirs
 3: select a game
 4: click the "Play Game" button
+
+
+The futur of GnomeBoyAdvance
+============================
+Since the 1.7.2 version, VisualBoyAdvance contains a graphic interface in GTK.
+So we're reconsidering the interest and goals of GnomeBoyAdvance, since we don't want to produce 
+useless work by developing a program that nobody is using or wanting. 
+And we would be glad to hear your thoughts about that.
+How do You envisage the future of GnomeBoyAdvance : - a better GNOME integration? 
+-a program more centered on the gestion of your roms collection? - something completely different? 
+-or perhaps you think GBA is now condemned to death? 
+Please send us your opinion on the project's forum or by mail cass@skynet.be
+Thanks
+
 
 Configuration of keys
 =====================
@@ -57,6 +73,7 @@ It will be improved in the next release!
 How to report bugs
 =================
 Use the "Submit A Bug" function here : http://developer.berlios.de/bugs/?group_id=1650
+
 
 Project Homepage
 ================
