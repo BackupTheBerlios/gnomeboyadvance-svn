@@ -7,3 +7,5 @@ TODO
 * add slideshow of screenshot instead of just showing the first
 * add a Druide to configure romsDir, binary, etc at the first launch
 * add a renamer for the roms based on their crc
+* use GNOMEVFS
+* roms can be stocked on media (cd, dvd). Maybe use sqlite?
