@@ -2,600 +2,648 @@
     <schemalist>
       <schema>
       <key>/schemas/apps/gnomeboyadvance/general/binary</key>
-      <applyto>/apps/gomeboyadvance/general/binary</applyto>
+      <applyto>/apps/gnomeboyadvance/general/binary</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default></default>
       <locale name="C">
-        <default></default>
+        
         <short>Path to VisualBoyAdvance binary</short>
         <long>Path to VisualBoyAdvance binary</long>
       </locale>
     </schema>
       <schema>
       <key>/schemas/apps/gnomeboyadvance/general/captureDir</key>
-      <applyto>/apps/gomeboyadvance/general/captureDir</applyto>
+      <applyto>/apps/gnomeboyadvance/general/captureDir</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default></default>
       <locale name="C">
-        <default></default>
         <short>Path to your screenshot directory</short>
         <long>Directory where VisualBoyAdvance will put your screenshots and GnomeBoyAdvance search the preview</long>
       </locale>
     </schema>
       <schema>
       <key>/schemas/apps/gnomeboyadvance/general/romsDir</key>
-      <applyto>/apps/gomeboyadvance/general/romsDir</applyto>
+      <applyto>/apps/gnomeboyadvance/general/romsDir</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default></default>
       <locale name="C">
-        <default></default>
+        
         <short>Path to where are stocked your roms</short>
         <long>Path to where are stocked your roms</long>
       </locale>
     </schema>
       <schema>
       <key>/schemas/apps/gnomeboyadvance/general/captureFormat</key>
-      <applyto>/apps/gomeboyadvance/general/captureFormat</applyto>
+      <applyto>/apps/gnomeboyadvance/general/captureFormat</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>    
       <schema>
       <key>/schemas/apps/gnomeboyadvance/general/saveDir</key>
-      <applyto>/apps/gomeboyadvance/general/saveDir</applyto>
+      <applyto>/apps/gnomeboyadvance/general/saveDir</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
       <schema>
       <key>/schemas/apps/gnomeboyadvance/general/batteryDir</key>
-      <applyto>/apps/gomeboyadvance/general/batteryDir</applyto>
+      <applyto>/apps/gnomeboyadvance/general/batteryDir</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default></default>
       <locale name="C">
-        <default></default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
 
       <schema>
       <key>/schemas/apps/gnomeboyadvance/graphic/video</key>
-      <applyto>/apps/gomeboyadvance/graphic/video</applyto>
+      <applyto>/apps/gnomeboyadvance/graphic/video</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>1</default>
       <locale name="C">
-        <default>1</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
       <schema>
       <key>/schemas/apps/gnomeboyadvance/graphic/fullScreen</key>
-      <applyto>/apps/gomeboyadvance/graphic/fullScreen</applyto>
+      <applyto>/apps/gnomeboyadvance/graphic/fullScreen</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema> 
     <schema>
       <key>/schemas/apps/gnomeboyadvance/graphic/throttle</key>
-      <applyto>/apps/gomeboyadvance/graphic/throttle</applyto>
+      <applyto>/apps/gnomeboyadvance/graphic/throttle</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema> 
     <schema>
       <key>/schemas/apps/gnomeboyadvance/graphic/filter</key>
-      <applyto>/apps/gomeboyadvance/graphic/filter</applyto>
+      <applyto>/apps/gnomeboyadvance/graphic/filter</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
       <schema>
       <key>/schemas/apps/gnomeboyadvance/graphic/gbFrameSkip</key>
-      <applyto>/apps/gomeboyadvance/graphic/gbFrameSkip</applyto>
+      <applyto>/apps/gnomeboyadvance/graphic/gbFrameSkip</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema> 
       <schema>
       <key>/schemas/apps/gnomeboyadvance/graphic/frameSkip</key>
-      <applyto>/apps/gomeboyadvance/graphic/frameSkip</applyto>
+      <applyto>/apps/gnomeboyadvance/graphic/frameSkip</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>2</default>
       <locale name="C">
-        <default>2</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
       <schema>
       <key>/schemas/apps/gnomeboyadvance/graphic/ifbType</key>
-      <applyto>/apps/gomeboyadvance/graphic/ifbType</applyto>
+      <applyto>/apps/gnomeboyadvance/graphic/ifbType</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
       <schema>
       <key>/schemas/apps/gnomeboyadvance/graphic/autoFrameSkip</key>
-      <applyto>/apps/gomeboyadvance/graphic/autoFrameSkip</applyto>
+      <applyto>/apps/gnomeboyadvance/graphic/autoFrameSkip</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
       <schema>
       <key>/schemas/apps/gnomeboyadvance/graphic/colorOption</key>
-      <applyto>/apps/gomeboyadvance/graphic/colorOption</applyto>
+      <applyto>/apps/gnomeboyadvance/graphic/colorOption</applyto>
       <owner>gnomeboyadvance</owner>
-      <type>string</type>
+      <type>string</type><default>1</default>
       <locale name="C">
-        <default>1</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
       <schema>
       <key>/schemas/apps/gnomeboyadvance/graphic/borderAutomatic</key>
-      <applyto>/apps/gomeboyadvance/graphic/borderAutomatic</applyto>
+      <applyto>/apps/gnomeboyadvance/graphic/borderAutomatic</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
       <schema>
       <key>/schemas/apps/gnomeboyadvance/sound/soundQuality</key>
-      <applyto>/apps/gomeboyadvance/sound/soundQuality</applyto>
+      <applyto>/apps/gnomeboyadvance/sound/soundQuality</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>2</default>
       <locale name="C">
-        <default>2</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
       <schema>
       <key>/schemas/apps/gnomeboyadvance/sound/soundVolume</key>
-      <applyto>/apps/gomeboyadvance/sound/soundVolume</applyto>
+      <applyto>/apps/gnomeboyadvance/sound/soundVolume</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
       <schema>
       <key>/schemas/apps/gnomeboyadvance/sound/soundEnable</key>
-      <applyto>/apps/gomeboyadvance/sound/soundEnable</applyto>
+      <applyto>/apps/gnomeboyadvance/sound/soundEnable</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>30f</default>
       <locale name="C">
-        <default>30f</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
       <schema>
       <key>/schemas/apps/gnomeboyadvance/sound/soundReverse</key>
-      <applyto>/apps/gomeboyadvance/sound/soundReverse</applyto>
+      <applyto>/apps/gnomeboyadvance/sound/soundReverse</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
       <schema>
       <key>/schemas/apps/gnomeboyadvance/sound/soundOff</key>
-      <applyto>/apps/gomeboyadvance/sound/soundOff</applyto>
+      <applyto>/apps/gnomeboyadvance/sound/soundOff</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
       <schema>
       <key>/schemas/apps/gnomeboyadvance/sound/soundEcho</key>
-      <applyto>/apps/gomeboyadvance/sound/soundEcho</applyto>
+      <applyto>/apps/gnomeboyadvance/sound/soundEcho</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
       <schema>
       <key>/schemas/apps/gnomeboyadvance/sound/soundLowPass</key>
-      <applyto>/apps/gomeboyadvance/sound/soundLowPass</applyto>
+      <applyto>/apps/gnomeboyadvance/sound/soundLowPass</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
       <schema>
       <key>/schemas/apps/gnomeboyadvance/control/Joy0_Left</key>
-      <applyto>/apps/gomeboyadvance/control/Joy0_Left</applyto>
+      <applyto>/apps/gnomeboyadvance/control/Joy0_Left</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0114</default>
       <locale name="C">
-        <default>0114</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
 
       <schema>
       <key>/schemas/apps/gnomeboyadvance/control/Joy0_Right</key>
-      <applyto>/apps/gomeboyadvance/control/Joy0_Right</applyto>
+      <applyto>/apps/gnomeboyadvance/control/Joy0_Right</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0113</default>
       <locale name="C">
-        <default>0113</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
     
           <schema>
       <key>/schemas/apps/gnomeboyadvance/control/Joy0_Up</key>
-      <applyto>/apps/gomeboyadvance/control/Joy0_Up</applyto>
+      <applyto>/apps/gnomeboyadvance/control/Joy0_Up</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0111</default>
       <locale name="C">
-        <default>0111</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
 
           <schema>
       <key>/schemas/apps/gnomeboyadvance/control/Joy0_Down</key>
-      <applyto>/apps/gomeboyadvance/control/Joy0_Down</applyto>
+      <applyto>/apps/gnomeboyadvance/control/Joy0_Down</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0112</default>
       <locale name="C">
-        <default>0112</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
           <schema>
       <key>/schemas/apps/gnomeboyadvance/control/Joy0_A</key>
-      <applyto>/apps/gomeboyadvance/control/Joy0_A</applyto>
+      <applyto>/apps/gnomeboyadvance/control/Joy0_A</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>007a</default>
       <locale name="C">
-        <default>007a</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
           <schema>
       <key>/schemas/apps/gnomeboyadvance/control/Joy0_B</key>
-      <applyto>/apps/gomeboyadvance/control/Joy0_B</applyto>
+      <applyto>/apps/gnomeboyadvance/control/Joy0_B</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0078</default>
       <locale name="C">
-        <default>0078</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
           <schema>
       <key>/schemas/apps/gnomeboyadvance/control/Joy0_L</key>
-      <applyto>/apps/gomeboyadvance/control/Joy0_L</applyto>
+      <applyto>/apps/gnomeboyadvance/control/Joy0_L</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0061</default>
       <locale name="C">
-        <default>0061</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
           <schema>
       <key>/schemas/apps/gnomeboyadvance/control/Joy0_R</key>
-      <applyto>/apps/gomeboyadvance/control/Joy0_R</applyto>
+      <applyto>/apps/gnomeboyadvance/control/Joy0_R</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0073</default>
       <locale name="C">
-        <default>0073</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
     <schema>
       <key>/schemas/apps/gnomeboyadvance/control/Joy0_Start</key>
-      <applyto>/apps/gomeboyadvance/control/Joy0_Start</applyto>
+      <applyto>/apps/gnomeboyadvance/control/Joy0_Start</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>000d</default>
       <locale name="C">
-        <default>000d</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
           <schema>
       <key>/schemas/apps/gnomeboyadvance/control/Joy0_Select</key>
-      <applyto>/apps/gomeboyadvance/control/Joy0_Select</applyto>
+      <applyto>/apps/gnomeboyadvance/control/Joy0_Select</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0008</default>
       <locale name="C">
-        <default>0008</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
 
           <schema>
       <key>/schemas/apps/gnomeboyadvance/control/Joy0_Speed</key>
-      <applyto>/apps/gomeboyadvance/control/Joy0_Speed</applyto>
+      <applyto>/apps/gnomeboyadvance/control/Joy0_Speed</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0020</default>
       <locale name="C">
-        <default>0020</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
           <schema>
       <key>/schemas/apps/gnomeboyadvance/control/Joy0_Capture</key>
-      <applyto>/apps/gomeboyadvance/control/Joy0_Capture</applyto>
+      <applyto>/apps/gnomeboyadvance/control/Joy0_Capture</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0125</default>
       <locale name="C">
-        <default>0125</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
           <schema>
       <key>/schemas/apps/gnomeboyadvance/control/Motion_Left</key>
-      <applyto>/apps/gomeboyadvance/control/Motion_Left</applyto>
+      <applyto>/apps/gnomeboyadvance/control/Motion_Left</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0104</default>
       <locale name="C">
-        <default>0104</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
           <schema>
       <key>/schemas/apps/gnomeboyadvance/control/Motion_Right</key>
-      <applyto>/apps/gomeboyadvance/control/Motion_Right</applyto>
+      <applyto>/apps/gnomeboyadvance/control/Motion_Right</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0106</default>
       <locale name="C">
-        <default>0106</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>            <schema>
       <key>/schemas/apps/gnomeboyadvance/control/Motion_Up</key>
-      <applyto>/apps/gomeboyadvance/control/Motion_Up</applyto>
+      <applyto>/apps/gnomeboyadvance/control/Motion_Up</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0108</default>
       <locale name="C">
-        <default>0108</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>            <schema>
       <key>/schemas/apps/gnomeboyadvance/control/Motion_Down</key>
-      <applyto>/apps/gomeboyadvance/control/Motion_Down</applyto>
+      <applyto>/apps/gnomeboyadvance/control/Motion_Down</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0102</default>
       <locale name="C">
-        <default>0102</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema> 
     <schema>
       <key>/schemas/apps/gnomeboyadvance/advanced/saveType</key>
-      <applyto>/apps/gomeboyadvance/advanced/saveType</applyto>
+      <applyto>/apps/gnomeboyadvance/advanced/saveType</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
     <schema>
       <key>/schemas/apps/gnomeboyadvance/advanced/biosFile</key>
-      <applyto>/apps/gomeboyadvance/advanced/biosFile</applyto>
+      <applyto>/apps/gnomeboyadvance/advanced/biosFile</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>none</default>
       <locale name="C">
-        <default>none</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
     <schema>
       <key>/schemas/apps/gnomeboyadvance/advanced/flashSize</key>
-      <applyto>/apps/gomeboyadvance/advanced/flashSize</applyto>
+      <applyto>/apps/gnomeboyadvance/advanced/flashSize</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
     <schema>
       <key>/schemas/apps/gnomeboyadvance/advanced/emulatorType</key>
-      <applyto>/apps/gomeboyadvance/advanced/emulatorType</applyto>
+      <applyto>/apps/gnomeboyadvance/advanced/emulatorType</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>1</default>
       <locale name="C">
-        <default>1</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
     <schema>
       <key>/schemas/apps/gnomeboyadvance/advanced/showSpeed</key>
-      <applyto>/apps/gomeboyadvance/advanced/showSpeed</applyto>
+      <applyto>/apps/gnomeboyadvance/advanced/showSpeed</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>1</default>
       <locale name="C">
-        <default>1</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
     <schema>
       <key>/schemas/apps/gnomeboyadvance/advanced/rewindTimer</key>
-      <applyto>/apps/gomeboyadvance/advanced/rewindTimer</applyto>
+      <applyto>/apps/gnomeboyadvance/advanced/rewindTimer</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
     <schema>
       <key>/schemas/apps/gnomeboyadvance/advanced/showSpeedTransparent</key>
-      <applyto>/apps/gomeboyadvance/advanced/showSpeedTransparent</applyto>
+      <applyto>/apps/gnomeboyadvance/advanced/showSpeedTransparent</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>1</default>
       <locale name="C">
-        <default>1</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
     <schema>
       <key>/schemas/apps/gnomeboyadvance/advanced/rtcEnabled</key>
-      <applyto>/apps/gomeboyadvance/advanced/rtcEnabled</applyto>
+      <applyto>/apps/gnomeboyadvance/advanced/rtcEnabled</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
     <schema>
       <key>/schemas/apps/gnomeboyadvance/advanced/useBios</key>
-      <applyto>/apps/gomeboyadvance/advanced/useBios</applyto>
+      <applyto>/apps/gnomeboyadvance/advanced/useBios</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
     <schema>
       <key>/schemas/apps/gnomeboyadvance/advanced/skipBios</key>
-      <applyto>/apps/gomeboyadvance/advanced/skipBios</applyto>
+      <applyto>/apps/gnomeboyadvance/advanced/skipBios</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
     <schema>
       <key>/schemas/apps/gnomeboyadvance/advanced/disableStatus</key>
-      <applyto>/apps/gomeboyadvance/advanced/disableStatus</applyto>
+      <applyto>/apps/gnomeboyadvance/advanced/disableStatus</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
     <schema>
       <key>/schemas/apps/gnomeboyadvance/advanced/pauseWhenInactive</key>
-      <applyto>/apps/gomeboyadvance/advanced/pauseWhenInactive</applyto>
+      <applyto>/apps/gnomeboyadvance/advanced/pauseWhenInactive</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+	<default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+      
+        
+        
       </locale>
     </schema>  
     <schema>
       <key>/schemas/apps/gnomeboyadvance/advanced/agbPrint</key>
-      <applyto>/apps/gomeboyadvance/advanced/agbPrint</applyto>
+      <applyto>/apps/gnomeboyadvance/advanced/agbPrint</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
     <schema>
       <key>/schemas/apps/gnomeboyadvance/advanced/borderOn</key>
-      <applyto>/apps/gomeboyadvance/advanced/borderOn</applyto>
+      <applyto>/apps/gnomeboyadvance/advanced/borderOn</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
+      <default>0</default>
       <locale name="C">
-        <default>0</default>
-        <short></short>
-        <long></long>
+        
+        
+        
       </locale>
     </schema>  
     <schema>
       <key>/schemas/apps/gnomeboyadvance/advanced/disableMMX</key>
-      <applyto>/apps/gomeboyadvance/advanced/disableMMX</applyto>
+      <applyto>/apps/gnomeboyadvance/advanced/disableMMX</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
-      <locale name="C">
         <default>1</default>
-        <short></short>
-        <long></long>
-      </locale>
+	<locale name="C"></locale>
     </schema>  
     
     
