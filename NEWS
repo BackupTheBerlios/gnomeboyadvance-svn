@@ -2,6 +2,7 @@ GnomeBoyAdvance NEWS
 
 version 0.4:
 	* soundEnable option is now correctly saved (close #2063)
+	* add a field to pass additionnal command line options to VBA (close feature request #142)
 
 06/29/04 version 0.3
 	* Settings system entirely rewritten. Preferences are now saved via gconf. 

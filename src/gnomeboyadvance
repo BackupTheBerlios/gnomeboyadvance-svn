@@ -30,7 +30,7 @@ LOGOFILE = 'gnomeboyadvance.png'
 ICONFILE = '/usr/share/pixmaps/gba48.png'
 
 
-ENTRY_WIDG = ['binary', 'romsDir', 'batteryDir', 'captureDir', 'saveDir', 'throttle', 'gbFrameSkip', 'frameSkip', 'biosFile', 'rewindTimer'] + CONTROL_OPTIONS
+ENTRY_WIDG = ['binary', 'romsDir', 'batteryDir', 'captureDir', 'saveDir', 'throttle', 'gbFrameSkip', 'frameSkip', 'biosFile', 'rewindTimer', 'commandLineOptions'] + CONTROL_OPTIONS
 CHOOSE_WIDG = ['captureFormat', 'video', 'ifbType', 'soundVolume', 'saveType', 'flashSize', 'emulatorType', 'showSpeed']
 BOOL_WIDG = ['fullScreen', 'colorOption', 'borderAutomatic', 'autoFrameSkip', 'soundEcho', 'soundLowPass', 'soundReverse', 'soundOff', 'showSpeedTransparent', 'rtcEnabled', 'useBios', 'skipBios', 'disableStatus', 'pauseWhenInactive', 'agbPrint', 'borderOn', 'disableMMX']
 
@@ -121,6 +121,8 @@ class GUI(gtk.glade.XML):
 		if os.access(mySettings.settings['binary'], os.X_OK ):
 			if theGame:
 				launch =  mySettings.settings['binary']
+				if mySettings.settings['commandLineOptions']:
+					launch += ' ' + mySettings.settings['commandLineOptions']
 				launch += ' --config='+ mySettings.confFile()
 				launch += ' "' + os.path.join(mySettings.settings['romsDir'],theGame) + '" &'
 				

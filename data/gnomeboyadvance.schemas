@@ -646,7 +646,18 @@
 	<locale name="C"></locale>
     </schema>  
     
-    
+     <schema>
+      <key>/schemas/apps/gnomeboyadvance/advanced/commandLineOptions</key>
+      <applyto>/apps/gnomeboyadvance/advanced/commandLineOptions</applyto>
+      <owner>gnomeboyadvance</owner>
+      <type>string</type>
+        <default></default>
+	<locale name="C">
+		<short>Command line options to VisualBoyAdvance</short>
+		<long>Additionnal command line options to pass to VisualBoyAdvance</long>
+	</locale>
+    </schema>  
+   
 </schemalist>  
 </gconfschemafile>
           

@@ -7,7 +7,10 @@ GENERAL_OPTIONS = ['binary', 'captureDir', 'romsDir', 'captureFormat', 'saveDir'
 CONTROL_OPTIONS = ['Joy0_Left', 'Joy0_Right', 'Joy0_Up', 'Joy0_Down', 'Joy0_A', 'Joy0_B', 'Joy0_L', 'Joy0_R', 'Joy0_Start', 'Joy0_Select', 'Joy0_Speed', 'Joy0_Capture']#, 'Motion_Left', 'Motion_Right', 'Motion_Up', 'Motion_Down']
 GRAPHIC_OPTIONS = ['video', 'fullScreen', 'throttle', 'filter', 'gbFrameSkip', 'frameSkip', 'ifbType', 'autoFrameSkip', 'colorOption', 'borderAutomatic']
 SOUND_OPTIONS = ['soundQuality', 'soundVolume', 'soundEnable', 'soundReverse', 'soundOff', 'soundEcho', 'soundLowPass']
-ADVANCED_OPTIONS = ['saveType', 'biosFile', 'flashSize', 'emulatorType', 'showSpeed', 'rewindTimer', 'showSpeedTransparent', 'rtcEnabled', 'useBios', 'skipBios', 'disableStatus', 'pauseWhenInactive', 'agbPrint', 'borderOn', 'disableMMX']
+ADVANCED_OPTIONS = ['saveType', 'biosFile', 'flashSize', 'emulatorType', 'showSpeed', 'rewindTimer', 'showSpeedTransparent', 'rtcEnabled', 'useBios', 'skipBios', 'disableStatus', 'pauseWhenInactive', 'agbPrint', 'borderOn', 'disableMMX', 'commandLineOptions']
+
+#settings not in the conf file
+NOT_IN_FILE_OPTIONS = ['commandLineOptions']
 
 
 class Settings:
@@ -75,6 +78,7 @@ class Settings:
 				f.write(l)
 
 		for elt in CONTROL_OPTIONS + GRAPHIC_OPTIONS + SOUND_OPTIONS + ADVANCED_OPTIONS:
+			if elt not in NOT_IN_FILE_OPTIONS:
 				l = elt + '=' + self.settings[elt] + '\n'
 				f.write(l)
 		
