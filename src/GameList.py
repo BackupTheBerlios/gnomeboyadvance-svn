@@ -21,7 +21,7 @@ class GameList:
 		self.col.set_sort_column_id(0)
 		self.gameList.append_column(self.col)
 		self.selection.set_mode('single')
-		self.selection.connect('changed',self.selectGame)
+		self.selection.connect('changed' ,self.selectGame)
 
         def populate(self, romsDir, tosearch=''):
                 if tosearch:
@@ -34,7 +34,7 @@ class GameList:
 			print romsDir + ' is not a directory.'
 		gameCount = 0
 		for eachGame in self.gamesDict:
-			if (eachGame[-3:] == 'zip' or eachGame[-3:] == 'gba') and (eachGame.lower().find(tosearch) != -1):
+			if (eachGame[-3:].lower() in ['zip','gba']) and (eachGame.lower().find(tosearch) != -1):
 				iter = self.gameListModel.append()
 				self.gameListModel.set_value(iter,0,eachGame)
 				gameCount += 1
