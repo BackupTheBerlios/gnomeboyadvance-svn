@@ -1,8 +1,5 @@
 TODO
 
-
-* remake the install script 
-* separate the source in differents files
 * can easily associate a screenshot to a game
 * add translation support
 * update the gentoo ebuild
