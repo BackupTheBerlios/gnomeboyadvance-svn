@@ -8,6 +8,6 @@ Standards-Version: 3.6.1
 Package: gnomeboyadvance
 Architecture: all
 Depends: ${misc:Depends}, ${python:Depends}, python-gnome2, python-glade2, visualboyadvance
-Description: GNOME2 frontend for the VisualBoyAdvance emulator
+Description: GNOME frontend for the VisualBoyAdvance emulator
  GnomeBoyAdvance is a frontend for VisualBoyAdvance emulator,
- written in Python using the GNOME2 tool kit.
+ written in Python using the GNOME tool kit.
