@@ -180,7 +180,11 @@ class gameList:
 		self.selection = self.gameList.get_selection()
 		self.selection.set_mode('single')
 		self.selection.connect('changed',self.selectGame)
-	def populate(self, romsDir):
+
+        def populate(self, romsDir, tosearch=''):
+                if tosearch:
+                       tosearch = tosearch.lower()
+
 		self.gameListModel.clear()
 		if os.path.isdir(romsDir):
 			self.gamesDict = os.listdir(romsDir)
@@ -188,7 +192,7 @@ class gameList:
 			print romsDir + ' is not a directory.'
 		self.gameCount = 0
 		for eachGame in self.gamesDict:
-			if eachGame[-3:] == 'zip' or eachGame[-3:] == 'gba':
+			if (eachGame[-3:] == 'zip' or eachGame[-3:] == 'gba') and (eachGame.lower().find(tosearch) != -1):
 				iter = self.gameListModel.append()
 				self.gameListModel.set_value(iter,0,eachGame)
 				self.gameCount += 1
@@ -244,7 +248,11 @@ class GUI(gtk.glade.XML):
 			app.appBar.set_status('Invalide path to VBA or not an executable, please fit it in preference')
 	def on_reload_gamelist_activate(*args):
 		theGameList.populate(mySettings.settings['romsDir'])
-		
+	
+	def on_search_clicked(*args):
+		tosearch= app.get_widget('searchbox').get_text()
+		theGameList.populate(mySettings.settings['romsDir'],tosearch)
+
 	def on_preferences_activate(*args):
 		app.get_widget("preferences_dialog").show()
 
