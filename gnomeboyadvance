@@ -231,14 +231,14 @@ class GUI(gtk.glade.XML):
 		gtk.main_quit()
 
 	def on_playGame_clicked(*args):
-		if os.access(mySettings.settings['binary'], os.W_OK ):
+		if os.access(mySettings.settings['binary'], os.X_OK ):
 			if theGame:
 				launch = ""
 				launch +=  mySettings.settings['binary']
 				if mySettings.settings['configFile']:
 					launch += ' --config=' + mySettings.settings['configFile']
 				launch += ' "' + os.path.join(mySettings.settings['romsDir'],theGame) + '"'
-				print launch
+				
 				app.appBar.set_status('playing ' + theGame)
 				os.system(launch)
 			else : 
@@ -286,3 +286,8 @@ if __name__ == "__main__":
 			print gbaSetting[0][:-1] + ' is not a file'
 	
 	gtk.main()
+
+
+def loadconfig(settings):
+	client = gconf.client_get_default ()
+	client.add_dir ("/apps/basic-gconf-app", gconf.CLIENT_PRELOAD_NONE)
