@@ -15,6 +15,8 @@ except:
 	print 'You must have python-gtk2, python-gnome2 and python-glade2 installed.'
 	sys.exit()
 
+from Settings import Settings
+
 NAME = 'gnomeBoyAdvance'
 VERSION = '0.3'
 AUTHORS = ['Jay Graves <jay@socialistsoftware.com>', 'Guillaume Desmottes <cass@skynet.be>', 'Olivier Le Thanh Duong <staz@perso.be>']
@@ -25,66 +27,9 @@ SETTINGSFILE = os.path.join(os.path.expanduser("~"), ".gnomeBoyAdvance")
 LOGOFILE = 'gnomeboyadvance.png'
 ICONFILE = '/usr/share/pixmaps/gba48.png'
 
-GENERAL_OPTIONS = {'binary': '', 'captureDir': '', 'romsDir': '', 'captureFormat': '0', 'saveDir': '', 'batteryDir': ''}
-CONTROL_OPTIONS = {'Joy0_Left': '0114' , 'Joy0_Right': '0113', 'Joy0_Up': '0111', 'Joy0_Down': '0112', 'Joy0_A': '007a', 'Joy0_B': '0078', 'Joy0_L': '0061', 'Joy0_R': '0073', 'Joy0_Start': '000d', 'Joy0_Select': '0008', 'Joy0_Speed': '0020', 'Joy0_Capture': '0125', 'Motion_Left': '0104', 'Motion_Right': '0106', 'Motion_Up': '0108', 'Motion_Down': '0102'}
-GRAPHIC_OPTIONS = {'video': '1', 'fullScreen': '0', 'throttle': '0', 'filter': '0', 'gbFrameSkip': '0', 'frameSkip': '2', 'ifbType':'0', 'autoFrameSkip': '0', 'colorOption': '1', 'borderAutomatic': '0'}
-SOUND_OPTIONS = {'soundQuality': '2', 'soundVolume': '0', 'soundEnable': '30f', 'soundReverse': '0', 'soundOff': '0', 'soundEcho': '0', 'soundLowPass': '0'}
-MISC_OPTIONS = {'saveType': '0', 'biosFile': 'none', 'flashSize': '0', 'emulatorType': '1', 'showSpeed': '1', 'rewindTimer': '0', 'showSpeedTransparent': '1', 'rtcEnabled': '0', 'useBios': '0', 'skipBios': '0', 'disableStatus': '0', 'pauseWhenInactive': '0', 'agbPrint': '0', 'borderOn': '0', 'disableMMX': '1'}
-
 gnome.init('gnomeBoyAdvance', VERSION)
 theGame = None
 
-class Settings:
-	def __init__(self):
-		self.settings = {}
-		self.settings.update(GENERAL_OPTIONS)
-		self.settings.update(CONTROL_OPTIONS)
-		self.settings.update(GRAPHIC_OPTIONS)
-		self.settings.update(SOUND_OPTIONS)
-		self.settings.update(MISC_OPTIONS)
-		#TODO: use 'which VisualBoyAdvance' to try to find vba path 
-		#humm better to make that when we open the preferences box AND binary == ''
-
-	def writeFile(self, path):
-		f = file(path, 'w')
-
-		for elt in GENERAL_OPTIONS.keys():
-			if ( (elt == 'binary') or (elt == 'romsDir')): continue
-			#directory of capture, battery and save are optionnal
-			if self.settings[elt]: 
-				l = elt + '=' + self.settings[elt] + '\n'
-
-		for options in [CONTROL_OPTIONS, GRAPHIC_OPTIONS, SOUND_OPTIONS, MISC_OPTIONS]:
-			for elt in options.keys():
-				l = elt + '=' + self.settings[elt] + '\n'
-				f.write(l)
-		
-		f.close()
-
-	def readFile(self, path):
-		buff = file(path, 'r').readlines()
-		#regexp = re.compile("[=\t]")
-
-		for l in buff:
-			l = l.lstrip()
-			if l.startswith('#') or len(l)<1 : continue #drop comments and empty line
-			#TODO: use a regexp insteed of this dirty thing
-			#tmp = regexp.split(l)
-			tmp = l.split('=')
-			if len(tmp) == 1: 
-				tmp = l.split()
-			else:
-				tmp[1] = tmp[1][:-1]	#drop \n (i know it's dirty!)
-			
-			if not self.settings.has_key(tmp[0]):
-				print "FUCK OFF:", tmp[0] #TODO: raise a exception
-				sys.exit()
-			self.settings[tmp[0]] = tmp[1]
-
-	def confFile(self):
-		path = os.tmpnam()
-		self.writeFile(path)
-		return path
 
 class gameList:
 	def __init__(self):
@@ -190,29 +135,17 @@ class GUI(gtk.glade.XML):
 
 	def on_preferences_close_button_clicked(*args):
 		app.get_widget("preferences_dialog").hide()
-
-		set = {}
-		for widg in SETTINGS_WIDGETS:
-			set[widg] = app.get_widget(widg).get_text()
-		if set['romsDir']: theGameList.populate(set['romsDir'])
-		del set
-
+		
 		app.appBar.set_status('settings saved')
 
-		if(mySettings.write()):
-			app.appBar.set_status('Could not save settings to disk')
 
 	def on_import_activate(*args):
-		print "AVANT"
-		print mySettings.settings
 		fs = gtk.FileSelection('Choose the file to import')
 		result = fs.run()
 		path = fs.get_filename()
 		if result == gtk.RESPONSE_OK and os.path.isfile(path):
 			mySettings.readFile(path)
 		fs.hide()
-		print "APRES"
-		print mySettings.settings
 
 	def on_export_activate(*args):
 		fs = gtk.FileSelection('Choose the export directory')
