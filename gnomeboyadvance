@@ -18,7 +18,7 @@ SETTINGSFILE = os.path.expanduser("~") + "/.gnomeBoyAdvance"
 LOGOFILE = 'gnomeBoyAdvance.png'
 
 class setting:
-	def __init__(self):
+	def __init__(self): # Type sert a rien, a virer.
 		self.type = ''
 		self.value = ''
 
@@ -230,14 +230,17 @@ class gameList:
 			app.appBar.set_status(theGame.name)
 class game:
 	def __init__(self):
-		self.name = 'a game'
+		self.name = ''
 	def play(self):
-		launchStr = []
-		launchStr.append(mySettings.binary.value)
-		launchStr.append(os.path.join(mySettings.romsDir.value,self.name))
-		launchStr.append('--config=' + mySettings.configFile.value)
-		app.appBar.set_status('playing ' + theGame.name)
-		popen2.popen2(launchStr)
+		if self.name :
+			launchStr = []
+			launchStr.append(mySettings.binary.value)
+			launchStr.append(os.path.join(mySettings.romsDir.value,self.name))
+			launchStr.append('--config=' + mySettings.configFile.value)
+			app.appBar.set_status('playing ' + theGame.name)
+			popen2.popen2(launchStr)
+		else : 
+			app.appBar.set_status('No game selected')
 
 class GUI(gtk.glade.XML):
 	def __init__(self):
