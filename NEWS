@@ -3,7 +3,6 @@ GnomeBoyAdvance NEWS
 version 0.2
 	Projet is restarted on 2004-Apr-08 with a new team and is now hosted on berlios.de
 	* Beginning of code cleaning.
-	+ The YUV value is now configurable.
 	* Fixed lot of bugs with the configuration system (most of the work was here).
 	+ Added a search function to filter the roms
 	+ Now have a debian package and an official packager, Sebastien Noël.
