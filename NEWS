@@ -1,6 +1,6 @@
 GnomeBoyAdvance NEWS
 
-version 0.4:
+08/28/04 version 0.4:
 	+ Keys configuration
 	+ Joystick configuration (necessitate pygame)
 	* soundEnable option is now correctly saved (close #2063)
