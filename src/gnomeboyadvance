@@ -15,7 +15,7 @@ except:
 	print 'You must have python-gtk2, python-gnome2 and python-glade2 installed.'
 	sys.exit()
 
-from Settings import Settings
+from Settings import Settings, CONTROL_OPTIONS  #TODO: drop CONTROL_OPTIONS
 
 NAME = 'gnomeBoyAdvance'
 VERSION = '0.3'
@@ -26,6 +26,11 @@ DATADIR = '/usr/share/gnomeboyadvance'
 SETTINGSFILE = os.path.join(os.path.expanduser("~"), ".gnomeBoyAdvance")
 LOGOFILE = 'gnomeboyadvance.png'
 ICONFILE = '/usr/share/pixmaps/gba48.png'
+
+
+ENTRY_WIDG = ['binary', 'romsDir', 'batteryDir', 'captureDir', 'saveDir', 'throttle', 'gbFrameSkip', 'frameSkip', 'biosFile', 'rewindTimer'] + CONTROL_OPTIONS.keys()
+CHOOSE_WIDG = ['captureFormat', 'video', 'ifbType', 'soundVolume', 'saveType', 'flashSize', 'emulatorType', 'showSpeed']
+BOOL_WIDG = ['fullScreen', 'colorOption', 'borderAutomatic', 'autoFrameSkip', 'soundEcho', 'soundLowPass', 'soundReverse', 'soundOff', 'showSpeedTransparent', 'rtcEnabled', 'useBios', 'skipBios', 'disableStatus', 'pauseWhenInactive', 'agbPrint', 'borderOn', 'disableMMX']
 
 gnome.init('gnomeBoyAdvance', VERSION)
 theGame = None
@@ -132,11 +137,85 @@ class GUI(gtk.glade.XML):
 
 	def on_preferences_activate(*args):
 		app.get_widget("preferences_dialog").show()
+		
+		for widg in ENTRY_WIDG:
+			app.get_widget(widg).set_text( mySettings.settings[widg])
+
+		for widg in CHOOSE_WIDG:
+			app.get_widget(widg).set_history( int(mySettings.settings[widg]))
+			
+		#filter	
+		fil = mySettings.settings['filter']
+		if fil == 'A': fil = '10'
+		elif fil == 'B': fil = '11'
+		elif fil == 'C': fil = '12'
+		app.get_widget('filter').set_history(int(fil))
+		
+		#soundQuality
+		snd = mySettings.settings['soundQuality']
+		if snd == '1': snd=0
+		elif snd == '2': snd=1
+		elif snd == '4': snd=2
+		app.get_widget('soundQuality').set_history(snd)
+
+		#soundEnable
+		snd = mySettings.settings['soundQuality']
+		if snd == '1': snd=0
+		elif snd == '2': snd=1
+		elif snd == '4': snd=2
+		elif snd == '8': snd=3
+		elif snd == '100': snd=4
+		elif snd == '200': snd=5
+		elif snd == '30f': snd=6
+		elif snd == '0': snd=7
+		app.get_widget('soundQuality').set_history(snd)
+
+		for widg in BOOL_WIDG:
+			ok = True
+			if mySettings.settings[widg] == '0': ok =False
+			app.get_widget(widg).set_active(ok)
+		
 
 	def on_preferences_close_button_clicked(*args):
 		app.get_widget("preferences_dialog").hide()
+
+		for widg in ENTRY_WIDG:
+			mySettings.settings[widg] = app.get_widget(widg).get_text()
+
+		for widg in CHOOSE_WIDG:
+			mySettings.settings[widg] = `app.get_widget(widg).get_history()`
+			
+		#filter	
+		fil = `app.get_widget('filter').get_history()`
+		if fil == '10': fil = 'A'
+		elif fil == '11': fil = 'B'
+		elif fil == '12': fil = 'C'
+		mySettings.settings['filter'] = fil
 		
-		
+		#soundQuality
+		snd = app.get_widget('soundQuality').get_history()
+		if snd == 0: snd='1'
+		elif snd == 1: snd='2'
+		elif snd == 2: snd='4'
+		mySettings.settings['soundQuality'] = snd
+
+		#soundEnable
+		snd = app.get_widget('soundQuality').get_history()
+		if snd == 0: snd='1'
+		elif snd == 1: snd='2'
+		elif snd == 2: snd='4'
+		elif snd == 3: snd='8'
+		elif snd == 4: snd='100'
+		elif snd == 5: snd='200'
+		elif snd == 6: snd='30f'
+		elif snd == 7: snd='0'
+		mySettings.settings['soundQuality'] = snd
+
+		for widg in BOOL_WIDG:
+			if(app.get_widget(widg).get_active()): ok = '1'
+			else: ok = '0'
+			mySettings.settings[widg] = ok
+			
 		app.appBar.set_status('settings saved')
 
 
