@@ -21,12 +21,48 @@ class Settings:
 		self.client = gconf.client_get_default ();
 		self.client.add_dir("/apps/gnomeboyadvance", gconf.CLIENT_PRELOAD_NONE)
 
-	def writeFile(self, path):
+
+	def readGConf(self):
+		for elt in GENERAL_OPTIONS.keys():
+			self.settings[elt] = self.client.get_string("/apps/gomeboyadvance/general/"+ elt)
+
+		for elt in CONTROL_OPTIONS.keys():
+			self.settings[elt] = self.client.get_string("/apps/gomeboyadvance/control/"+ elt)
+			
+
+		for elt in ADVANCED_OPTIONS.keys():
+			self.settings[elt] = self.client.get_string("/apps/gomeboyadvance/advanced/"+ elt)
+
+		for elt in SOUND_OPTIONS.keys():
+			self.settings[elt] = self.client.get_string("/apps/gomeboyadvance/sound/"+ elt)
+
+		for elt in GRAPHIC_OPTIONS.keys():
+			self.settings[elt] = self.client.get_string("/apps/gomeboyadvance/graphic/"+ elt)
+		
+
+	
+
+	def writeGConf(self):
+		for elt in GENERAL_OPTIONS:
+			self.client.set_string("/apps/gomeboyadvance/general/"+ elt, self.settings[elt])
+
+		for elt in CONTROL_OPTIONS.keys():
+			self.client.set_string("/apps/gomeboyadvance/control/"+ elt, self.settings[elt])
+
+		for elt in ADVANCED_OPTIONS.keys():
+			self.client.set_string("/apps/gomeboyadvance/advanced/"+ elt, self.settings[elt])
+
+		for elt in SOUND_OPTIONS.keys():	
+			self.client.set_string("/apps/gomeboyadvance/sound/"+ elt, self.settings[elt])
+			
+		for elt in GRAPHIC_OPTIONS.keys():
+			self.client.set_string("/apps/gomeboyadvance/graphic/"+ elt, self.settings[elt])
+
+
+	def writeFile(self, path):	
 		f = file(path, 'w')
 
 		for elt in GENERAL_OPTIONS.keys():
-			if ( (elt == 'binary') or (elt == 'romsDir')): continue
-			#directory of capture, battery and save are optionnal
 			if self.settings[elt]: 
 				l = elt + '=' + self.settings[elt] + '\n'
 
@@ -62,3 +98,8 @@ class Settings:
 		self.writeFile(path)
 		return path
 
+if __name__ == "__main__":
+	#self test
+	set = Settings()
+	set.readGConf()
+	set.writeGConf()
