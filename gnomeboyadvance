@@ -232,13 +232,14 @@ class GUI(gtk.glade.XML):
 
 	def on_playGame_clicked(*args):
 		if theGame:
-			launch = []
-			launch.append(mySettings.settings['binary'])
-			launch.append(os.path.join(mySettings.settings['romsDir'],theGame))
+			launch = ""
+			launch +=  mySettings.settings['binary']
 			if mySettings.settings['configFile']:
-				launch.append('--config=' + mySettings.settings['configFile'])
+				launch += ' --config=' + mySettings.settings['configFile']
+			launch += ' "' + os.path.join(mySettings.settings['romsDir'],theGame) + '"'
+			print launch
 			app.appBar.set_status('playing ' + theGame)
-			os.system( string.join(launch))
+			os.system(launch)
 		else : 
 			app.appBar.set_status('No game selected')
 	def on_clear_clicked(*args):
