@@ -7,7 +7,7 @@ dataDir = os.path.join(prefix, 'share', 'gnomeboyadvance')
 installDir = os.path.join(prefix, 'bin')
 libDir = os.path.join(prefix, 'lib', 'gnomeboyadvance')
 
-LIBS = ['Settings.py', 'Joystick.py']
+LIBS = ['Settings.py', 'Joystick.py', 'const.py', 'GameList.py']
 
 for dir in [dataDir, installDir, libDir]:
 	if not os.path.exists(dir):
