@@ -561,7 +561,7 @@
 				  <property name="modal">False</property>
 
 				  <child internal-child="entry">
-				    <widget class="GtkEntry" id="shotsDir">
+				    <widget class="GtkEntry" id="captureDir">
 				      <property name="visible">True</property>
 				      <property name="can_focus">True</property>
 				      <property name="editable">True</property>
