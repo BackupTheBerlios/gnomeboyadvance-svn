@@ -22,7 +22,7 @@ COPYRIGHT = 'Jay Graves (c) 2003\n GnomeBoyAdvance Team (c) 2004'
 DATADIR = '/usr/share/gnomeboyadvance'
 SETTINGSFILE = os.path.join(os.path.expanduser("~"), ".gnomeBoyAdvance")
 LOGOFILE = 'gnomeBoyAdvance.png'
-ICONFILE = 'gba_icon.png'
+ICONFILE = '/usr/share/pixmaps/gba48.png'
 
 SETTINGS_WIDGETS = ['romsDir', 'binary', 'scale', 'captureDir', 'filter', 'frameSkip', 'throttle', 'yuv', 'configFile', 'saveType']
 
@@ -227,10 +227,9 @@ class GUI(gtk.glade.XML):
                 self.signal_autoconnect(dict(GUI.__dict__))
 		self.appBar = self.get_widget('appbar1')
 
-		icone = os.path.join(DATADIR, ICONFILE)
-		if os.path.isfile(icone):
-			self.get_widget('main').set_icon_from_file(icone)
-			self.get_widget('preferences_dialog').set_icon_from_file(icone)
+		if os.path.isfile(ICONFILE):
+			self.get_widget('main').set_icon_from_file(ICONFILE)
+			self.get_widget('preferences_dialog').set_icon_from_file(ICONFILE)
 
 	def on_about1_activate(*args):
 		pixbuf = gtk.gdk.pixbuf_new_from_file( os.path.join(DATADIR, LOGOFILE))
