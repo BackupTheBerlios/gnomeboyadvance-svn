@@ -235,7 +235,7 @@ class game:
 		launchStr = []
 		launchStr.append(mySettings.binary.value)
 		launchStr.append(os.path.join(mySettings.romsDir.value,self.name))
-		launchStr.append(' --config=' + mySettings.configFile.value)
+		launchStr.append('--config=' + mySettings.configFile.value)
 		app.appBar.set_status('playing ' + theGame.name)
 		popen2.popen2(launchStr)
 
