@@ -1,6 +1,7 @@
 import gconf
 import sys
 import os
+import pwd
 
 GENERAL_OPTIONS = ['binary', 'captureDir', 'romsDir', 'captureFormat', 'saveDir', 'batteryDir']
 CONTROL_OPTIONS = ['Joy0_Left', 'Joy0_Right', 'Joy0_Up', 'Joy0_Down', 'Joy0_A', 'Joy0_B', 'Joy0_L', 'Joy0_R', 'Joy0_Start', 'Joy0_Select', 'Joy0_Speed', 'Joy0_Capture', 'Motion_Left', 'Motion_Right', 'Motion_Up', 'Motion_Down']
@@ -21,8 +22,9 @@ class Settings:
 		if not self.settings['binary']:
 			bin = os.popen('which VisualBoyAdvance').read()
 			self.settings['binary'] = bin[:-1]
-
-		self.path = os.path.join('/tmp', 'VisualBoyAdvance_' + os.getlogin() + '.cfg')
+	
+		login = pwd.getpwuid(os.geteuid())[0]
+		self.path = os.path.join('/tmp', 'VisualBoyAdvance_' + login + '.cfg')
 		self.validity = False
 
 
