@@ -21,7 +21,7 @@ COMMENTS = 'A Gnome frontend for the Visual Boy Advance emulator'
 COPYRIGHT = 'Jay Graves (c) 2003\n GnomeBoyAdvance Team (c) 2004'
 DATADIR = '/usr/share/gnomeboyadvance'
 SETTINGSFILE = os.path.join(os.path.expanduser("~"), ".gnomeBoyAdvance")
-LOGOFILE = 'gnomeBoyAdvance.png'
+LOGOFILE = 'gnomeboyadvance.png'
 ICONFILE = '/usr/share/pixmaps/gba48.png'
 
 SETTINGS_WIDGETS = ['romsDir', 'binary', 'scale', 'captureDir', 'filter', 'frameSkip', 'throttle', 'yuv', 'configFile', 'saveType']
