@@ -1,5 +1,8 @@
 GnomeBoyAdvance NEWS
 
+version 0.4:
+	* soundEnable option is now correctly saved (close #2063)
+
 06/29/04 version 0.3
 	* Settings system entirely rewritten. Preferences are now saved via gconf. 
 		But don't worry your old configuration will be automatically imported.
