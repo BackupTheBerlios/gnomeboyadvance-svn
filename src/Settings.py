@@ -2,12 +2,6 @@ import gconf
 import sys
 import os
 
-#GENERAL_OPTIONS = {'binary': '', 'captureDir': '', 'romsDir': '', 'captureFormat': '0', 'saveDir': '', 'batteryDir': ''}
-#CONTROL_OPTIONS = {'Joy0_Left': '0114' , 'Joy0_Right': '0113', 'Joy0_Up': '0111', 'Joy0_Down': '0112', 'Joy0_A': '007a', 'Joy0_B': '0078', 'Joy0_L': '0061', 'Joy0_R': '0073', 'Joy0_Start': '000d', 'Joy0_Select': '0008', 'Joy0_Speed': '0020', 'Joy0_Capture': '0125', 'Motion_Left': '0104', 'Motion_Right': '0106', 'Motion_Up': '0108', 'Motion_Down': '0102'}
-#GRAPHIC_OPTIONS = {'video': '1', 'fullScreen': '0', 'throttle': '0', 'filter': '0', 'gbFrameSkip': '0', 'frameSkip': '2', 'ifbType':'0', 'autoFrameSkip': '0', 'colorOption': '1', 'borderAutomatic': '0'}
-#SOUND_OPTIONS = {'soundQuality': '2', 'soundVolume': '0', 'soundEnable': '30f', 'soundReverse': '0', 'soundOff': '0', 'soundEcho': '0', 'soundLowPass': '0'}
-#ADVANCED_OPTIONS = {'saveType': '0', 'biosFile': 'none', 'flashSize': '0', 'emulatorType': '1', 'showSpeed': '1', 'rewindTimer': '0', 'showSpeedTransparent': '1', 'rtcEnabled': '0', 'useBios': '0', 'skipBios': '0', 'disableStatus': '0', 'pauseWhenInactive': '0', 'agbPrint': '0', 'borderOn': '0', 'disableMMX': '1'}
-
 GENERAL_OPTIONS = ['binary', 'captureDir', 'romsDir', 'captureFormat', 'saveDir', 'batteryDir']
 CONTROL_OPTIONS = ['Joy0_Left', 'Joy0_Right', 'Joy0_Up', 'Joy0_Down', 'Joy0_A', 'Joy0_B', 'Joy0_L', 'Joy0_R', 'Joy0_Start', 'Joy0_Select', 'Joy0_Speed', 'Joy0_Capture', 'Motion_Left', 'Motion_Right', 'Motion_Up', 'Motion_Down']
 GRAPHIC_OPTIONS = ['video', 'fullScreen', 'throttle', 'filter', 'gbFrameSkip', 'frameSkip', 'ifbType', 'autoFrameSkip', 'colorOption', 'borderAutomatic']
@@ -50,7 +44,6 @@ class Settings:
 	def writeGConf(self):
 		self.validity = False
 		for elt in GENERAL_OPTIONS:
-			print elt, self.settings[elt]
 			self.client.set_string("/apps/gnomeboyadvance/general/"+ elt, self.settings[elt])
 
 		for elt in CONTROL_OPTIONS:
@@ -68,8 +61,7 @@ class Settings:
 
 	def writeFile(self, path):	
 		f = file(path, 'w')
-
-		for elt in GENERAL_OPTIONS:
+		for elt in ['captureDir', 'captureFormat', 'saveDir', 'batteryDir']:
 			if self.settings[elt]: 
 				l = elt + '=' + self.settings[elt] + '\n'
 				f.write(l)

@@ -52,7 +52,7 @@
       <applyto>/apps/gnomeboyadvance/general/saveDir</applyto>
       <owner>gnomeboyadvance</owner>
       <type>string</type>
-      <default>0</default>
+      <default></default>
       <locale name="C">
         
         
