@@ -272,17 +272,25 @@ if __name__ == "__main__":
 	app = GUI()
 	mySettings = Settings()
 	theGameList = gameList()
-	if os.path.isfile(SETTINGSFILE):
+	mySettings.settings['configFile'] = ""
+	mySettings.settings['binary'] = ""
+	mySettings.settings['romsDir'] = ""
+	
+	if os.access(SETTINGSFILE,os.R_OK):
 		gbaSetting = file(SETTINGSFILE).readlines()
-		if os.path.isfile(gbaSetting[0][:-1]):
+		if len(gbaSetting) > 0:
 			mySettings.settings['configFile'] = gbaSetting[0][:-1]
-			if len(gbaSetting) > 1:
-				mySettings.settings['binary'] = gbaSetting[1][:-1]
-			if len(gbaSetting) > 2:
-				mySettings.settings['romsDir'] = gbaSetting[2]
-				theGameList.populate(mySettings.settings['romsDir'])
-			mySettings.read(gbaSetting[0][:-1])
+		if len(gbaSetting) > 1:
+			mySettings.settings['binary'] = gbaSetting[1][:-1]
+		if len(gbaSetting) > 2:
+			mySettings.settings['romsDir'] = gbaSetting[2]
+			theGameList.populate(mySettings.settings['romsDir'])
+		
+		if os.path.isfile(mySettings.settings['configFile']):
+				mySettings.read(mySettings.settings['configFile'])
 		else:
-			print gbaSetting[0][:-1] + ' is not a file'
+			print mySettings.settings['configFile'] + ' is not a file'
+	else:
+		print "Invalide settings file"
 	
 	gtk.main()
