@@ -27,8 +27,6 @@ TODO
 		- disableStatus
 		- borderOn
 		- emulatorType
-		- removeIntros
-		- saveType
 		- flashsize	
 		- showSpeed
 		- showSpeedTransparent
@@ -37,7 +35,6 @@ TODO
 		- rtcEnabled
 		- skipBios
 		- rewindTimer
-		- enhauncedDetection
 	** dir:
 		- saveDir
 		- batteryDir
