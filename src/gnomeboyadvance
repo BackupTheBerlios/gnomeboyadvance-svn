@@ -230,9 +230,13 @@ class GUI(gtk.glade.XML):
                 self.signal_autoconnect(dict(GUI.__dict__))
 		self.appBar = self.get_widget('appbar1')
 
-		if os.path.isfile(ICONFILE) and hasattr(gnome.ui.App,'set_icon_from_file'):
-			self.get_widget('main').set_icon_from_file(ICONFILE)
-			self.get_widget('preferences_dialog').set_icon_from_file(ICONFILE)
+		if os.path.isfile(ICONFILE):
+			#old version of python-gtk have not set_icon_from_file
+			try:
+				self.get_widget('main').set_icon_from_file(ICONFILE)
+				self.get_widget('preferences_dialog').set_icon_from_file(ICONFILE)
+			except AttributeError: pass
+			
 
 	def on_about1_activate(*args):
 		pixbuf = gtk.gdk.pixbuf_new_from_file( os.path.join(DATADIR, LOGOFILE))
