@@ -24,7 +24,8 @@ setup(	name		= 'gnomeboyadvance',
 	data_files	= [	('share/gnomeboyadvance', ['glade/gnomeboyadvance.glade', 'data/gnomeboyadvance.png']),
       		('share/applications', ['data/gnomeboyadvance.desktop']),
 		('share/pixmaps', ['data/gba48.png']),
-		('share/gconf/schemas', ['data/gnomeboyadvance.schemas'])
+		('share/gconf/schemas', ['data/gnomeboyadvance.schemas']),
+		('share/man/man1', ['data/gnomeboyadvance.1.gz'])
 			],
       	packages	= ['gnomeboyadvance'],
 	package_dir	= {'gnomeboyadvance' : 'src'},

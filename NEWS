@@ -1,5 +1,8 @@
 GnomeBoyAdvance NEWS
 
+version 0.5:
+	+ add a manpage
+
 08/28/04 version 0.4:
 	+ Keys configuration
 	+ Joystick configuration (necessitate pygame)
