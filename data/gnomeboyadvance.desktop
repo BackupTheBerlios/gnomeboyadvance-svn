@@ -4,6 +4,7 @@ Type=Application
 Encoding=UTF-8
 Name=GnomeBoyAdvance
 Comment=GNOME 2 frontend for the VisualBoy Advance emulator
+Comment[fr]=
 Icon=gba48.png
 Exec=/usr/bin/gnomeboyadvance
 Categories=Application;Game
