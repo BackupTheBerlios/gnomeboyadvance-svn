@@ -86,7 +86,7 @@ class GnomeBoyAdvance:
 			
 
 	def on_about1_activate(self, imageMenuItem):
-		print obj
+		#print obj
 		pixbuf = gtk.gdk.pixbuf_new_from_file( os.path.join(DATADIR, LOGOFILE))
 	        copyright = unicode(COPYRIGHT, "latin-1").encode("utf8")
 	        gnome.ui.About(PROG_NAME, str(VERSION), copyright, COMMENTS, AUTHORS, logo_pixbuf=pixbuf).show()
