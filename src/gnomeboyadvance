@@ -100,7 +100,9 @@ class gameList:
 class GUI(gtk.glade.XML):
 	def __init__(self):
 		#little hack usefull for the developpement
-		if os.path.isfile("./gnomeboyadvance.glade"): glade_f = './gnomeboyadvance.glade'
+		if os.path.isfile("../glade/gnomeboyadvance.glade"): 
+			print "Use glade dev file"
+			glade_f = '../glade/gnomeboyadvance.glade'
 		else: glade_f = os.path.join(DATADIR, 'gnomeboyadvance.glade')
 
 		gtk.glade.XML.__init__(self, glade_f)
@@ -260,12 +262,10 @@ class GUI(gtk.glade.XML):
 		entry = args[0].get_parent().get_children()[0]
 
 		if joy: 
-			print "use SDL"
 			res = joy.get_binding()
 			#TODO: put a most speakly info to the entry
 			if res: entry.set_text(res)
 		else:
-			print "use GTK"
 			dial = app.get_widget("binding_dial")
 			res = dial.run()
 			dial.hide()
