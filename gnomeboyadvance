@@ -24,7 +24,7 @@ SETTINGSFILE = os.path.expanduser("~") + "/.gnomeBoyAdvance"
 LOGOFILE = 'gnomeBoyAdvance.png'
 
 gnome.init('gnomeBoyAdvance', VERSION)
-theGame = ''
+theGame = None
 
 
 class settings:
@@ -39,25 +39,21 @@ class settings:
 		self.yuv = ''
 		self.configFile = ''
 		self.saveType = ''
-	def save(self):
-		self.romsDir = app.get_widget("romsDir").get_text()
-		if self.romsDir != '':
-			theGameList.populate(self.romsDir)
-		self.binary = app.get_widget("binary").get_text()
-		self.shotsDir = app.get_widget("shotsDir").get_text()
-		self.scale = app.get_widget("scale").get_text()
-		self.filter = app.get_widget("filter").get_text()
-		self.frameSkip = app.get_widget("frameSkip").get_value_as_int()
-		self.throttle = app.get_widget("throttle").get_value_as_int()
-		self.yuv = app.get_widget("yuv").get_text()
-		self.configFile = app.get_widget("configFile").get_text()
-		self.saveType = app.get_widget("saveType").get_text()
+	def save(self, set):
+		self.romsDir = set['romsDir']
+		self.binary = set['binary']
+		self.shotsDir = set['shotsDir']
+		self.scale = set['scale']
+		self.filter = set['filter']
+		self.frameSkip = set['frameSkip']
+		self.throttle = set['throttle']
+		self.yuv = set['yuv']
+		self.configFile = set['configFile']
+		self.saveType = set['saveType']
 		
-		self.write(mySettings.configFile)
-		app.appBar.set_status('settings saved')
-	def write(self,theFile):
-		if os.path.isfile(theFile):
-			theLines = file(theFile).readlines()
+	def write(self):
+		if os.path.isfile(self.configFile):
+			theLines = file(self.configFile).readlines()
 
 			x = 0
 			for line in theLines:
@@ -93,15 +89,14 @@ class settings:
 			configLines.append(mySettings.binary + '\n')
 			configLines.append(mySettings.romsDir)
 			file(SETTINGSFILE,'w').writelines(configLines)
+
+			return 0
 		else:
-			app.appBar.set_status('Could not save settings to disk '+theFile + 'is not a file' )
+			return -1	#error
 	def read(self,theFile):
 		app.get_widget('configFile').set_text(mySettings.configFile)
 		app.get_widget('binary').set_text(mySettings.binary)
 		app.get_widget('romsDir').set_text(mySettings.romsDir)
-#		theConfigFile = open(theFile,'r')
-#		theConfigLines = theConfigFile.readlines()
-#		theConfigFile.close()
 		theConfigLines = file(theFile,'r').readlines()
 		
 		y = 0
@@ -246,7 +241,26 @@ class GUI(gtk.glade.XML):
 	def on_quit1_activate(*args):
 		gtk.main_quit()
 	def on_save1_activate(*args):
-		mySettings.save()
+		set = {}
+		set['romsDir'] = app.get_widget("romsDir").get_text()
+		if set['romsDir']: theGameList.populate(set['romsDir'])
+		set['binary'] = app.get_widget("binary").get_text()
+		set['shotsDir'] = app.get_widget("shotsDir").get_text()
+		set['scale'] = app.get_widget("scale").get_text()
+		set['filter'] = app.get_widget("filter").get_text()
+		set['frameSkip'] = app.get_widget("frameSkip").get_value_as_int()
+		set['throttle'] = app.get_widget("throttle").get_value_as_int()
+		set['yuv'] = app.get_widget("yuv").get_text()
+		set['configFile'] = app.get_widget("configFile").get_text()
+		set['saveType'] = app.get_widget("saveType").get_text()
+		mySettings.save(set)
+		del set
+
+		app.appBar.set_status('settings saved')
+
+		if(mySettings.write()):
+			app.appBar.set_status('Could not save settings to disk')
+
 	def on_playGame_clicked(*args):
 		if theGame:
 			launch = []
