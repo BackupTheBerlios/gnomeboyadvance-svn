@@ -142,13 +142,13 @@ class Settings:
 					app.get_widget('filter').set_text(self.settings['filter'])
 				if tempStr[1] == '9':
 					self.settings['filter'] = '--filter-bilinear 9'
-					app.get_widget('filter').set_text(self.settings['filter'])
+					app.get_widget('filter').set_text(self.settings['f		ilter'])
 				if tempStr[1] == 'A':
 					self.settings['filter'] = '--filter-bilinear+ A'
 					app.get_widget('filter').set_text(self.settings['filter'])
 			if line[:10] == 'captureDir':
-				self.settings['shotsDir'] = line[12:-1]
-				app.get_widget('shotsDir').set_text(line[12:-1])
+				self.settings['shotsDir'] = line[11:-1]
+				app.get_widget('shotsDir').set_text(line[11:-1])
 			if line[:8] == 'saveType':
 				tempStr = string.split(line)
 				if tempStr[1] == '0':
