@@ -1,7 +1,7 @@
 Source: gnomeboyadvance
 Section: games
 Priority: optional
-Maintainer: Sebastien NOEL <me@twolife.org>
+Maintainer: GBA Team <gnomeboyadvance-devel@lists.berlios.de>
 Build-Depends: debhelper (>= 4.0.0), python, python-dev (>= 2.3), python-dev (<< 2.4)
 Standards-Version: 3.6.1
 
