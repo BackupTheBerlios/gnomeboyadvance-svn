@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 #authors cass@skynet.be, jay@socialistsoftware.com
 #web http://developer.berlios.de/projects/gnomeboyadvance/
 #license GPL http://www.gnu.org/copyleft/gpl.html
@@ -163,7 +163,7 @@ class GUI(gtk.glade.XML):
 		app.get_widget('soundQuality').set_history(snd)
 
 		#soundEnable
-		snd = mySettings.settings['soundQuality']
+		snd = mySettings.settings['soundEnable']
 		if snd == '1': snd=0
 		elif snd == '2': snd=1
 		elif snd == '4': snd=2
@@ -172,7 +172,7 @@ class GUI(gtk.glade.XML):
 		elif snd == '200': snd=5
 		elif snd == '30f': snd=6
 		elif snd == '0': snd=7
-		app.get_widget('soundQuality').set_history(snd)
+		app.get_widget('soundEnable').set_history(snd)
 
 		for widg in BOOL_WIDG:
 			ok = True
