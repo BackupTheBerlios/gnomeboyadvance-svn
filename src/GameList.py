@@ -55,7 +55,7 @@ class GameList:
 			else:
 				self.theGame = None
 
-		if os.path.isdir(self.captureDir):
+		if self.theGame and os.path.isdir(self.captureDir):
 			theImage = os.path.join(self.captureDir, self.theGame[:-4] + '01.png')
 			if os.path.isfile(theImage):
 				self.gameImage.set_from_file(theImage)
