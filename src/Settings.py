@@ -24,7 +24,7 @@ class Settings:
 		self.client = gconf.client_get_default ();
 		self.client.add_dir("/apps/gnomeboyadvance", gconf.CLIENT_PRELOAD_NONE)
 
-		self.readGconf()
+		self.readGConf()
 
 
 	def readGConf(self):
