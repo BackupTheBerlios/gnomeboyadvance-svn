@@ -263,6 +263,7 @@ class GUI(gtk.glade.XML):
 			dial.hide()
 			if res not in (-4, 65307):  #-4: close the window, 65307: ESC
 				print res
+				print "name", gtk.gdk.keyval_name(res)
 				entry.set_text("%04x" % res)
 
 	def on_binding_press_event(*args):

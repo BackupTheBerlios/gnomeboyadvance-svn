@@ -7,7 +7,7 @@ You can get VisualBoy Advance from http://vba.ngemu.com/index.shtml
 Installation
 ============
 1: make sure you have  at least Python 2.2, and the python-gnome, python-glade packages installed
-2: tar -jxf gnomeboyadvance-x.x.tar.bz2 where ever you like
+2: tar xvzf gnomeboyadvance-x.x.tar.gz where ever you like
 3: become root and run the install.py
 
 
