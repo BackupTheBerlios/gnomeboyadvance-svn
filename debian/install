@@ -1,0 +1,6 @@
+gnomeboyadvance /usr/bin/
+src/*.py /usr/lib/site-python/gnomeboyadvance/
+data/gba48.png /usr/share/pixmaps/
+data/gnomeboyadvance.desktop /usr/share/applications/
+data/gnomeboyadvance.png glade/gnomeboyadvance.glade /usr/share/gnomeboyadvance/
+data/gnomeboyadvance.schemas /usr/share/gconf/schemas/
