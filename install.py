@@ -15,5 +15,5 @@ if not os.path.exists(installDir):
 os.system('cp src/gnomeboyadvance.glade ' + dataDir)
 os.system('cp pixmaps/gnomeBoyAdvance.png ' + dataDir)
 os.system('cp src/gnomeboyadvance ' + installDir)
-os.system('cp pixmaps/gba_icon.png ' + dataDir)
+os.system('cp pixmaps/gba48.png ' + dataDir)
 print 'gnomeboyadvance has been installed, happy gaming.'
