@@ -48,6 +48,7 @@ class gameList:
 		self.selection = self.gameList.get_selection()
 		self.selection.set_mode('single')
 		self.selection.connect('changed',self.selectGame)
+		self.populate(mySettings.settings['romsDir'])
 
         def populate(self, romsDir, tosearch=''):
                 if tosearch:
