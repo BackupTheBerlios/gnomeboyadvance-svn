@@ -47,12 +47,12 @@
 		      <child>
 			<widget class="GtkImageMenuItem" id="import">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Import VBA configuration</property>
+			  <property name="label" translatable="yes">_Import VBA configuration</property>
 			  <property name="use_underline">True</property>
 			  <signal name="activate" handler="on_import_activate" last_modification_time="Fri, 21 May 2004 22:28:53 GMT"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image1">
+			    <widget class="GtkImage" id="image3">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-open</property>
 			      <property name="icon_size">1</property>
@@ -68,12 +68,12 @@
 		      <child>
 			<widget class="GtkImageMenuItem" id="export">
 			  <property name="visible">True</property>
-			  <property name="label" translatable="yes">Export VBA configuration</property>
+			  <property name="label" translatable="yes">_Export VBA configuration</property>
 			  <property name="use_underline">True</property>
 			  <signal name="activate" handler="on_export_activate" last_modification_time="Fri, 21 May 2004 22:30:13 GMT"/>
 
 			  <child internal-child="image">
-			    <widget class="GtkImage" id="image2">
+			    <widget class="GtkImage" id="image4">
 			      <property name="visible">True</property>
 			      <property name="stock">gtk-save-as</property>
 			      <property name="icon_size">1</property>
@@ -96,7 +96,7 @@
 		      </child>
 
 		      <child>
-			<widget class="GtkMenuItem" id="separator1">
+			<widget class="GtkSeparatorMenuItem" id="separator1">
 			  <property name="visible">True</property>
 			</widget>
 		      </child>
