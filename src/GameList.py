@@ -56,9 +56,11 @@ class GameList:
 				self.theGame = None
 
 		if self.theGame and os.path.isdir(self.captureDir):
-			theImage = os.path.join(self.captureDir, self.theGame[:-4] + '01.png')
-			if os.path.isfile(theImage):
-				self.gameImage.set_from_file(theImage)
+			theImage = os.path.join(self.captureDir, self.theGame[:-4] + '01')
+			if os.path.isfile(theImage+'.png'):
+				self.gameImage.set_from_file(theImage+'.png')
+			elif os.path.isfile(theImage+'.bmp'):
+				self.gameImage.set_from_file(theImage+'.bmp')
 			else:
 				self.gameImage.set_from_file( os.path.join(DATADIR, LOGOFILE))
 		#app.appBar.set_status(theGame)
