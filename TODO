@@ -44,14 +44,17 @@ TODO
 		
 	
 * give default value for the settings
-* remove tabs and move settings to the menu. 
-* separate the configuration in differents category (gnomeboyadvance conf, graphics, sound, ...)
+
+
 * use gconf to save the configuration of gnomeboyadvance
-* remake the install script. Add a icone to the gnome applications list
+* remake the install script. Add an icon in to the gnome applications list
 * separate the source in differents files.
 * can easily associate a screenshot to a game
 * add translation support
 * make packages (Debian, Mandrake, ...)
 * make a FAQ and a MAN
-
 * add a IPS patch tab (??)
+
+DONE :
+* remove tabs and move settings to the menu. 
+* separate the configuration in differents category (gnomeboyadvance conf, graphics, sound, ...)
