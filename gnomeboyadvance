@@ -16,6 +16,7 @@ COPYRIGHT = 'Jay Graves (c) 2003'
 DATADIR = '/usr/share/gnomeboyadvance/'
 SETTINGSFILE = os.path.expanduser("~") + "/.gnomeBoyAdvance"
 LOGOFILE = 'gnomeBoyAdvance.png'
+theGame = 'Hello world'
 
 class setting:
 	def __init__(self): # Type sert a rien, a virer.
@@ -23,7 +24,7 @@ class setting:
 		self.value = ''
 
 class settings:
-	def __init__(self):
+	def __init__(self): # Mettre ici les valeurs par défaut et virer setting()
 		self.romsDir = setting()
 		self.binary = setting()
 		self.scale = setting()
@@ -94,7 +95,7 @@ class settings:
 			gbaFile.writelines(configLines)
 			gbaFile.close
 		else:
-			app.appBar.set_status('could not save settings')
+			app.appBar.set_status('Could not save settings to disk '+theFile + 'is not a file' )
 	def read(self,theFile):
 		app.get_widget('configFile').set_text(mySettings.configFile.value)
 		app.get_widget('binary').set_text(mySettings.binary.value)
@@ -216,31 +217,21 @@ class gameList:
 		self.gameListModel = gtk.ListStore(gobject.TYPE_STRING)
 	def selectGame(self,selection):
 		self.sel = selection.get_selected()
+		global theGame
 		if self.sel:
 			self.model, self.iter = self.sel
 			self.module = self.model.get_value(self.iter, 0)
-			theGame.name = self.model.get_value(self.iter,0)
+			theGame = self.model.get_value(self.iter,0)
 		if os.path.isdir(mySettings.shotsDir.value):
-			theImage = os.path.join(mySettings.shotsDir.value, theGame.name[:-4] + '01.png')
+			theImage = os.path.join(mySettings.shotsDir.value, theGame[:-4] + '01.png')
 			gameImage = app.get_widget("gameImage")
 			if os.path.isfile(theImage):
 				gameImage.set_from_file(theImage)
 			else:
 				gameImage.set_from_file(DATADIR + LOGOFILE)
-			app.appBar.set_status(theGame.name)
-class game:
-	def __init__(self):
-		self.name = ''
-	def play(self):
-		if self.name :
-			launchStr = []
-			launchStr.append(mySettings.binary.value)
-			launchStr.append(os.path.join(mySettings.romsDir.value,self.name))
-			launchStr.append('--config=' + mySettings.configFile.value)
-			app.appBar.set_status('playing ' + theGame.name)
-			popen2.popen2(launchStr)
-		else : 
-			app.appBar.set_status('No game selected')
+			app.appBar.set_status(theGame)
+		
+
 
 class GUI(gtk.glade.XML):
 	def __init__(self):
@@ -256,7 +247,16 @@ class GUI(gtk.glade.XML):
 	def on_save1_activate(*args):
 		mySettings.save()
 	def on_playGame_clicked(*args):
-		theGame.play()
+		if theGame:
+			launchStr = []
+			launchStr.append(mySettings.binary.value)
+			launchStr.append(os.path.join(mySettings.romsDir.value,theGame))
+			if mySettings.configFile.value:
+				launchStr.append('--config=' + mySettings.configFile.value)
+			app.appBar.set_status('playing ' + theGame)
+			popen2.popen2(launchStr) # Is popen2 really the good function?
+		else : 
+			app.appBar.set_status('No game selected')
 	def on_clear_clicked(*args):
 		theGameList.clear()
 	def on_reload_gamelist_activate(*args):
@@ -279,5 +279,5 @@ if __name__ == "__main__":
 			mySettings.read(gbaSetting[0][:-1])
 		else:
 			print gbaSetting[0][:-1] + ' is not a file'
-	theGame = game()
+	
 	gtk.main()
