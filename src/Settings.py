@@ -71,9 +71,9 @@ class Settings:
 		for elt in GENERAL_OPTIONS:
 			if self.settings[elt]: 
 				l = elt + '=' + self.settings[elt] + '\n'
+				f.write(l)
 
-		for options in [CONTROL_OPTIONS, GRAPHIC_OPTIONS, SOUND_OPTIONS, ADVANCED_OPTIONS]:
-			for elt in options:
+		for elt in CONTROL_OPTIONS + GRAPHIC_OPTIONS + SOUND_OPTIONS + ADVANCED_OPTIONS:
 				l = elt + '=' + self.settings[elt] + '\n'
 				f.write(l)
 		
