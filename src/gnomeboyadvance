@@ -173,8 +173,15 @@ class gameList:
 		self.gameList = app.get_widget("gameList")
 		self.gamesDict = []
 		self.gameListModel = gtk.ListStore(gobject.TYPE_STRING)
+		self.gameList.set_model(self.gameListModel)
+		self.col = gtk.TreeViewColumn("Game",gtk.CellRendererText(),text=0)
+		self.col.set_sort_column_id(0)
+		self.gameList.append_column(self.col)
+		self.selection = self.gameList.get_selection()
+		self.selection.set_mode('single')
+		self.selection.connect('changed',self.selectGame)
 	def populate(self, romsDir):
-		self.clear()
+		self.gameListModel.clear()
 		if os.path.isdir(romsDir):
 			self.gamesDict = os.listdir(romsDir)
 		else:
@@ -186,16 +193,6 @@ class gameList:
 				self.gameListModel.set_value(iter,0,eachGame)
 				self.gameCount += 1
 		app.get_widget('gameCount').set_text('Total roms : ' + `self.gameCount`)
-		self.gameList.set_model(self.gameListModel)
-		self.selection = self.gameList.get_selection()
-		self.selection.set_mode('single')
-		self.col = gtk.TreeViewColumn("Game",gtk.CellRendererText(),text=0)
-		self.col.set_sort_column_id(0)
-		self.gameList.append_column(self.col)
-		self.selection.connect('changed',self.selectGame)
-	def clear(self):
-		self.gameList.set_model(gtk.ListStore(gobject.TYPE_STRING))
-		self.gameListModel = gtk.ListStore(gobject.TYPE_STRING)
 	def selectGame(self,selection):
 		self.sel = selection.get_selected()
 		global theGame
@@ -245,8 +242,6 @@ class GUI(gtk.glade.XML):
 				app.appBar.set_status('No game selected')
 		else :  # TODO: Replace that by a popup info
 			app.appBar.set_status('Invalide path to VBA or not an executable, please fit it in preference')
-	def on_clear_clicked(*args):
-		theGameList.clear()
 	def on_reload_gamelist_activate(*args):
 		theGameList.populate(mySettings.settings['romsDir'])
 		
