@@ -29,6 +29,7 @@ binary-arch: install
 	dh_testroot
 	dh_installchangelogs NEWS
 	dh_installdocs
+	dh_installman
 	dh_installmenu
 	dh_gconf
 	dh_python
