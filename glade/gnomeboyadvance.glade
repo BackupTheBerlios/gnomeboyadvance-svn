@@ -20,7 +20,7 @@
   <property name="type_hint">GDK_WINDOW_TYPE_HINT_NORMAL</property>
   <property name="gravity">GDK_GRAVITY_NORTH_WEST</property>
   <property name="enable_layout_config">True</property>
-  <signal name="delete_event" handler="on_quit1_activate" last_modification_time="Wed, 19 Feb 2003 00:20:58 GMT"/>
+  <signal name="delete_event" handler="on_exit_activate" last_modification_time="Wed, 25 Aug 2004 20:19:10 GMT"/>
 
   <child internal-child="dock">
     <widget class="BonoboDock" id="bonobodock1">

@@ -26,7 +26,7 @@ CHOOSE_WIDG = ['captureFormat', 'video', 'ifbType', 'soundVolume', 'saveType', '
 BOOL_WIDG = ['fullScreen', 'colorOption', 'borderAutomatic', 'autoFrameSkip', 'soundEcho', 'soundLowPass', 'soundReverse', 'soundOff', 'showSpeedTransparent', 'rtcEnabled', 'useBios', 'skipBios', 'disableStatus', 'pauseWhenInactive', 'agbPrint', 'borderOn', 'disableMMX']
 CONTROL_WIDG = ['Joy0_Left', 'Joy0_Right', 'Joy0_Up', 'Joy0_Down', 'Joy0_A', 'Joy0_B', 'Joy0_L', 'Joy0_R', 'Joy0_Start', 'Joy0_Select', 'Joy0_Speed', 'Joy0_Capture']
 #TODO: we will use Settings.CONTROL_OPTIONS when the motions settings will be configurable with widgets
-CALLBACKS = ['on_about1_activate', 'on_quit1_activate', 'on_playGame_clicked', 'on_reload_gamelist_activate', 'on_search_changed', 'on_preferences_activate', 'on_preferences_close_button_clicked', 'on_import_activate', 'on_export_activate', 'on_configure_control_clicked', 'on_binding_press_event', 'on_joy_enable_toggled','on_game_double_click']
+CALLBACKS = ['on_about1_activate', 'on_quit1_activate', 'on_playGame_clicked', 'on_reload_gamelist_activate', 'on_search_changed', 'on_preferences_activate', 'on_preferences_close_button_clicked', 'on_import_activate', 'on_export_activate', 'on_configure_control_clicked', 'on_binding_press_event', 'on_joy_enable_toggled','on_game_double_click', 'on_exit']
 
 
 def find_glade():
@@ -86,12 +86,16 @@ class GnomeBoyAdvance:
 			
 
 	def on_about1_activate(self, imageMenuItem):
-		#print obj
 		pixbuf = gtk.gdk.pixbuf_new_from_file( os.path.join(DATADIR, LOGOFILE))
 	        copyright = unicode(COPYRIGHT, "latin-1").encode("utf8")
 	        gnome.ui.About(PROG_NAME, str(VERSION), copyright, COMMENTS, AUTHORS, logo_pixbuf=pixbuf).show()
 
-	def on_quit1_activate(self, app, event):
+	def on_quit1_activate(self, imageMenuItem):
+		#exit from menu
+		gtk.main_quit()
+		
+	def on_exit(self, app, gdkEvent):
+		#exit by clicking on the cross
 		gtk.main_quit()
 
 	def on_playGame_clicked(self, button):
