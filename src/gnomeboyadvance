@@ -228,6 +228,7 @@ class GUI(gtk.glade.XML):
 		if result == gtk.RESPONSE_OK and os.path.isfile(path):
 			mySettings.readFile(path)
 		fs.hide()
+		mySettings.writeGConf()
 
 	def on_export_activate(*args):
 		fs = gtk.FileSelection('Choose the export directory')
@@ -241,12 +242,13 @@ class GUI(gtk.glade.XML):
 #upgrade from old version settings system
 def oldVersion(set):
 	buff = file(SETTINGSFILE).readlines()
-	if os.path.isfile(buff[0][:-1]): 
+	if len(buff)>0 and os.path.isfile(buff[0][:-1]): 
 		set.readFile(buff[0][:-1])
-	if os.path.isfile(buff[1][:-1]): 
+	if len(buff)>0 and os.path.isfile(buff[1][:-1]): 
 		set.settings['binary'] = buff[1][:-1]
-	if os.path.isdir(buff[2]): 
+	if len(buff)>0 and os.path.isdir(buff[2]): 
 		set.settings['romsDir'] = buff[2]
+	set.writeGConf()
 	
 	os.unlink(SETTINGSFILE)
 

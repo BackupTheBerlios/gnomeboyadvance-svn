@@ -50,6 +50,7 @@ class Settings:
 	def writeGConf(self):
 		self.validity = False
 		for elt in GENERAL_OPTIONS:
+			print elt, self.settings[elt]
 			self.client.set_string("/apps/gnomeboyadvance/general/"+ elt, self.settings[elt])
 
 		for elt in CONTROL_OPTIONS:
@@ -97,8 +98,10 @@ class Settings:
 			#if not self.settings.has_key(tmp[0]):
 			#	print "FUCK OFF:", tmp[0] #TODO: raise a exception
 			#	sys.exit()
+			if len(tmp) != 2: 
+				print "droped", tmp
+				continue
 			self.settings[tmp[0]] = tmp[1]
-		self.writeGConf()
 
 	def confFile(self):
 		if not self.validity: self.writeFile(self.path)
@@ -107,5 +110,5 @@ class Settings:
 if __name__ == "__main__":
 	#self test
 	set = Settings()
-	set.readGConf()
-	set.writeGConf()
+	print set.settings
+	#set.writeGConf()
