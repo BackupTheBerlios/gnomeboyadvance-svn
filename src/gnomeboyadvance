@@ -61,8 +61,8 @@ class Settings:
 						theLines[x - 1] = 'fullScreen     0\n'
 				if line[:6] == 'filter':
 					theLines[x - 1] = 'filter     ' + self.settings['filter'][-1:] + '\n'
-				if line[:13] == '# Screen shot':
-					theLines[x] = self.settings['shotsDir'] + '\n'
+				if line[:10] == 'captureDir':
+					theLines[x-1] = 'captureDir=' + self.settings['shotsDir'] + '\n'
 				if line[:8] == 'saveType':
 					theLines[x - 1] = 'saveType     ' + self.settings['saveType'][-1:] + '\n'
 				if line[:8] == 'throttle':
@@ -146,9 +146,9 @@ class Settings:
 				if tempStr[1] == 'A':
 					self.settings['filter'] = '--filter-bilinear+ A'
 					app.get_widget('filter').set_text(self.settings['filter'])
-			if line[:13] == '# Screen shot':
-				self.settings['shotsDir'] = theConfigLines[y][:-1]
-				app.get_widget('shotsDir').set_text(theConfigLines[y][:-1])
+			if line[:10] == 'captureDir':
+				self.settings['shotsDir'] = line[12:-1]
+				app.get_widget('shotsDir').set_text(line[12:-1])
 			if line[:8] == 'saveType':
 				tempStr = string.split(line)
 				if tempStr[1] == '0':
@@ -267,7 +267,7 @@ class GUI(gtk.glade.XML):
 
 		if(mySettings.write()):
 			app.appBar.set_status('Could not save settings to disk')
-
+	
 if __name__ == "__main__":
 	app = GUI()
 	mySettings = Settings()
