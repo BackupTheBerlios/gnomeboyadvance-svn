@@ -509,7 +509,7 @@
         <long></long>
       </locale>
     </schema>  
-    <shema>
+    <schema>
       <key>/schemas/apps/gnomeboyadvance/advanced/rtcEnabled</key>
       <applyto>/apps/gomeboyadvance/advanced/rtcEnabled</applyto>
       <owner>gnomeboyadvance</owner>
@@ -520,7 +520,7 @@
         <long></long>
       </locale>
     </schema>  
-    <shema>
+    <schema>
       <key>/schemas/apps/gnomeboyadvance/advanced/useBios</key>
       <applyto>/apps/gomeboyadvance/advanced/useBios</applyto>
       <owner>gnomeboyadvance</owner>
@@ -531,7 +531,7 @@
         <long></long>
       </locale>
     </schema>  
-    <shema>
+    <schema>
       <key>/schemas/apps/gnomeboyadvance/advanced/skipBios</key>
       <applyto>/apps/gomeboyadvance/advanced/skipBios</applyto>
       <owner>gnomeboyadvance</owner>
@@ -542,7 +542,7 @@
         <long></long>
       </locale>
     </schema>  
-    <shema>
+    <schema>
       <key>/schemas/apps/gnomeboyadvance/advanced/disableStatus</key>
       <applyto>/apps/gomeboyadvance/advanced/disableStatus</applyto>
       <owner>gnomeboyadvance</owner>
@@ -553,7 +553,7 @@
         <long></long>
       </locale>
     </schema>  
-    <shema>
+    <schema>
       <key>/schemas/apps/gnomeboyadvance/advanced/pauseWhenInactive</key>
       <applyto>/apps/gomeboyadvance/advanced/pauseWhenInactive</applyto>
       <owner>gnomeboyadvance</owner>
@@ -564,7 +564,7 @@
         <long></long>
       </locale>
     </schema>  
-    <shema>
+    <schema>
       <key>/schemas/apps/gnomeboyadvance/advanced/agbPrint</key>
       <applyto>/apps/gomeboyadvance/advanced/agbPrint</applyto>
       <owner>gnomeboyadvance</owner>
@@ -575,7 +575,7 @@
         <long></long>
       </locale>
     </schema>  
-    <shema>
+    <schema>
       <key>/schemas/apps/gnomeboyadvance/advanced/borderOn</key>
       <applyto>/apps/gomeboyadvance/advanced/borderOn</applyto>
       <owner>gnomeboyadvance</owner>
@@ -586,7 +586,7 @@
         <long></long>
       </locale>
     </schema>  
-    <shema>
+    <schema>
       <key>/schemas/apps/gnomeboyadvance/advanced/disableMMX</key>
       <applyto>/apps/gomeboyadvance/advanced/disableMMX</applyto>
       <owner>gnomeboyadvance</owner>
