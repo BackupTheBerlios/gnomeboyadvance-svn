@@ -12,16 +12,19 @@ ADVANCED_OPTIONS = ['saveType', 'biosFile', 'flashSize', 'emulatorType', 'showSp
 class Settings:
 	def __init__(self):
 		self.settings = {}
-		#TODO: use 'which VisualBoyAdvance' to try to find vba path 
 		#humm better to make that when we open the preferences box AND binary == ''
 
 		self.client = gconf.client_get_default();
 		self.client.add_dir("/apps/gnomeboyadvance", gconf.CLIENT_PRELOAD_NONE)
 
 		self.readGConf()
+		if not self.settings['binary']:
+			bin = os.popen('which VisualBoyAdvance').read()
+			self.settings['binary'] = bin[:-1]
 
 		self.path = os.path.join('/tmp', 'VisualBoyAdvance_' + os.getlogin() + '.cfg')
 		self.validity = False
+
 
 
 	def readGConf(self):
