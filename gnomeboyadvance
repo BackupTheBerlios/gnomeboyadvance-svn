@@ -1,6 +1,6 @@
 #!/usr/bin/python
-#author jay@socialistsoftware.com
-#web http://www.socialistsoftware.com/
+#authors cass@skynet.be, jay@socialistsoftware.com
+#web http://developer.berlios.de/projects/gnomeboyadvance/
 #license GPL http://www.gnu.org/copyleft/gpl.html
 
 import os, sys, string
@@ -16,87 +16,71 @@ except:
 
 NAME = 'gnomeBoyAdvance'
 VERSION = '0.1'
-AUTHORS = ['Jay Graves <jay@socialistsoftware.com>', 'Guillaume Desmottes <cass@skynet.be>']
+AUTHORS = ['Jay Graves <jay@socialistsoftware.com>', 'Guillaume Desmottes <cass@skynet.be>', 'Olivier Le Thanh Duong Olivier <staz@perso.be>']
 COMMENTS = 'A frontend for the Visual Boy Advance emulator'
 COPYRIGHT = 'Jay Graves (c) 2003\n GnomeBoyAdvance Team (c) 2004'
 DATADIR = '/usr/share/gnomeboyadvance/'
 SETTINGSFILE = os.path.expanduser("~") + "/.gnomeBoyAdvance"
 LOGOFILE = 'gnomeBoyAdvance.png'
 
+SETTINGS_WIDGETS = ['romsDir', 'binary', 'scale', 'shotsDir', 'filter', 'frameSkip', 'throttle', 'yuv', 'configFile', 'saveType']
+
 gnome.init('gnomeBoyAdvance', VERSION)
 theGame = None
 
 
-class settings:
+class Settings:
 	def __init__(self): 
-		self.romsDir = ''
-		self.binary = ''
-		self.scale = ''
-		self.shotsDir = ''
-		self.filter = ''
-		self.frameSkip = ''
-		self.throttle = ''
-		self.yuv = ''
-		self.configFile = ''
-		self.saveType = ''
-	def save(self, set):
-		self.romsDir = set['romsDir']
-		self.binary = set['binary']
-		self.shotsDir = set['shotsDir']
-		self.scale = set['scale']
-		self.filter = set['filter']
-		self.frameSkip = set['frameSkip']
-		self.throttle = set['throttle']
-		self.yuv = set['yuv']
-		self.configFile = set['configFile']
-		self.saveType = set['saveType']
+		self.settings = {}
+	def save(self, _settings):
+		self.settings = _settings
 		
 	def write(self):
-		if os.path.isfile(self.configFile):
-			theLines = file(self.configFile).readlines()
+		if os.path.isfile(self.settings['configFile']):
+			theLines = file(self.settings['configFile']).readlines()
 
 			x = 0
 			for line in theLines:
 				x += 1
 				if line[0] == '#': continue	#skip comment
 				if line[:9] == 'frameSkip':
-					theLines[x - 1] = 'frameSkip     ' + `mySettings.frameSkip` + '\n'
+					theLines[x - 1] = 'frameSkip     ' + self.settings['frameSkip'] + '\n'
 				if line[:5] == 'video':
-					if mySettings.scale.endswith('1x'):
+					if self.settings['scale'].endswith('1x'):
 						theLines[x - 1] = 'video     0\n'
-					if mySettings.scale.endswith('2x'):
+					if self.settings['scale'].endswith('2x'):
 						theLines[x - 1] = 'video     1\n'
-					if mySettings.scale.endswith('3x'):
+					if self.settings['scale'].endswith('3x'):
 						theLines[x - 1] = 'video     2\n'
-					if mySettings.scale.endswith('4x'):
+					if self.settings['scale'].endswith('4x'):
 						theLines[x - 1] = 'video     3\n'
 				if line[:10] == 'fullScreen':
-					if mySettings.scale.endswith('screen'):
+					if self.settings['scale'].endswith('screen'):
 						theLines[x - 1] = 'fullScreen     1\n'
 					else:
 						theLines[x - 1] = 'fullScreen     0\n'
 				if line[:6] == 'filter':
-					theLines[x - 1] = 'filter     ' + mySettings.filter[-1:] + '\n'
+					theLines[x - 1] = 'filter     ' + self.settings['filter'][-1:] + '\n'
 				if line[:13] == '# Screen shot':
-					theLines[x] = mySettings.shotsDir + '\n'
+					theLines[x] = self.settings['shotsDir'] + '\n'
 				if line[:8] == 'saveType':
-					theLines[x - 1] = 'saveType     ' + mySettings.saveType[-1:] + '\n'
+					theLines[x - 1] = 'saveType     ' + self.settings['saveType'][-1:] + '\n'
 				if line[:8] == 'throttle':
-					theLines[x - 1] = 'throttle     ' + `mySettings.throttle` + '\n'
-			file(mySettings.configFile,'w').writelines(theLines)
+					theLines[x - 1] = 'throttle     ' + self.settings['throttle'] + '\n'
+			file(self.settings['configFile'],'w').writelines(theLines)
 			configLines = []
-			configLines.append(mySettings.configFile + '\n')
-			configLines.append(mySettings.binary + '\n')
-			configLines.append(mySettings.romsDir)
+			configLines.append(self.settings['configFile'] + '\n')
+			configLines.append(self.settings['binary'] + '\n')
+			configLines.append(self.settings['romsDir'])
 			file(SETTINGSFILE,'w').writelines(configLines)
 
 			return 0
 		else:
 			return -1	#error
 	def read(self,theFile):
-		app.get_widget('configFile').set_text(mySettings.configFile)
-		app.get_widget('binary').set_text(mySettings.binary)
-		app.get_widget('romsDir').set_text(mySettings.romsDir)
+		app.get_widget('configFile').set_text(self.settings['configFile'])
+		app.get_widget('binary').set_text(self.settings['binary'])
+		app.get_widget('romsDir').set_text(self.settings['romsDir'])
 		theConfigLines = file(theFile,'r').readlines()
 		
 		y = 0
@@ -105,82 +89,83 @@ class settings:
 			if line[0] == '#': continue	#skip comment
 			if line[:9] == 'frameSkip':
 				tempStr = string.split(line)
-				mySettings.frameSkip = tempStr[1]
-				app.get_widget("frameSkip").set_value(string.atoi(mySettings.frameSkip))
+				self.settings['frameSkip'] = tempStr[1]
+				#TODO: check if atoi is necessary (idem for throttle)
+				app.get_widget("frameSkip").set_value(string.atoi(self.settings['frameSkip']))
 			if line[:6] == 'video ':
 				tempStr = string.split(line)
 				if tempStr[1] == '0':
-					mySettings.scale = '--video-1x'
+					self.settings['scale'] = '--video-1x'
 					app.get_widget("scale").set_text('--video-1x')
 				if tempStr[1] == '1':
-	                                mySettings.scale = '--video-2x'
+	                                self.settings['scale'] =  '--video-2x'
 	                                app.get_widget("scale").set_text('--video-2x')
 				if tempStr[1] == '2':
-                                        mySettings.scale = '--video-3x'
+                                        self.settings['scale'] = '--video-3x'
                                         app.get_widget("scale").set_text('--video-3x')
 				if tempStr[1] == '3':
-                                        mySettings.scale = '--video-4x'
+                                        self.settings['scale'] = '--video-4x'
                                         app.get_widget("scale").set_text('--video-4x')
 			if line[:10] == 'fullScreen':
 				tempStr = string.split(line)
 				if tempStr[1] == '1':
-					mySettings.scale = '--fullscreen'
+					self.settings['scale'] = '--fullscreen'
 					app.get_widget("scale").set_text('--fullscreen')
 			if line[:6] == 'filter':
 				tempStr = string.split(line)
 				if tempStr[1] == '0':
-					mySettings.filter = '--filter-normal 0'
-					app.get_widget('filter').set_text(mySettings.filter)
+					self.settings['filter'] = '--filter-normal 0'
+					app.get_widget('filter').set_text(self.settings['filter'])
 				if tempStr[1] == '1':
-					mySettings.filter = '--filter-tv-mode 1'
-					app.get_widget('filter').set_text(mySettings.filter)
+					self.settings['filter'] = '--filter-tv-mode 1'
+					app.get_widget('filter').set_text(self.settings['filter'])
 				if tempStr[1] == '2':
-					mySettings.filter = '--filter-2xsai 2'
-					app.get_widget('filter').set_text(mySettings.filter)
+					self.settings['filter'] = '--filter-2xsai 2'
+					app.get_widget('filter').set_text(self.settings['filter'])
 				if tempStr[1] == '3':
-					mySettings.filter = '--filter-super-2xsai 3'
-					app.get_widget('filter').set_text(mySettings.filter)
+					self.settings['filter'] = '--filter-super-2xsai 3'
+					app.get_widget('filter').set_text(self.settings['filter'])
 				if tempStr[1] == '4':
-					mySettings.filter = '--filter-super-eagle 4'
-					app.get_widget('filter').set_text(mySettings.filter)
+					self.settings['filter'] = '--filter-super-eagle 4'
+					app.get_widget('filter').set_text(self.settings['filter'])
 				if tempStr[1] == '5':
-					mySettings.filter = '--filter-pixelate 5'
-					app.get_widget('filter').set_text(mySettings.filter)
+					self.settings['filter'] = '--filter-pixelate 5'
+					app.get_widget('filter').set_text(self.settings['filter'])
 				if tempStr[1] == '6':
-					mySettings.filter = '--filter-motion-blur 6'
-					app.get_widget('filter').set_text(mySettings.filter)
+					self.settings['filter'] = '--filter-motion-blur 6'
+					app.get_widget('filter').set_text(self.settings['filter'])
 				if tempStr[1] == '7':
-					mySettings.filter = '--filter-advmame 7'
-					app.get_widget('filter').set_text(mySettings.filter)
+					self.settings['filter'] = '--filter-advmame 7'
+					app.get_widget('filter').set_text(self.settings['filter'])
 				if tempStr[1] == '8':
-					mySettings.filter = '--filter-simple2x 8'
-					app.get_widget('filter').set_text(mySettings.filter)
+					self.settings['filter'] = '--filter-simple2x 8'
+					app.get_widget('filter').set_text(self.settings['filter'])
 				if tempStr[1] == '9':
-					mySettings.filter = '--filter-bilinear 9'
-					app.get_widget('filter').set_text(mySettings.filter)
+					self.settings['filter'] = '--filter-bilinear 9'
+					app.get_widget('filter').set_text(self.settings['filter'])
 				if tempStr[1] == 'A':
-					mySettings.filter = '--filter-bilinear+ A'
-					app.get_widget('filter').set_text(mySettings.filter)
+					self.settings['filter'] = '--filter-bilinear+ A'
+					app.get_widget('filter').set_text(self.settings['filter'])
 			if line[:13] == '# Screen shot':
-				mySettings.shotsDir = theConfigLines[y][:-1]
+				self.settings['shotsDir'] = theConfigLines[y][:-1]
 				app.get_widget('shotsDir').set_text(theConfigLines[y][:-1])
 			if line[:8] == 'saveType':
 				tempStr = string.split(line)
 				if tempStr[1] == '0':
-					mySettings.saveType = '--save-auto 0'
+					self.settings['saveType'] = '--save-auto 0'
 				if tempStr[1] == '1':
-					mySettings.saveType = '--save-eeprom 1'
+					self.settings['saveType'] = '--save-eeprom 1'
 				if tempStr[1] == '2':
-					mySettings.saveType = '--save-sram 2'
+					self.settings['saveType'] = '--save-sram 2'
 				if tempStr[1] == '3':
-					mySettings.saveType = '--save-flash 3'
+					self.settings['saveType'] = '--save-flash 3'
 				if tempStr[1] == '4':
-					mySettings.saveType = '--save-sensor 4'
-				app.get_widget('saveType').set_text(mySettings.saveType)
+					self.settings['saveType'] = '--save-sensor 4'
+				app.get_widget('saveType').set_text(self.settings['saveType'])
 			if line[:8] == 'throttle':
 				tempStr = string.split(line)
-				mySettings.throttle = tempStr[1]
-				app.get_widget('throttle').set_value(string.atoi(mySettings.throttle))
+				self.settings['throttle'] = tempStr[1]
+				app.get_widget('throttle').set_value(string.atoi(self.settings['throttle']))
 				
 
 class gameList:
@@ -218,8 +203,8 @@ class gameList:
 			self.model, self.iter = self.sel
 			self.module = self.model.get_value(self.iter, 0)
 			theGame = self.model.get_value(self.iter,0)
-		if os.path.isdir(mySettings.shotsDir):
-			theImage = os.path.join(mySettings.shotsDir, theGame[:-4] + '01.png')
+		if mySettings.settings.has_key('shotsDir') and os.path.isdir(mySettings.settings['shotsDir']):
+			theImage = os.path.join(mySettings.settings['shotsDir'], theGame[:-4] + '01.png')
 			gameImage = app.get_widget("gameImage")
 			if os.path.isfile(theImage):
 				gameImage.set_from_file(theImage)
@@ -242,17 +227,9 @@ class GUI(gtk.glade.XML):
 		gtk.main_quit()
 	def on_save1_activate(*args):
 		set = {}
-		set['romsDir'] = app.get_widget("romsDir").get_text()
+		for widg in SETTINGS_WIDGETS:
+			set[widg] = app.get_widget(widg).get_text()
 		if set['romsDir']: theGameList.populate(set['romsDir'])
-		set['binary'] = app.get_widget("binary").get_text()
-		set['shotsDir'] = app.get_widget("shotsDir").get_text()
-		set['scale'] = app.get_widget("scale").get_text()
-		set['filter'] = app.get_widget("filter").get_text()
-		set['frameSkip'] = app.get_widget("frameSkip").get_value_as_int()
-		set['throttle'] = app.get_widget("throttle").get_value_as_int()
-		set['yuv'] = app.get_widget("yuv").get_text()
-		set['configFile'] = app.get_widget("configFile").get_text()
-		set['saveType'] = app.get_widget("saveType").get_text()
 		mySettings.save(set)
 		del set
 
@@ -264,10 +241,10 @@ class GUI(gtk.glade.XML):
 	def on_playGame_clicked(*args):
 		if theGame:
 			launch = []
-			launch.append(mySettings.binary)
-			launch.append(os.path.join(mySettings.romsDir,theGame))
-			if mySettings.configFile:
-				launch.append('--config=' + mySettings.configFile)
+			launch.append(mySettings.settings['binary'])
+			launch.append(os.path.join(mySettings.settings['romsDir'],theGame))
+			if mySettings.settings['configFile']:
+				launch.append('--config=' + mySettings.settings['configFile'])
 			app.appBar.set_status('playing ' + theGame)
 			os.system( string.join(launch))
 		else : 
@@ -275,21 +252,21 @@ class GUI(gtk.glade.XML):
 	def on_clear_clicked(*args):
 		theGameList.clear()
 	def on_reload_gamelist_activate(*args):
-		theGameList.populate(mySettings.romsDir)
+		theGameList.populate(mySettings.settings['romsDir'])
 
 if __name__ == "__main__":
 	app = GUI()
-	mySettings = settings()
+	mySettings = Settings()
 	theGameList = gameList()
 	if os.path.isfile(SETTINGSFILE):
 		gbaSetting = file(SETTINGSFILE).readlines()
 		if os.path.isfile(gbaSetting[0][:-1]):
-			mySettings.configFile = gbaSetting[0][:-1]
+			mySettings.settings['configFile'] = gbaSetting[0][:-1]
 			if len(gbaSetting) > 1:
-				mySettings.binary = gbaSetting[1][:-1]
+				mySettings.settings['binary'] = gbaSetting[1][:-1]
 			if len(gbaSetting) > 2:
-				mySettings.romsDir = gbaSetting[2]
-				theGameList.populate(mySettings.romsDir)
+				mySettings.settings['romsDir'] = gbaSetting[2]
+				theGameList.populate(mySettings.settings['romsDir'])
 			mySettings.read(gbaSetting[0][:-1])
 		else:
 			print gbaSetting[0][:-1] + ' is not a file'
