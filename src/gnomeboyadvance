@@ -215,7 +215,8 @@ class GUI(gtk.glade.XML):
 			if(app.get_widget(widg).get_active()): ok = '1'
 			else: ok = '0'
 			mySettings.settings[widg] = ok
-			
+		
+		mySettings.writeGConf()
 		app.appBar.set_status('settings saved')
 
 
@@ -246,7 +247,7 @@ def oldVersion(set):
 	if os.path.isdir(buff[2]): 
 		set.settings['romsDir'] = buff[2]
 	
-	#os.unlink(SETTINGSFILE)
+	os.unlink(SETTINGSFILE)
 
 	
 if __name__ == "__main__":

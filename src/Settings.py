@@ -21,7 +21,7 @@ class Settings:
 		#TODO: use 'which VisualBoyAdvance' to try to find vba path 
 		#humm better to make that when we open the preferences box AND binary == ''
 
-		self.client = gconf.client_get_default ();
+		self.client = gconf.client_get_default();
 		self.client.add_dir("/apps/gnomeboyadvance", gconf.CLIENT_PRELOAD_NONE)
 
 		self.readGConf()
@@ -29,39 +29,36 @@ class Settings:
 
 	def readGConf(self):
 		for elt in GENERAL_OPTIONS:
-			self.settings[elt] = self.client.get_string("/apps/gomeboyadvance/general/"+ elt)
+			self.settings[elt] = self.client.get_string("/apps/gnomeboyadvance/general/"+ elt)
 
 		for elt in CONTROL_OPTIONS:
-			self.settings[elt] = self.client.get_string("/apps/gomeboyadvance/control/"+ elt)
+			self.settings[elt] = self.client.get_string("/apps/gnomeboyadvance/control/"+ elt)
 			
-
 		for elt in ADVANCED_OPTIONS:
-			self.settings[elt] = self.client.get_string("/apps/gomeboyadvance/advanced/"+ elt)
+			self.settings[elt] = self.client.get_string("/apps/gnomeboyadvance/advanced/"+ elt)
 
 		for elt in SOUND_OPTIONS:
-			self.settings[elt] = self.client.get_string("/apps/gomeboyadvance/sound/"+ elt)
+			self.settings[elt] = self.client.get_string("/apps/gnomeboyadvance/sound/"+ elt)
 
 		for elt in GRAPHIC_OPTIONS:
-			self.settings[elt] = self.client.get_string("/apps/gomeboyadvance/graphic/"+ elt)
-		
-
+			self.settings[elt] = self.client.get_string("/apps/gnomeboyadvance/graphic/"+ elt)
 	
 
 	def writeGConf(self):
 		for elt in GENERAL_OPTIONS:
-			self.client.set_string("/apps/gomeboyadvance/general/"+ elt, self.settings[elt])
+			self.client.set_string("/apps/gnomeboyadvance/general/"+ elt, self.settings[elt])
 
 		for elt in CONTROL_OPTIONS:
-			self.client.set_string("/apps/gomeboyadvance/control/"+ elt, self.settings[elt])
+			self.client.set_string("/apps/gnomeboyadvance/control/"+ elt, self.settings[elt])
 
 		for elt in ADVANCED_OPTIONS:
-			self.client.set_string("/apps/gomeboyadvance/advanced/"+ elt, self.settings[elt])
+			self.client.set_string("/apps/gnomeboyadvance/advanced/"+ elt, self.settings[elt])
 
 		for elt in SOUND_OPTIONS:
-			self.client.set_string("/apps/gomeboyadvance/sound/"+ elt, self.settings[elt])
+			self.client.set_string("/apps/gnomeboyadvance/sound/"+ elt, self.settings[elt])
 			
 		for elt in GRAPHIC_OPTIONS:
-			self.client.set_string("/apps/gomeboyadvance/graphic/"+ elt, self.settings[elt])
+			self.client.set_string("/apps/gnomeboyadvance/graphic/"+ elt, self.settings[elt])
 
 
 	def writeFile(self, path):	
