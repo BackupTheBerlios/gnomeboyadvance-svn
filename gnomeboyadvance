@@ -57,16 +57,15 @@ class settings:
 		app.appBar.set_status('settings saved')
 	def write(self,theFile):
 		if os.path.isfile(theFile):
-			fConfig = open(theFile,'r')
-			theLines = fConfig.readlines()
-			fConfig.close()
+			theLines = file(theFile).readlines()
 
 			x = 0
 			for line in theLines:
 				x += 1
+				if line[0] == '#': continue	#skip comment
 				if line[:9] == 'frameSkip':
 					theLines[x - 1] = 'frameSkip     ' + `mySettings.frameSkip` + '\n'
-				if line[:6] == 'video ':
+				if line[:5] == 'video':
 					if mySettings.scale.endswith('1x'):
 						theLines[x - 1] = 'video     0\n'
 					if mySettings.scale.endswith('2x'):
@@ -88,29 +87,27 @@ class settings:
 					theLines[x - 1] = 'saveType     ' + mySettings.saveType[-1:] + '\n'
 				if line[:8] == 'throttle':
 					theLines[x - 1] = 'throttle     ' + `mySettings.throttle` + '\n'
-			newFile = open(mySettings.configFile,'w')
-			newFile.writelines(theLines)
-			newFile.close()
-			gbaFile = open(SETTINGSFILE,'w')
+			file(mySettings.configFile,'w').writelines(theLines)
 			configLines = []
 			configLines.append(mySettings.configFile + '\n')
 			configLines.append(mySettings.binary + '\n')
 			configLines.append(mySettings.romsDir)
-			gbaFile.writelines(configLines)
-			gbaFile.close
+			file(SETTINGSFILE,'w').writelines(configLines)
 		else:
 			app.appBar.set_status('Could not save settings to disk '+theFile + 'is not a file' )
 	def read(self,theFile):
 		app.get_widget('configFile').set_text(mySettings.configFile)
 		app.get_widget('binary').set_text(mySettings.binary)
 		app.get_widget('romsDir').set_text(mySettings.romsDir)
-		theConfigFile = open(theFile,'r')
-		theConfigLines = theConfigFile.readlines()
-		theConfigFile.close()
+#		theConfigFile = open(theFile,'r')
+#		theConfigLines = theConfigFile.readlines()
+#		theConfigFile.close()
+		theConfigLines = file(theFile,'r').readlines()
 		
 		y = 0
 		for line in theConfigLines:
 			y += 1
+			if line[0] == '#': continue	#skip comment
 			if line[:9] == 'frameSkip':
 				tempStr = string.split(line)
 				mySettings.frameSkip = tempStr[1]
@@ -271,8 +268,7 @@ if __name__ == "__main__":
 	mySettings = settings()
 	theGameList = gameList()
 	if os.path.isfile(SETTINGSFILE):
-		localFile = open(SETTINGSFILE,'r')
-		gbaSetting = localFile.readlines()
+		gbaSetting = file(SETTINGSFILE).readlines()
 		if os.path.isfile(gbaSetting[0][:-1]):
 			mySettings.configFile = gbaSetting[0][:-1]
 			if len(gbaSetting) > 1:
