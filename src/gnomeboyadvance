@@ -28,7 +28,7 @@ LOGOFILE = 'gnomeboyadvance.png'
 ICONFILE = '/usr/share/pixmaps/gba48.png'
 
 
-ENTRY_WIDG = ['binary', 'romsDir', 'batteryDir', 'captureDir', 'saveDir', 'throttle', 'gbFrameSkip', 'frameSkip', 'biosFile', 'rewindTimer'] + CONTROL_OPTIONS.keys()
+ENTRY_WIDG = ['binary', 'romsDir', 'batteryDir', 'captureDir', 'saveDir', 'throttle', 'gbFrameSkip', 'frameSkip', 'biosFile', 'rewindTimer'] + CONTROL_OPTIONS
 CHOOSE_WIDG = ['captureFormat', 'video', 'ifbType', 'soundVolume', 'saveType', 'flashSize', 'emulatorType', 'showSpeed']
 BOOL_WIDG = ['fullScreen', 'colorOption', 'borderAutomatic', 'autoFrameSkip', 'soundEcho', 'soundLowPass', 'soundReverse', 'soundOff', 'showSpeedTransparent', 'rtcEnabled', 'useBios', 'skipBios', 'disableStatus', 'pauseWhenInactive', 'agbPrint', 'borderOn', 'disableMMX']
 
