@@ -50,6 +50,7 @@ Select        BACKSPACE   (0008)
 Speed up      SPACE       (0020)
 Capture       F12         (0125)
 
+You can find SDL Configurator here: http://vba.ngemu.com/downloads.shtml 
 It will be improved in the next release!
 
 
