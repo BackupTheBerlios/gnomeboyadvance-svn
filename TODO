@@ -45,12 +45,12 @@ TODO
 	
 * give default value for the settings
 
-
 * use gconf to save the configuration of gnomeboyadvance
 * remake the install script. Add an icon in to the gnome applications list
 * separate the source in differents files.
 * can easily associate a screenshot to a game
 * add translation support
+* add search engine to filter the list of roms
 * make packages (Debian, Mandrake, ...)
 * make a FAQ and a MAN
 * add a IPS patch tab (??)
