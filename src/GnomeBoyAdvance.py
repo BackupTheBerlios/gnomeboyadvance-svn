@@ -6,13 +6,11 @@
 import os, sys
 import string, re
 
-sys.path.insert(0, '/usr/lib/gnomeboyadvance')
-
 try:
 	import pygtk
 	pygtk.require('2.0')
 	import gtk, gtk.glade
-	import gnome, gnome.ui, gobject
+	import gnome, gnome.ui
 except:
 	print 'You must have python-gtk2, python-gnome2 and python-glade2 installed.'
 	sys.exit()
