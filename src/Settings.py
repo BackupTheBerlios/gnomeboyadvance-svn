@@ -18,15 +18,19 @@ class Settings:
 		self.client.add_dir("/apps/gnomeboyadvance", gconf.CLIENT_PRELOAD_NONE)
 
 		self.readGConf()
-		if not self.settings['binary']: self.tryFindBinary
+		if not self.__checkBinary(): self.tryFindBinary()
 	
 		login = pwd.getpwuid(os.geteuid())[0]
 		self.path = os.path.join('/tmp', 'VisualBoyAdvance_' + login + '.cfg')
 		self.validity = False
-	
+
+	def __checkBinary(self, bin=None):
+		if not bin: bin = self.settings['binary']
+		return os.access(bin, os.X_OK )
+
 	def tryFindBinary(self):
 		bin = os.popen('which VisualBoyAdvance').read()
-		if os.access(bin[:-1], os.X_OK ): self.settings['binary'] = bin[:-1]
+		if self.__checkBinary(bin[:-1]): self.settings['binary'] = bin[:-1]
 
 	def readGConf(self):
 		for elt in GENERAL_OPTIONS:
@@ -110,14 +114,14 @@ class Settings:
 
 	def check(self):
 		#binary
-		if not os.access(self.settings['binary'], os.X_OK ): 
+		if not self.__checkBinary():
 			msg = self.settings['binary'] + ": Invalide path to VBA or not an executable"
 			return msg
 
 		#romsDir
 		dir = self.settings['romsDir']
 		if not os.path.isdir(dir) or not os.access(dir, os.R_OK):
-			msg = dir + ": is not a readable directory"
+			msg = "Rom directory: "+ dir + ": is not a readable directory"
 			return msg
 
 		#datas dirs
@@ -125,10 +129,11 @@ class Settings:
 			dir = self.settings[dir_name]
 			if not dir: continue #skip if no value
 			if not os.path.isdir(dir) or not os.access(dir, os.W_OK):
-				msg = dir + ": is not a writable directory"
+				msg = dir_name + ": "+ dir + ": is not a writable directory"
 				return msg
 
 		return None
+		
 
 if __name__ == "__main__":
 	#self test
