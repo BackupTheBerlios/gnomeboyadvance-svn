@@ -22,6 +22,7 @@ COPYRIGHT = 'Jay Graves (c) 2003\n GnomeBoyAdvance Team (c) 2004'
 DATADIR = '/usr/share/gnomeboyadvance'
 SETTINGSFILE = os.path.join(os.path.expanduser("~"), ".gnomeBoyAdvance")
 LOGOFILE = 'gnomeBoyAdvance.png'
+ICONFILE = 'gba_icon.png'
 
 SETTINGS_WIDGETS = ['romsDir', 'binary', 'scale', 'shotsDir', 'filter', 'frameSkip', 'throttle', 'yuv', 'configFile', 'saveType']
 
@@ -224,10 +225,16 @@ class GUI(gtk.glade.XML):
 		gtk.glade.XML.__init__(self, glade_f)
                 self.signal_autoconnect(dict(GUI.__dict__))
 		self.appBar = self.get_widget('appbar1')
+
+		icone = os.path.join(DATADIR, ICONFILE)
+		if os.path.isfile(icone):
+			self.get_widget('main').set_icon_from_file(icone)
+			self.get_widget('preferences_dialog').set_icon_from_file(icone)
+
 	def on_about1_activate(*args):
 		pixbuf = gtk.gdk.pixbuf_new_from_file( os.path.join(DATADIR, LOGOFILE))
 	        copyright = unicode(COPYRIGHT, "latin-1").encode("utf8")
-	        gnome.ui.About(NAME, str(VERSION), copyright, COMMENTS, AUTHORS,logo_pixbuf=pixbuf).show()
+	        gnome.ui.About(NAME, str(VERSION), copyright, COMMENTS, AUTHORS, logo_pixbuf=pixbuf).show()
 	def on_quit1_activate(*args):
 		gtk.main_quit()
 
@@ -249,7 +256,7 @@ class GUI(gtk.glade.XML):
 	def on_reload_gamelist_activate(*args):
 		theGameList.populate(mySettings.settings['romsDir'])
 	
-	def on_search_clicked(*args):
+	def on_search_changed(*args):
 		tosearch= app.get_widget('searchbox').get_text()
 		theGameList.populate(mySettings.settings['romsDir'],tosearch)
 
