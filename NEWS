@@ -1,13 +1,13 @@
 GnomeBoyAdvance NEWS
 
 version 0.4:
-	* Keys configuration
-	* Joystick configuration (necessitate pygame)
+	+ Keys configuration
+	+ Joystick configuration (necessitate pygame)
 	* soundEnable option is now correctly saved (close #2063)
-	* add a field to pass additionnal command line options to VBA (close feature request #142)
-	* Launch a game by double clicking on it in the game list
+	+ add a field to pass additionnal command line options to VBA (close feature request #142)
+	+ Launch a game by double clicking on it in the game list
 	* New installer using distutils
-	* GBA display now bmp screenshots
+	+ GBA display now bmp screenshots
 	* Code cleaning
 	* Bugs fix
 
