@@ -1,8 +1,15 @@
 GnomeBoyAdvance NEWS
 
 version 0.3
+	* Settings system entirly rewritten. Preferences are now saved in gconf. 
+	* There is not more essential to use a VBA configuration file. 
+	  Your old VBA configuration file is not any more automatically modified.
+	  Using of default values.
+	+ Possibility to import/export your VBA configuration from/to a extern file.
+	+ ALL the options of VBA are now configurable by the interface.
+	* Replace of GtkCombo by GtkOptionMenu in the GUI.
+	+ New really cool and kinda "gnome-like" icon.
 
-	* New really cool and kinda "gnome-like" icon.
 
 01/05/04 version 0.2
 	Project is restarted on 2004-Apr-08 with a new team and is now hosted on berlios.de
