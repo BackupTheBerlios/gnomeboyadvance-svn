@@ -25,7 +25,7 @@ SETTINGSFILE = os.path.join(os.path.expanduser("~"), ".gnomeBoyAdvance")
 LOGOFILE = 'gnomeboyadvance.png'
 ICONFILE = '/usr/share/pixmaps/gba48.png'
 
-GENERAL_OPTIONS = {'binary': '', 'captureDir': '', 'romsDir': '', 'captureFormat': '0', 'configFile': '', 'saveDir': '', 'batteryDir': ''}
+GENERAL_OPTIONS = {'binary': '', 'captureDir': '', 'romsDir': '', 'captureFormat': '0', 'saveDir': '', 'batteryDir': ''}
 CONTROL_OPTIONS = {'Joy0_Left': '0114' , 'Joy0_Right': '0113', 'Joy0_Up': '0111', 'Joy0_Down': '0112', 'Joy0_A': '007a', 'Joy0_B': '0078', 'Joy0_L': '0061', 'Joy0_R': '0073', 'Joy0_Start': '000d', 'Joy0_Select': '0008', 'Joy0_Speed': '0020', 'Joy0_Capture': '0125', 'Motion_Left': '0104', 'Motion_Right': '0106', 'Motion_Up': '0108', 'Motion_Down': '0102'}
 GRAPHIC_OPTIONS = {'video': '1', 'fullScreen': '0', 'throttle': '0', 'filter': '0', 'gbFrameSkip': '0', 'frameSkip': '2', 'ifbType':'0', 'autoFrameSkip': '0', 'colorOption': '1', 'borderAutomatic': '0'}
 SOUND_OPTIONS = {'soundQuality': '2', 'soundVolume': '0', 'soundEnable': '30f', 'soundReverse': '0', 'soundOff': '0', 'soundEcho': '0', 'soundLowPass': '0'}
@@ -45,7 +45,7 @@ class Settings:
 		#TODO: use 'which VisualBoyAdvance' to try to find vba path 
 		#humm better to make that when we open the preferences box AND binary == ''
 
-	def write_file(self, path):
+	def writeFile(self, path):
 		f = file(path, 'w')
 
 		for elt in GENERAL_OPTIONS.keys():
@@ -61,7 +61,7 @@ class Settings:
 		
 		f.close()
 
-	def read_file(self, path):
+	def readFile(self, path):
 		buff = file(path, 'r').readlines()
 		#regexp = re.compile("[=\t]")
 
@@ -71,149 +71,20 @@ class Settings:
 			#TODO: use a regexp insteed of this dirty thing
 			#tmp = regexp.split(l)
 			tmp = l.split('=')
-			if len(tmp) == 1: tmp = l.split()
+			if len(tmp) == 1: 
+				tmp = l.split()
+			else:
+				tmp[1] = tmp[1][:-1]	#drop \n (i know it's dirty!)
 			
 			if not self.settings.has_key(tmp[0]):
 				print "FUCK OFF:", tmp[0] #TODO: raise a exception
 				sys.exit()
 			self.settings[tmp[0]] = tmp[1]
 
-		
-	def save(self, _settings):
-		self.settings = _settings
-		
-	def write(self):
-		if os.path.isfile(self.settings['configFile']):
-			theLines = file(self.settings['configFile']).readlines()
-
-			x = 0
-			for line in theLines:
-				x += 1
-				if line[0] == '#': continue	#skip comment
-				if line[:9] == 'frameSkip':
-					theLines[x - 1] = 'frameSkip     ' + self.settings['frameSkip'] + '\n'
-				if line[:5] == 'video':
-					if self.settings['scale'].endswith('1x'):
-						theLines[x - 1] = 'video     0\n'
-					if self.settings['scale'].endswith('2x'):
-						theLines[x - 1] = 'video     1\n'
-					if self.settings['scale'].endswith('3x'):
-						theLines[x - 1] = 'video     2\n'
-					if self.settings['scale'].endswith('4x'):
-						theLines[x - 1] = 'video     3\n'
-				if line[:10] == 'fullScreen':
-					if self.settings['scale'].endswith('screen'):
-						theLines[x - 1] = 'fullScreen     1\n'
-					else:
-						theLines[x - 1] = 'fullScreen     0\n'
-				if line[:6] == 'filter':
-					theLines[x - 1] = 'filter     ' + self.settings['filter'][-1:] + '\n'
-				if line[:10] == 'captureDir':
-					theLines[x-1] = 'captureDir=' + self.settings['captureDir'] + '\n'
-				if line[:8] == 'saveType':
-					theLines[x - 1] = 'saveType     ' + self.settings['saveType'][-1:] + '\n'
-				if line[:8] == 'throttle':
-					theLines[x - 1] = 'throttle     ' + self.settings['throttle'] + '\n'
-			file(self.settings['configFile'],'w').writelines(theLines)
-			configLines = []
-			configLines.append(self.settings['configFile'] + '\n')
-			configLines.append(self.settings['binary'] + '\n')
-			configLines.append(self.settings['romsDir'])
-			file(SETTINGSFILE,'w').writelines(configLines)
-
-			return 0
-		else:
-			return -1	#error
-	def read(self,theFile):
-		app.get_widget('configFile').set_text(self.settings['configFile'])
-		app.get_widget('binary').set_text(self.settings['binary'])
-		app.get_widget('romsDir').set_text(self.settings['romsDir'])
-		theConfigLines = file(theFile,'r').readlines()
-		
-		y = 0
-		for line in theConfigLines:
-			y += 1
-			if line[0] == '#': continue	#skip comment
-			if line[:9] == 'frameSkip':
-				tempStr = string.split(line)
-				self.settings['frameSkip'] = tempStr[1]
-				#TODO: check if atoi is necessary (idem for throttle)
-				app.get_widget("frameSkip").set_value(string.atoi(self.settings['frameSkip']))
-			if line[:6] == 'video ':
-				tempStr = string.split(line)
-				if tempStr[1] == '0':
-					self.settings['scale'] = '--video-1x'
-					app.get_widget("scale").set_text('--video-1x')
-				if tempStr[1] == '1':
-	                                self.settings['scale'] =  '--video-2x'
-	                                app.get_widget("scale").set_text('--video-2x')
-				if tempStr[1] == '2':
-                                        self.settings['scale'] = '--video-3x'
-                                        app.get_widget("scale").set_text('--video-3x')
-				if tempStr[1] == '3':
-                                        self.settings['scale'] = '--video-4x'
-                                        app.get_widget("scale").set_text('--video-4x')
-			if line[:10] == 'fullScreen':
-				tempStr = string.split(line)
-				if tempStr[1] == '1':
-					self.settings['scale'] = '--fullscreen'
-					app.get_widget("scale").set_text('--fullscreen')
-			if line[:6] == 'filter':
-				tempStr = string.split(line)
-				if tempStr[1] == '0':
-					self.settings['filter'] = '--filter-normal 0'
-					app.get_widget('filter').set_text(self.settings['filter'])
-				if tempStr[1] == '1':
-					self.settings['filter'] = '--filter-tv-mode 1'
-					app.get_widget('filter').set_text(self.settings['filter'])
-				if tempStr[1] == '2':
-					self.settings['filter'] = '--filter-2xsai 2'
-					app.get_widget('filter').set_text(self.settings['filter'])
-				if tempStr[1] == '3':
-					self.settings['filter'] = '--filter-super-2xsai 3'
-					app.get_widget('filter').set_text(self.settings['filter'])
-				if tempStr[1] == '4':
-					self.settings['filter'] = '--filter-super-eagle 4'
-					app.get_widget('filter').set_text(self.settings['filter'])
-				if tempStr[1] == '5':
-					self.settings['filter'] = '--filter-pixelate 5'
-					app.get_widget('filter').set_text(self.settings['filter'])
-				if tempStr[1] == '6':
-					self.settings['filter'] = '--filter-motion-blur 6'
-					app.get_widget('filter').set_text(self.settings['filter'])
-				if tempStr[1] == '7':
-					self.settings['filter'] = '--filter-advmame 7'
-					app.get_widget('filter').set_text(self.settings['filter'])
-				if tempStr[1] == '8':
-					self.settings['filter'] = '--filter-simple2x 8'
-					app.get_widget('filter').set_text(self.settings['filter'])
-				if tempStr[1] == '9':
-					self.settings['filter'] = '--filter-bilinear 9'
-					app.get_widget('filter').set_text(self.settings['filter'])
-				if tempStr[1] == 'A':
-					self.settings['filter'] = '--filter-bilinear+ A'
-					app.get_widget('filter').set_text(self.settings['filter'])
-			if line[:10] == 'captureDir':
-				self.settings['captureDir'] = line[11:-1]
-				app.get_widget('captureDir').set_text(line[11:-1])
-			if line[:8] == 'saveType':
-				tempStr = string.split(line)
-				if tempStr[1] == '0':
-					self.settings['saveType'] = '--save-auto 0'
-				if tempStr[1] == '1':
-					self.settings['saveType'] = '--save-eeprom 1'
-				if tempStr[1] == '2':
-					self.settings['saveType'] = '--save-sram 2'
-				if tempStr[1] == '3':
-					self.settings['saveType'] = '--save-flash 3'
-				if tempStr[1] == '4':
-					self.settings['saveType'] = '--save-sensor 4'
-				app.get_widget('saveType').set_text(self.settings['saveType'])
-			if line[:8] == 'throttle':
-				tempStr = string.split(line)
-				self.settings['throttle'] = tempStr[1]
-				app.get_widget('throttle').set_value(string.atoi(self.settings['throttle']))
-				
+	def confFile(self):
+		path = os.tmpnam()
+		self.writeFile(path)
+		return path
 
 class gameList:
 	def __init__(self):
@@ -288,24 +159,25 @@ class GUI(gtk.glade.XML):
 		pixbuf = gtk.gdk.pixbuf_new_from_file( os.path.join(DATADIR, LOGOFILE))
 	        copyright = unicode(COPYRIGHT, "latin-1").encode("utf8")
 	        gnome.ui.About(NAME, str(VERSION), copyright, COMMENTS, AUTHORS, logo_pixbuf=pixbuf).show()
+
 	def on_quit1_activate(*args):
 		gtk.main_quit()
 
 	def on_playGame_clicked(*args):
 		if os.access(mySettings.settings['binary'], os.X_OK ):
 			if theGame:
-				launch = ""
-				launch +=  mySettings.settings['binary']
-				if mySettings.settings['configFile']:
-					launch += ' --config=' + mySettings.settings['configFile']
+				launch =  mySettings.settings['binary']
+				launch += ' --config='+ mySettings.confFile()
 				launch += ' "' + os.path.join(mySettings.settings['romsDir'],theGame) + '" &'
 				
+				print launch
 				app.appBar.set_status('playing ' + theGame)
 				os.system(launch)
 			else : 
 				app.appBar.set_status('No game selected')
 		else :  # TODO: Replace that by a popup info
 			app.appBar.set_status('Invalide path to VBA or not an executable, please fit it in preference')
+
 	def on_reload_gamelist_activate(*args):
 		theGameList.populate(mySettings.settings['romsDir'])
 	
@@ -323,7 +195,6 @@ class GUI(gtk.glade.XML):
 		for widg in SETTINGS_WIDGETS:
 			set[widg] = app.get_widget(widg).get_text()
 		if set['romsDir']: theGameList.populate(set['romsDir'])
-		mySettings.save(set)
 		del set
 
 		app.appBar.set_status('settings saved')
@@ -332,32 +203,45 @@ class GUI(gtk.glade.XML):
 			app.appBar.set_status('Could not save settings to disk')
 
 	def on_import_activate(*args):
-		print "import"
-	def on_export_activate(*args):
-		print "export"
+		print "AVANT"
+		print mySettings.settings
+		fs = gtk.FileSelection('Choose the file to import')
+		result = fs.run()
+		path = fs.get_filename()
+		if result == gtk.RESPONSE_OK and os.path.isfile(path):
+			mySettings.readFile(path)
+		fs.hide()
+		print "APRES"
+		print mySettings.settings
 
+	def on_export_activate(*args):
+		fs = gtk.FileSelection('Choose the export directory')
+		result = fs.run()
+		if result == gtk.RESPONSE_OK: 
+			path = fs.get_filename()
+			if os.path.isdir(path): path = os.path.join(path, 'VisualBoyAdvance.cfg')
+			mySettings.writeFile(path)
+		fs.hide()
+
+#upgrade from old version settings system
+def oldVersion(set):
+	buff = file(SETTINGSFILE).readlines()
+	if os.path.isfile(buff[0][:-1]): 
+		set.readFile(buff[0][:-1])
+	if os.path.isfile(buff[1][:-1]): 
+		set.settings['binary'] = buff[1][:-1]
+	if os.path.isdir(buff[2]): 
+		set.settings['romsDir'] = buff[2]
+	
+	#os.unlink(SETTINGSFILE)
+
+	
 if __name__ == "__main__":
-	app = GUI()
 	mySettings = Settings()
+	if os.access(SETTINGSFILE,os.R_OK): oldVersion(mySettings)
+
+	app = GUI()
 	theGameList = gameList()
 	
-	if os.access(SETTINGSFILE,os.R_OK):
-		gbaSetting = file(SETTINGSFILE).readlines()
-		if len(gbaSetting) > 0:
-			setFile = gbaSetting[0][:-1]
-			#mySettings.settings['configFile'] = gbaSetting[0][:-1]
-		if len(gbaSetting) > 1:
-			mySettings.settings['binary'] = gbaSetting[1][:-1]
-		if len(gbaSetting) > 2:
-			mySettings.settings['romsDir'] = gbaSetting[2]
-			theGameList.populate(mySettings.settings['romsDir'])
-		
-		if os.path.isfile(setFile):
-				#mySettings.read(mySettings.settings['configFile'])
-				mySettings.read_file(setFile)
-		else:
-			print mySettings.settings['configFile'] + ' is not a file'
-	else:
-		print "Invalid settings file"
 	
 	gtk.main()
