@@ -248,7 +248,7 @@ class GUI(gtk.glade.XML):
 				launch +=  mySettings.settings['binary']
 				if mySettings.settings['configFile']:
 					launch += ' --config=' + mySettings.settings['configFile']
-				launch += ' "' + os.path.join(mySettings.settings['romsDir'],theGame) + '"'
+				launch += ' "' + os.path.join(mySettings.settings['romsDir'],theGame) + '" &'
 				
 				app.appBar.set_status('playing ' + theGame)
 				os.system(launch)
