@@ -522,88 +522,6 @@
 			  </child>
 
 			  <child>
-			    <widget class="GtkFrame" id="frame38">
-			      <property name="width_request">256</property>
-			      <property name="height_request">48</property>
-			      <property name="visible">True</property>
-			      <property name="label_xalign">0</property>
-			      <property name="label_yalign">0.5</property>
-			      <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
-
-			      <child>
-				<widget class="GtkCombo" id="combo8">
-				  <property name="visible">True</property>
-				  <property name="value_in_list">False</property>
-				  <property name="allow_empty">False</property>
-				  <property name="case_sensitive">False</property>
-				  <property name="enable_arrow_keys">True</property>
-				  <property name="enable_arrows_always">False</property>
-
-				  <child internal-child="entry">
-				    <widget class="GtkEntry" id="captureFormat">
-				      <property name="visible">True</property>
-				      <property name="can_focus">True</property>
-				      <property name="editable">False</property>
-				      <property name="visibility">True</property>
-				      <property name="max_length">0</property>
-				      <property name="text" translatable="yes"></property>
-				      <property name="has_frame">True</property>
-				      <property name="invisible_char" translatable="yes">*</property>
-				      <property name="activates_default">False</property>
-				    </widget>
-				  </child>
-
-				  <child internal-child="list">
-				    <widget class="GtkList" id="list4">
-				      <property name="visible">True</property>
-				      <property name="selection_mode">GTK_SELECTION_BROWSE</property>
-
-				      <child>
-					<widget class="GtkListItem" id="listitem967">
-					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
-					  <property name="label" translatable="yes">PNG</property>
-					</widget>
-				      </child>
-
-				      <child>
-					<widget class="GtkListItem" id="listitem968">
-					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
-					  <property name="label" translatable="yes">BMP</property>
-					</widget>
-				      </child>
-				    </widget>
-				  </child>
-				</widget>
-			      </child>
-
-			      <child>
-				<widget class="GtkLabel" id="label204">
-				  <property name="visible">True</property>
-				  <property name="label" translatable="yes">Capture format</property>
-				  <property name="use_underline">False</property>
-				  <property name="use_markup">False</property>
-				  <property name="justify">GTK_JUSTIFY_LEFT</property>
-				  <property name="wrap">False</property>
-				  <property name="selectable">False</property>
-				  <property name="xalign">0.5</property>
-				  <property name="yalign">0.5</property>
-				  <property name="xpad">0</property>
-				  <property name="ypad">0</property>
-				</widget>
-				<packing>
-				  <property name="type">label_item</property>
-				</packing>
-			      </child>
-			    </widget>
-			    <packing>
-			      <property name="x">288</property>
-			      <property name="y">72</property>
-			    </packing>
-			  </child>
-
-			  <child>
 			    <widget class="GtkFrame" id="frame12">
 			      <property name="width_request">256</property>
 			      <property name="height_request">48</property>
@@ -828,6 +746,69 @@
 			    <packing>
 			      <property name="x">8</property>
 			      <property name="y">136</property>
+			    </packing>
+			  </child>
+
+			  <child>
+			    <widget class="GtkFrame" id="frame38">
+			      <property name="width_request">256</property>
+			      <property name="height_request">48</property>
+			      <property name="visible">True</property>
+			      <property name="label_xalign">0</property>
+			      <property name="label_yalign">0.5</property>
+			      <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
+
+			      <child>
+				<widget class="GtkOptionMenu" id="captureFormat">
+				  <property name="visible">True</property>
+				  <property name="can_focus">True</property>
+				  <property name="history">0</property>
+
+				  <child>
+				    <widget class="GtkMenu" id="menu1">
+
+				      <child>
+					<widget class="GtkMenuItem" id="png1">
+					  <property name="visible">True</property>
+					  <property name="label" translatable="yes">PNG</property>
+					  <property name="use_underline">True</property>
+					</widget>
+				      </child>
+
+				      <child>
+					<widget class="GtkMenuItem" id="bmp1">
+					  <property name="visible">True</property>
+					  <property name="label" translatable="yes">BMP</property>
+					  <property name="use_underline">True</property>
+					</widget>
+				      </child>
+				    </widget>
+				  </child>
+				</widget>
+			      </child>
+
+			      <child>
+				<widget class="GtkLabel" id="label204">
+				  <property name="visible">True</property>
+				  <property name="label" translatable="yes">Capture format</property>
+				  <property name="use_underline">False</property>
+				  <property name="use_markup">False</property>
+				  <property name="justify">GTK_JUSTIFY_LEFT</property>
+				  <property name="wrap">False</property>
+				  <property name="selectable">False</property>
+				  <property name="xalign">0.5</property>
+				  <property name="yalign">0.5</property>
+				  <property name="xpad">0</property>
+				  <property name="ypad">0</property>
+				</widget>
+				<packing>
+				  <property name="type">label_item</property>
+				</packing>
+			      </child>
+			    </widget>
+			    <packing>
+			      <property name="x">288</property>
+			      <property name="y">72</property>
 			    </packing>
 			  </child>
 			</widget>
@@ -1916,54 +1897,35 @@
 			      <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
 
 			      <child>
-				<widget class="GtkCombo" id="combo9">
+				<widget class="GtkOptionMenu" id="ifbType">
 				  <property name="visible">True</property>
-				  <property name="value_in_list">False</property>
-				  <property name="allow_empty">False</property>
-				  <property name="case_sensitive">False</property>
-				  <property name="enable_arrow_keys">True</property>
-				  <property name="enable_arrows_always">False</property>
+				  <property name="can_focus">True</property>
+				  <property name="history">0</property>
 
-				  <child internal-child="entry">
-				    <widget class="GtkEntry" id="ifbType">
-				      <property name="visible">True</property>
-				      <property name="can_focus">True</property>
-				      <property name="editable">False</property>
-				      <property name="visibility">True</property>
-				      <property name="max_length">0</property>
-				      <property name="text" translatable="yes"></property>
-				      <property name="has_frame">True</property>
-				      <property name="invisible_char" translatable="yes">*</property>
-				      <property name="activates_default">False</property>
-				    </widget>
-				  </child>
-
-				  <child internal-child="list">
-				    <widget class="GtkList" id="list5">
-				      <property name="visible">True</property>
-				      <property name="selection_mode">GTK_SELECTION_BROWSE</property>
+				  <child>
+				    <widget class="GtkMenu" id="menu4">
 
 				      <child>
-					<widget class="GtkListItem" id="listitem997">
+					<widget class="GtkMenuItem" id="none1">
 					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
-					  <property name="label" translatable="yes">None </property>
+					  <property name="label" translatable="yes">None</property>
+					  <property name="use_underline">True</property>
 					</widget>
 				      </child>
 
 				      <child>
-					<widget class="GtkListItem" id="listitem998">
+					<widget class="GtkMenuItem" id="motion_blur2">
 					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
-					  <property name="label" translatable="yes">Motion blur </property>
+					  <property name="label" translatable="yes">Motion Blur</property>
+					  <property name="use_underline">True</property>
 					</widget>
 				      </child>
 
 				      <child>
-					<widget class="GtkListItem" id="listitem999">
+					<widget class="GtkMenuItem" id="smart1">
 					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
 					  <property name="label" translatable="yes">Smart</property>
+					  <property name="use_underline">True</property>
 					</widget>
 				      </child>
 				    </widget>
@@ -2054,134 +2016,115 @@
 			      <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
 
 			      <child>
-				<widget class="GtkCombo" id="combo5">
+				<widget class="GtkOptionMenu" id="filter">
 				  <property name="visible">True</property>
-				  <property name="value_in_list">False</property>
-				  <property name="allow_empty">False</property>
-				  <property name="case_sensitive">False</property>
-				  <property name="enable_arrow_keys">True</property>
-				  <property name="enable_arrows_always">False</property>
+				  <property name="can_focus">True</property>
+				  <property name="history">0</property>
 
-				  <child internal-child="entry">
-				    <widget class="GtkEntry" id="filter">
-				      <property name="visible">True</property>
-				      <property name="can_focus">True</property>
-				      <property name="editable">False</property>
-				      <property name="visibility">True</property>
-				      <property name="max_length">0</property>
-				      <property name="text" translatable="yes"></property>
-				      <property name="has_frame">True</property>
-				      <property name="invisible_char" translatable="yes">*</property>
-				      <property name="activates_default">False</property>
-				    </widget>
-				  </child>
-
-				  <child internal-child="list">
-				    <widget class="GtkList" id="list1">
-				      <property name="visible">True</property>
-				      <property name="selection_mode">GTK_SELECTION_BROWSE</property>
+				  <child>
+				    <widget class="GtkMenu" id="menu3">
 
 				      <child>
-					<widget class="GtkListItem" id="listitem2626">
+					<widget class="GtkMenuItem" id="no1">
 					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
 					  <property name="label" translatable="yes">No</property>
+					  <property name="use_underline">True</property>
 					</widget>
 				      </child>
 
 				      <child>
-					<widget class="GtkListItem" id="listitem2627">
+					<widget class="GtkMenuItem" id="tv_mode1">
 					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
-					  <property name="label" translatable="yes">TV mode</property>
+					  <property name="label" translatable="yes">TV Mode</property>
+					  <property name="use_underline">True</property>
 					</widget>
 				      </child>
 
 				      <child>
-					<widget class="GtkListItem" id="listitem2628">
+					<widget class="GtkMenuItem" id="2xsai1">
 					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
 					  <property name="label" translatable="yes">2xSaI</property>
+					  <property name="use_underline">True</property>
 					</widget>
 				      </child>
 
 				      <child>
-					<widget class="GtkListItem" id="listitem2629">
+					<widget class="GtkMenuItem" id="super_2xsai1">
 					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
 					  <property name="label" translatable="yes">Super 2xSaI</property>
+					  <property name="use_underline">True</property>
 					</widget>
 				      </child>
 
 				      <child>
-					<widget class="GtkListItem" id="listitem2630">
+					<widget class="GtkMenuItem" id="super_eagle1">
 					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
 					  <property name="label" translatable="yes">Super Eagle</property>
+					  <property name="use_underline">True</property>
 					</widget>
 				      </child>
 
 				      <child>
-					<widget class="GtkListItem" id="listitem2631">
+					<widget class="GtkMenuItem" id="pixelate1">
 					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
 					  <property name="label" translatable="yes">Pixelate</property>
+					  <property name="use_underline">True</property>
 					</widget>
 				      </child>
 
 				      <child>
-					<widget class="GtkListItem" id="listitem2632">
+					<widget class="GtkMenuItem" id="motion_blur1">
 					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
 					  <property name="label" translatable="yes">Motion Blur</property>
+					  <property name="use_underline">True</property>
 					</widget>
 				      </child>
 
 				      <child>
-					<widget class="GtkListItem" id="listitem2633">
+					<widget class="GtkMenuItem" id="advancemame_scale2x1">
 					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
 					  <property name="label" translatable="yes">AdvanceMAME Scale2x</property>
+					  <property name="use_underline">True</property>
 					</widget>
 				      </child>
 
 				      <child>
-					<widget class="GtkListItem" id="listitem2634">
+					<widget class="GtkMenuItem" id="simple_2x1">
 					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
 					  <property name="label" translatable="yes">Simple 2x</property>
+					  <property name="use_underline">True</property>
 					</widget>
 				      </child>
 
 				      <child>
-					<widget class="GtkListItem" id="listitem2635">
+					<widget class="GtkMenuItem" id="bilinear1">
 					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
 					  <property name="label" translatable="yes">Bilinear</property>
+					  <property name="use_underline">True</property>
 					</widget>
 				      </child>
 
 				      <child>
-					<widget class="GtkListItem" id="listitem2636">
+					<widget class="GtkMenuItem" id="bilinear_plus1">
 					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
-					  <property name="label" translatable="yes">bilinear Plus</property>
+					  <property name="label" translatable="yes">Bilinear Plus</property>
+					  <property name="use_underline">True</property>
 					</widget>
 				      </child>
 
 				      <child>
-					<widget class="GtkListItem" id="listitem2637">
+					<widget class="GtkMenuItem" id="hq2x1">
 					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
 					  <property name="label" translatable="yes">hq2x</property>
+					  <property name="use_underline">True</property>
 					</widget>
 				      </child>
 
 				      <child>
-					<widget class="GtkListItem" id="listitem2638">
+					<widget class="GtkMenuItem" id="lq2x1">
 					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
 					  <property name="label" translatable="yes">lq2x</property>
+					  <property name="use_underline">True</property>
 					</widget>
 				      </child>
 				    </widget>
@@ -2300,70 +2243,43 @@
 			      <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
 
 			      <child>
-				<widget class="GtkCombo" id="combo7">
+				<widget class="GtkOptionMenu" id="video">
 				  <property name="visible">True</property>
-				  <property name="value_in_list">False</property>
-				  <property name="allow_empty">False</property>
-				  <property name="case_sensitive">False</property>
-				  <property name="enable_arrow_keys">True</property>
-				  <property name="enable_arrows_always">False</property>
+				  <property name="can_focus">True</property>
+				  <property name="history">0</property>
 
-				  <child internal-child="entry">
-				    <widget class="GtkEntry" id="video">
-				      <property name="visible">True</property>
-				      <property name="can_focus">True</property>
-				      <property name="editable">False</property>
-				      <property name="visibility">True</property>
-				      <property name="max_length">0</property>
-				      <property name="text" translatable="yes"></property>
-				      <property name="has_frame">True</property>
-				      <property name="invisible_char" translatable="yes">*</property>
-				      <property name="activates_default">False</property>
-				    </widget>
-				  </child>
-
-				  <child internal-child="list">
-				    <widget class="GtkList" id="list3">
-				      <property name="visible">True</property>
-				      <property name="selection_mode">GTK_SELECTION_BROWSE</property>
+				  <child>
+				    <widget class="GtkMenu" id="menu2">
 
 				      <child>
-					<widget class="GtkListItem" id="listitem1291">
+					<widget class="GtkMenuItem" id="1x2">
 					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
 					  <property name="label" translatable="yes">1x</property>
+					  <property name="use_underline">True</property>
 					</widget>
 				      </child>
 
 				      <child>
-					<widget class="GtkListItem" id="listitem1292">
+					<widget class="GtkMenuItem" id="2x1">
 					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
 					  <property name="label" translatable="yes">2x</property>
+					  <property name="use_underline">True</property>
 					</widget>
 				      </child>
 
 				      <child>
-					<widget class="GtkListItem" id="listitem1293">
+					<widget class="GtkMenuItem" id="3x1">
 					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
 					  <property name="label" translatable="yes">3x</property>
+					  <property name="use_underline">True</property>
 					</widget>
 				      </child>
 
 				      <child>
-					<widget class="GtkListItem" id="listitem1294">
+					<widget class="GtkMenuItem" id="4x1">
 					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
 					  <property name="label" translatable="yes">4x</property>
-					</widget>
-				      </child>
-
-				      <child>
-					<widget class="GtkListItem" id="listitem1295">
-					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
-					  <property name="label" translatable="yes">Fullscreen</property>
+					  <property name="use_underline">True</property>
 					</widget>
 				      </child>
 				    </widget>
@@ -2511,54 +2427,36 @@
 				  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
 
 				  <child>
-				    <widget class="GtkCombo" id="combo10">
+				    <widget class="GtkOptionMenu" id="soundQuality">
 				      <property name="visible">True</property>
-				      <property name="value_in_list">False</property>
-				      <property name="allow_empty">False</property>
-				      <property name="case_sensitive">False</property>
-				      <property name="enable_arrow_keys">True</property>
-				      <property name="enable_arrows_always">False</property>
+				      <property name="can_focus">True</property>
+				      <property name="history">0</property>
 
-				      <child internal-child="entry">
-					<widget class="GtkEntry" id="soundQuality">
-					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
-					  <property name="editable">False</property>
-					  <property name="visibility">True</property>
-					  <property name="max_length">0</property>
-					  <property name="text" translatable="yes"></property>
-					  <property name="has_frame">True</property>
-					  <property name="invisible_char" translatable="yes">*</property>
-					  <property name="activates_default">False</property>
-					</widget>
-				      </child>
-
-				      <child internal-child="list">
-					<widget class="GtkList" id="list6">
-					  <property name="visible">True</property>
-					  <property name="selection_mode">GTK_SELECTION_BROWSE</property>
+				      <child>
+					<widget class="GtkMenu" id="menu5">
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem1020">
+					    <widget class="GtkMenuItem" id="44_khz1">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
-					      <property name="label" translatable="yes">44 Khz </property>
+					      <property name="label" translatable="yes">44 Khz</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem1021">
+					    <widget class="GtkMenuItem" id="22_khz1">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">22 Khz</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem1022">
+					    <widget class="GtkMenuItem" id="11_khz1">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">11 Khz</property>
+					      <property name="use_underline">True</property>
+					      <signal name="activate" handler="on_11_khz1_activate" last_modification_time="Sun, 23 May 2004 19:50:23 GMT"/>
 					    </widget>
 					  </child>
 					</widget>
@@ -2601,62 +2499,43 @@
 				  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
 
 				  <child>
-				    <widget class="GtkCombo" id="combo11">
+				    <widget class="GtkOptionMenu" id="soundVolume">
 				      <property name="visible">True</property>
-				      <property name="value_in_list">False</property>
-				      <property name="allow_empty">False</property>
-				      <property name="case_sensitive">False</property>
-				      <property name="enable_arrow_keys">True</property>
-				      <property name="enable_arrows_always">False</property>
+				      <property name="can_focus">True</property>
+				      <property name="history">0</property>
 
-				      <child internal-child="entry">
-					<widget class="GtkEntry" id="soundVolume">
-					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
-					  <property name="editable">False</property>
-					  <property name="visibility">True</property>
-					  <property name="max_length">0</property>
-					  <property name="text" translatable="yes"></property>
-					  <property name="has_frame">True</property>
-					  <property name="invisible_char" translatable="yes">*</property>
-					  <property name="activates_default">False</property>
-					</widget>
-				      </child>
-
-				      <child internal-child="list">
-					<widget class="GtkList" id="list7">
-					  <property name="visible">True</property>
-					  <property name="selection_mode">GTK_SELECTION_BROWSE</property>
+				      <child>
+					<widget class="GtkMenu" id="menu6">
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem1056">
+					    <widget class="GtkMenuItem" id="1x3">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">1x</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem1057">
+					    <widget class="GtkMenuItem" id="2x2">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">2x</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem1058">
+					    <widget class="GtkMenuItem" id="3x2">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">3x</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem1059">
+					    <widget class="GtkMenuItem" id="4x2">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">4x</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 					</widget>
@@ -2699,94 +2578,75 @@
 				  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
 
 				  <child>
-				    <widget class="GtkCombo" id="combo12">
+				    <widget class="GtkOptionMenu" id="soundEnable">
 				      <property name="visible">True</property>
-				      <property name="value_in_list">False</property>
-				      <property name="allow_empty">False</property>
-				      <property name="case_sensitive">False</property>
-				      <property name="enable_arrow_keys">True</property>
-				      <property name="enable_arrows_always">False</property>
+				      <property name="can_focus">True</property>
+				      <property name="history">0</property>
 
-				      <child internal-child="entry">
-					<widget class="GtkEntry" id="soundEnable">
-					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
-					  <property name="editable">False</property>
-					  <property name="visibility">True</property>
-					  <property name="max_length">0</property>
-					  <property name="text" translatable="yes"></property>
-					  <property name="has_frame">True</property>
-					  <property name="invisible_char" translatable="yes">*</property>
-					  <property name="activates_default">False</property>
-					</widget>
-				      </child>
-
-				      <child internal-child="list">
-					<widget class="GtkList" id="list8">
-					  <property name="visible">True</property>
-					  <property name="selection_mode">GTK_SELECTION_BROWSE</property>
+				      <child>
+					<widget class="GtkMenu" id="menu7">
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem1178">
+					    <widget class="GtkMenuItem" id="channel_1">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">Channel 1</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem1179">
+					    <widget class="GtkMenuItem" id="channel_2">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">Channel 2</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem1180">
+					    <widget class="GtkMenuItem" id="channel_3">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">Channel 3</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem1181">
+					    <widget class="GtkMenuItem" id="channel_4">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">Channel 4</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem1182">
+					    <widget class="GtkMenuItem" id="directsound_a1">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">DirectSound A</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem1183">
+					    <widget class="GtkMenuItem" id="directsound_b1">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">DirectSound B</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem1184">
+					    <widget class="GtkMenuItem" id="all_enabled1">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">All enabled</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem1185">
+					    <widget class="GtkMenuItem" id="mute_all1">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">Mute all</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 					</widget>
@@ -3017,78 +2877,59 @@
 				  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
 
 				  <child>
-				    <widget class="GtkCombo" id="combo4">
+				    <widget class="GtkOptionMenu" id="saveType">
 				      <property name="visible">True</property>
-				      <property name="value_in_list">False</property>
-				      <property name="allow_empty">False</property>
-				      <property name="case_sensitive">False</property>
-				      <property name="enable_arrow_keys">True</property>
-				      <property name="enable_arrows_always">False</property>
+				      <property name="can_focus">True</property>
+				      <property name="history">0</property>
 
-				      <child internal-child="entry">
-					<widget class="GtkEntry" id="saveType">
-					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
-					  <property name="editable">False</property>
-					  <property name="visibility">True</property>
-					  <property name="max_length">0</property>
-					  <property name="text" translatable="yes"></property>
-					  <property name="has_frame">True</property>
-					  <property name="invisible_char" translatable="yes">*</property>
-					  <property name="activates_default">False</property>
-					</widget>
-				      </child>
-
-				      <child internal-child="list">
-					<widget class="GtkList" id="combo-list4">
-					  <property name="visible">True</property>
-					  <property name="selection_mode">GTK_SELECTION_BROWSE</property>
+				      <child>
+					<widget class="GtkMenu" id="menu8">
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem2779">
+					    <widget class="GtkMenuItem" id="automatic1">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">Automatic</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem2780">
+					    <widget class="GtkMenuItem" id="eeprom1">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">EEPROM</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem2781">
+					    <widget class="GtkMenuItem" id="sram1">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">SRAM</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem2782">
+					    <widget class="GtkMenuItem" id="flash1">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">Flash</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem2783">
+					    <widget class="GtkMenuItem" id="eeprom+sensor1">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">EEPROM+Sensor</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem2784">
+					    <widget class="GtkMenuItem" id="none2">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">None</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 					</widget>
@@ -3118,96 +2959,6 @@
 				<packing>
 				  <property name="x">8</property>
 				  <property name="y">8</property>
-				</packing>
-			      </child>
-
-			      <child>
-				<widget class="GtkFrame" id="frame48">
-				  <property name="width_request">256</property>
-				  <property name="height_request">48</property>
-				  <property name="visible">True</property>
-				  <property name="label_xalign">0</property>
-				  <property name="label_yalign">0.5</property>
-				  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
-
-				  <child>
-				    <widget class="GtkCombo" id="combo15">
-				      <property name="visible">True</property>
-				      <property name="value_in_list">False</property>
-				      <property name="allow_empty">False</property>
-				      <property name="case_sensitive">False</property>
-				      <property name="enable_arrow_keys">True</property>
-				      <property name="enable_arrows_always">False</property>
-
-				      <child internal-child="entry">
-					<widget class="GtkEntry" id="showSpeed">
-					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
-					  <property name="editable">False</property>
-					  <property name="visibility">True</property>
-					  <property name="max_length">0</property>
-					  <property name="text" translatable="yes"></property>
-					  <property name="has_frame">True</property>
-					  <property name="invisible_char" translatable="yes">*</property>
-					  <property name="activates_default">False</property>
-					</widget>
-				      </child>
-
-				      <child internal-child="list">
-					<widget class="GtkList" id="list11">
-					  <property name="visible">True</property>
-					  <property name="selection_mode">GTK_SELECTION_BROWSE</property>
-
-					  <child>
-					    <widget class="GtkListItem" id="listitem1264">
-					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
-					      <property name="label" translatable="yes">None</property>
-					    </widget>
-					  </child>
-
-					  <child>
-					    <widget class="GtkListItem" id="listitem1265">
-					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
-					      <property name="label" translatable="yes">Percentage</property>
-					    </widget>
-					  </child>
-
-					  <child>
-					    <widget class="GtkListItem" id="listitem1266">
-					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
-					      <property name="label" translatable="yes">Detailed</property>
-					    </widget>
-					  </child>
-					</widget>
-				      </child>
-				    </widget>
-				  </child>
-
-				  <child>
-				    <widget class="GtkLabel" id="label217">
-				      <property name="visible">True</property>
-				      <property name="label" translatable="yes">Show emulation speed</property>
-				      <property name="use_underline">False</property>
-				      <property name="use_markup">False</property>
-				      <property name="justify">GTK_JUSTIFY_LEFT</property>
-				      <property name="wrap">False</property>
-				      <property name="selectable">False</property>
-				      <property name="xalign">0.5</property>
-				      <property name="yalign">0.5</property>
-				      <property name="xpad">0</property>
-				      <property name="ypad">0</property>
-				    </widget>
-				    <packing>
-				      <property name="type">label_item</property>
-				    </packing>
-				  </child>
-				</widget>
-				<packing>
-				  <property name="x">8</property>
-				  <property name="y">136</property>
 				</packing>
 			      </child>
 
@@ -3269,46 +3020,27 @@
 				  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
 
 				  <child>
-				    <widget class="GtkCombo" id="combo14">
+				    <widget class="GtkOptionMenu" id="flashSize">
 				      <property name="visible">True</property>
-				      <property name="value_in_list">False</property>
-				      <property name="allow_empty">False</property>
-				      <property name="case_sensitive">False</property>
-				      <property name="enable_arrow_keys">True</property>
-				      <property name="enable_arrows_always">False</property>
+				      <property name="can_focus">True</property>
+				      <property name="history">0</property>
 
-				      <child internal-child="entry">
-					<widget class="GtkEntry" id="flashSize">
-					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
-					  <property name="editable">False</property>
-					  <property name="visibility">True</property>
-					  <property name="max_length">0</property>
-					  <property name="text" translatable="yes"></property>
-					  <property name="has_frame">True</property>
-					  <property name="invisible_char" translatable="yes">*</property>
-					  <property name="activates_default">False</property>
-					</widget>
-				      </child>
-
-				      <child internal-child="list">
-					<widget class="GtkList" id="list10">
-					  <property name="visible">True</property>
-					  <property name="selection_mode">GTK_SELECTION_BROWSE</property>
+				      <child>
+					<widget class="GtkMenu" id="menu9">
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem1243">
+					    <widget class="GtkMenuItem" id="64k_flash1">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
-					      <property name="label" translatable="yes">64K</property>
+					      <property name="label" translatable="yes">64K flash</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem1244">
+					    <widget class="GtkMenuItem" id="128k_flash1">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
-					      <property name="label" translatable="yes">128K</property>
+					      <property name="label" translatable="yes">128k flash</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 					</widget>
@@ -3351,78 +3083,59 @@
 				  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
 
 				  <child>
-				    <widget class="GtkCombo" id="combo13">
+				    <widget class="GtkOptionMenu" id="emulatorType">
 				      <property name="visible">True</property>
-				      <property name="value_in_list">False</property>
-				      <property name="allow_empty">False</property>
-				      <property name="case_sensitive">False</property>
-				      <property name="enable_arrow_keys">True</property>
-				      <property name="enable_arrows_always">False</property>
+				      <property name="can_focus">True</property>
+				      <property name="history">0</property>
 
-				      <child internal-child="entry">
-					<widget class="GtkEntry" id="emulatorType">
-					  <property name="visible">True</property>
-					  <property name="can_focus">True</property>
-					  <property name="editable">False</property>
-					  <property name="visibility">True</property>
-					  <property name="max_length">0</property>
-					  <property name="text" translatable="yes"></property>
-					  <property name="has_frame">True</property>
-					  <property name="invisible_char" translatable="yes">*</property>
-					  <property name="activates_default">False</property>
-					</widget>
-				      </child>
-
-				      <child internal-child="list">
-					<widget class="GtkList" id="list9">
-					  <property name="visible">True</property>
-					  <property name="selection_mode">GTK_SELECTION_BROWSE</property>
+				      <child>
+					<widget class="GtkMenu" id="menu10">
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem1223">
+					    <widget class="GtkMenuItem" id="automatic2">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">Automatic</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem1224">
+					    <widget class="GtkMenuItem" id="cgb/gbc1">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">CGB/GBC</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem1225">
+					    <widget class="GtkMenuItem" id="sgb1">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">SGB</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem1226">
+					    <widget class="GtkMenuItem" id="gb1">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">GB</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem1227">
+					    <widget class="GtkMenuItem" id="gba1">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">GBA</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 
 					  <child>
-					    <widget class="GtkListItem" id="listitem1228">
+					    <widget class="GtkMenuItem" id="sgb2">
 					      <property name="visible">True</property>
-					      <property name="can_focus">True</property>
 					      <property name="label" translatable="yes">SGB2</property>
+					      <property name="use_underline">True</property>
 					    </widget>
 					  </child>
 					</widget>
@@ -3681,6 +3394,77 @@
 				<packing>
 				  <property name="x">288</property>
 				  <property name="y">272</property>
+				</packing>
+			      </child>
+
+			      <child>
+				<widget class="GtkFrame" id="frame48">
+				  <property name="width_request">256</property>
+				  <property name="height_request">48</property>
+				  <property name="visible">True</property>
+				  <property name="label_xalign">0</property>
+				  <property name="label_yalign">0.5</property>
+				  <property name="shadow_type">GTK_SHADOW_ETCHED_IN</property>
+
+				  <child>
+				    <widget class="GtkOptionMenu" id="showSpeed">
+				      <property name="visible">True</property>
+				      <property name="can_focus">True</property>
+				      <property name="history">0</property>
+
+				      <child>
+					<widget class="GtkMenu" id="menu11">
+
+					  <child>
+					    <widget class="GtkMenuItem" id="none3">
+					      <property name="visible">True</property>
+					      <property name="label" translatable="yes">None</property>
+					      <property name="use_underline">True</property>
+					    </widget>
+					  </child>
+
+					  <child>
+					    <widget class="GtkMenuItem" id="percentage1">
+					      <property name="visible">True</property>
+					      <property name="label" translatable="yes">Percentage</property>
+					      <property name="use_underline">True</property>
+					    </widget>
+					  </child>
+
+					  <child>
+					    <widget class="GtkMenuItem" id="detailled1">
+					      <property name="visible">True</property>
+					      <property name="label" translatable="yes">Detailled</property>
+					      <property name="use_underline">True</property>
+					    </widget>
+					  </child>
+					</widget>
+				      </child>
+				    </widget>
+				  </child>
+
+				  <child>
+				    <widget class="GtkLabel" id="label217">
+				      <property name="visible">True</property>
+				      <property name="label" translatable="yes">Show emulation speed</property>
+				      <property name="use_underline">False</property>
+				      <property name="use_markup">False</property>
+				      <property name="justify">GTK_JUSTIFY_LEFT</property>
+				      <property name="wrap">False</property>
+				      <property name="selectable">False</property>
+				      <property name="xalign">0.5</property>
+				      <property name="yalign">0.5</property>
+				      <property name="xpad">0</property>
+				      <property name="ypad">0</property>
+				    </widget>
+				    <packing>
+				      <property name="type">label_item</property>
+				    </packing>
+				  </child>
+				</widget>
+				<packing>
+				  <property name="x">8</property>
+				  <property name="y">136</property>
 				</packing>
 			      </child>
 			    </widget>

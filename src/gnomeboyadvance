@@ -136,6 +136,7 @@ class GUI(gtk.glade.XML):
 	def on_preferences_close_button_clicked(*args):
 		app.get_widget("preferences_dialog").hide()
 		
+		
 		app.appBar.set_status('settings saved')
 
 
