@@ -11,13 +11,14 @@ Installation
 Usage
 =====
 1: run gnomeboyadvance
-2: go to settings tab and fill in the locations for the visual boy advance binary, config file, roms and shots dirs
-3: click the "get save" button
-4: select a game
-5: click the "Play Game" button
+2: go to settings menu and fill in the locations for the visual boy advance binary, config file, roms and shots dirs
+3: select a game
+4: click the "Play Game" button
 
 How to report bugs
 =================
-Send mail at jay@socialistsoftware.com
-or
-Post on the message board at www.socialistsoftware.com
+Use the "Submit A Bug" function here : http://developer.berlios.de/bugs/?group_id=1650
+
+Project Homepage
+================
+http://developer.berlios.de/projects/gnomeboyadvance/
