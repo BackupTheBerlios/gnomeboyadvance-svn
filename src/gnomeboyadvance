@@ -128,7 +128,7 @@ class GUI(gtk.glade.XML):
 				os.system(launch)
 			else : 
 				app.appBar.set_status('No game selected')
-		else :  # TODO: Replace that by a popup info
+		else :  
 			app.appBar.set_status('Invalide path to VBA or not an executable, please fit it in preference')
 
 	def on_reload_gamelist_activate(*args):
@@ -180,8 +180,6 @@ class GUI(gtk.glade.XML):
 		
 
 	def on_preferences_close_button_clicked(*args):
-		app.get_widget("preferences_dialog").hide()
-
 		for widg in ENTRY_WIDG:
 			mySettings.settings[widg] = app.get_widget(widg).get_text()
 
@@ -219,27 +217,42 @@ class GUI(gtk.glade.XML):
 			else: ok = '0'
 			mySettings.settings[widg] = ok
 		
-		mySettings.writeGConf()
-		app.appBar.set_status('settings saved')
-		theGameList.populate(mySettings.settings['romsDir'])
+		#check if all is valid
+		msg = mySettings.check()
+		if msg: popupError(msg)
+		else:
+			app.get_widget("preferences_dialog").hide()
+			mySettings.writeGConf()
+			app.appBar.set_status('settings saved')
+			theGameList.populate(mySettings.settings['romsDir'])
 
 	def on_import_activate(*args):
 		fs = gtk.FileSelection('Choose the file to import')
 		result = fs.run()
-		path = fs.get_filename()
-		if result == gtk.RESPONSE_OK and os.path.isfile(path):
-			mySettings.readFile(path)
 		fs.hide()
+		path = fs.get_filename()
+		if result == gtk.RESPONSE_OK:
+			try:
+				mySettings.readFile(path)
+			except "GBAError", msg:
+				popupError(msg)
 		mySettings.writeGConf()
 
 	def on_export_activate(*args):
 		fs = gtk.FileSelection('Choose the export directory')
 		result = fs.run()
+		fs.hide()
 		if result == gtk.RESPONSE_OK: 
 			path = fs.get_filename()
 			if os.path.isdir(path): path = os.path.join(path, 'VisualBoyAdvance.cfg')
 			mySettings.writeFile(path)
-		fs.hide()
+
+		
+#not callback
+def popupError(msg):
+	pop = gtk.MessageDialog(type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format=msg)
+	pop.run()
+	pop.destroy()
 
 #upgrade from old version settings system
 def oldVersion(set):
@@ -261,7 +274,6 @@ if __name__ == "__main__":
 
 	app = GUI()
 	theGameList = gameList()
-	
 	
 	gtk.main()
 
