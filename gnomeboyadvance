@@ -1,0 +1,6 @@
+#!/usr/bin/env python
+
+from gnomeboyadvance.GnomeBoyAdvance import GnomeBoyAdvance
+
+gba = GnomeBoyAdvance()
+gba.run()
