@@ -28,8 +28,8 @@ install:
 	# Add here commands to install the package into debian/gnomeboyadvance
 	install -m 755 src/gnomeboyadvance debian/gnomeboyadvance/usr/bin/
 	install -m 644 src/gnomeboyadvance.glade debian/gnomeboyadvance/usr/share/gnomeboyadvance/
-	install -m 644 pixmaps/gnomeBoyAdvance.png debian/gnomeboyadvance/usr/share/gnomeboyadvance/
-	install -m 644 pixmaps/gba_icon.png debian/gnomeboyadvance/usr/share/gnomeboyadvance/
+	install -m 644 data/gnomeboyadvance.png debian/gnomeboyadvance/usr/share/gnomeboyadvance/
+	install -m 644 data/gba48.png debian/gnomeboyadvance/usr/share/gnomeboyadvance/
 
 	install -m 644 debian/bts debian/gnomeboyadvance/usr/share/bug/gnomeboyadvance/control
 
