@@ -44,7 +44,7 @@ TODO
 		
 	
 * give default value for the settings
-
+* launch a game by double click on the name
 * use gconf to save the configuration of gnomeboyadvance
 * remake the install script. 
 * separate the source in differents files.
