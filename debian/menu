@@ -1,0 +1,1 @@
+?package(gnomeboyadvance): needs="X11" section="Apps/Emulators" title="GnomeBoyAdvance" command="/usr/bin/gnomeboyadvance"
