@@ -17,22 +17,17 @@ except:
 	print 'You must have python-gtk2, python-gnome2 and python-glade2 installed.'
 	sys.exit()
 
-from Settings import Settings, CONTROL_OPTIONS  
+import Settings
+import GameList
 
-NAME = 'GnomeBoyAdvance'
-VERSION = '0.4'
-AUTHORS = ['Jay Graves <jay@socialistsoftware.com>', 'Guillaume Desmottes <cass@skynet.be>', 'Olivier Le Thanh Duong <staz@perso.be>']
-COMMENTS = 'A Gnome frontend for the Visual Boy Advance emulator'
-COPYRIGHT = 'Jay Graves (c) 2003\n GnomeBoyAdvance Team (c) 2004'
-DATADIR = '/usr/share/gnomeboyadvance'
-SETTINGSFILE = os.path.join(os.path.expanduser("~"), ".gnomeBoyAdvance")
-LOGOFILE = 'gnomeboyadvance.png'
-ICONFILE = '/usr/share/pixmaps/gba48.png'
-
+from const import *
 
 ENTRY_WIDG = ['binary', 'romsDir', 'batteryDir', 'captureDir', 'saveDir', 'throttle', 'gbFrameSkip', 'frameSkip', 'biosFile', 'rewindTimer', 'commandLineOptions', 'Joy0_Left', 'Joy0_Right', 'Joy0_Up', 'Joy0_Down', 'Joy0_A', 'Joy0_B', 'Joy0_L', 'Joy0_R', 'Joy0_Start', 'Joy0_Select', 'Joy0_Speed', 'Joy0_Capture']
 CHOOSE_WIDG = ['captureFormat', 'video', 'ifbType', 'soundVolume', 'saveType', 'flashSize', 'emulatorType', 'showSpeed']
 BOOL_WIDG = ['fullScreen', 'colorOption', 'borderAutomatic', 'autoFrameSkip', 'soundEcho', 'soundLowPass', 'soundReverse', 'soundOff', 'showSpeedTransparent', 'rtcEnabled', 'useBios', 'skipBios', 'disableStatus', 'pauseWhenInactive', 'agbPrint', 'borderOn', 'disableMMX']
+
+CALLBACKS = ['on_about1_activate', 'on_quit1_activate', 'on_playGame_clicked', 'on_reload_gamelist_activate', 'on_search_changed', 'on_preferences_activate', 'on_preferences_close_button_clicked', 'on_import_activate', 'on_export_activate', 'on_configure_control_clicked', 'on_binding_press_event', 'on_joy_enable_toggled']
+
 
 gtk_to_sdl = {65027:313, 65288:8, 65289:9, 65293:13, 65360:278, 65361:276, 65362:273, 65363:275, 65364:274, 65365:280, 
 65366:281, 65367:279, 65379:277, 65421:271, 65450:268, 65451:270, 65453:269, 65454:266, 65455:267, 65456:256, 
@@ -40,140 +35,121 @@ gtk_to_sdl = {65027:313, 65288:8, 65289:9, 65293:13, 65360:278, 65361:276, 65362
 65506:303, 65507:306, 65508:305, 65535:127}
 
 
-gnome.init('GnomeBoyAdvance', VERSION)
-theGame = None
-joy = None
+def find_glade():
+	#little hack usefull for the developpement
+	if os.path.isfile("../glade/gnomeboyadvance.glade"): 
+		print "Use glade dev file"
+		return '../glade/gnomeboyadvance.glade'
+	else: return os.path.join(DATADIR, 'gnomeboyadvance.glade')
 
 
-class gameList:
+class GnomeBoyAdvance:
 	def __init__(self):
-		self.gameList = app.get_widget("gameList")
-		self.gamesDict = []
-		self.gameListModel = gtk.ListStore(gobject.TYPE_STRING)
-		self.gameList.set_model(self.gameListModel)
-		self.col = gtk.TreeViewColumn("Game",gtk.CellRendererText(),text=0)
-		self.col.set_sort_column_id(0)
-		self.gameList.append_column(self.col)
-		self.selection = self.gameList.get_selection()
-		self.selection.set_mode('single')
-		self.selection.connect('changed',self.selectGame)
-		self.populate(mySettings.settings['romsDir'])
+		gnome.init(PROG_NAME, VERSION)
 
-        def populate(self, romsDir, tosearch=''):
-                if tosearch:
-                       tosearch = tosearch.lower()
-
-		self.gameListModel.clear()
-		if os.path.isdir(romsDir):
-			self.gamesDict = os.listdir(romsDir)
-		else:
-			print romsDir + ' is not a directory.'
-		self.gameCount = 0
-		for eachGame in self.gamesDict:
-			if (eachGame[-3:] == 'zip' or eachGame[-3:] == 'gba') and (eachGame.lower().find(tosearch) != -1):
-				iter = self.gameListModel.append()
-				self.gameListModel.set_value(iter,0,eachGame)
-				self.gameCount += 1
-		app.get_widget('gameCount').set_text('Total roms : ' + `self.gameCount`)
-
-	def selectGame(self,selection):
-		self.sel = selection.get_selected()
-		global theGame
-		if self.sel:
-			self.model, self.iter = self.sel
-			if self.iter:
-				self.module = self.model.get_value(self.iter, 0)
-				theGame = self.model.get_value(self.iter,0)
-			else:
-				theGame = ''
-		if mySettings.settings.has_key('captureDir') and os.path.isdir(mySettings.settings['captureDir']):
-			theImage = os.path.join(mySettings.settings['captureDir'], theGame[:-4] + '01.png')
-			gameImage = app.get_widget("gameImage")
-			if os.path.isfile(theImage):
-				gameImage.set_from_file(theImage)
-			else:
-				gameImage.set_from_file( os.path.join(DATADIR, LOGOFILE))
-		app.appBar.set_status(theGame)
+		glade_f = find_glade()
 		
+		self.gladeHandler = gtk.glade.XML(glade_f)
+                #self.gladeHandler.signal_autoconnect(self.__class__.__dict__)
+		#TODO: try to make this dynamic
+		dic = {}
+		for callback in CALLBACKS:
+			dic[callback] = getattr(self, callback)
+		self.gladeHandler.signal_autoconnect (dic)
 
+		self.mySettings = Settings.Settings()
+		self.joy = None
 
-class GUI(gtk.glade.XML):
-	def __init__(self):
-		#little hack usefull for the developpement
-		if os.path.isfile("../glade/gnomeboyadvance.glade"): 
-			print "Use glade dev file"
-			glade_f = '../glade/gnomeboyadvance.glade'
-		else: glade_f = os.path.join(DATADIR, 'gnomeboyadvance.glade')
-
-		gtk.glade.XML.__init__(self, glade_f)
-                self.signal_autoconnect(dict(GUI.__dict__))
-		self.appBar = self.get_widget('appbar1')
+		if os.access(SETTINGSFILE,os.R_OK):
+		#TODO: remove in a futur version
+			mySettings.oldVersion(SETTINGSFILE)
+			os.unlink(SETTINGSFILE)
+		
+		self.gameList = GameList.GameList(self.gladeHandler)
+		self.gameList.captureDir = self.mySettings.settings['captureDir']
+		self.gameList.populate( self.mySettings.settings['romsDir'])
+	
+		self.mainFrame = self.gladeHandler.get_widget('main')
+		self.appBar = self.gladeHandler.get_widget('appbar1')
+		self.preferences_dialog = self.gladeHandler.get_widget('preferences_dialog')
+		self.binding_dialog = self.gladeHandler.get_widget('binding_dialog')
 
 		if os.path.isfile(ICONFILE):
 			#old version of python-gtk have not set_icon_from_file
 			try:
-				self.get_widget('main').set_icon_from_file(ICONFILE)
-				self.get_widget('preferences_dialog').set_icon_from_file(ICONFILE)
+				self.mainFrame.set_icon_from_file(ICONFILE)
+				self.preferences_dialog.set_icon_from_file(ICONFILE)
+				self.binding_dilaog.set_icon_from_file(ICONFILE)
 			except AttributeError: pass
+
+	def __del__(self):
+		#remove the tmp conf file
+		if os.path.isfile(self.mySettings.path): os.unlink(self.mySettings.path)
+
+
+	def run(self):
+		gtk.main()
 			
 
-	def on_about1_activate(*args):
+	def on_about1_activate(self, imageMenuItem):
+		print obj
 		pixbuf = gtk.gdk.pixbuf_new_from_file( os.path.join(DATADIR, LOGOFILE))
 	        copyright = unicode(COPYRIGHT, "latin-1").encode("utf8")
-	        gnome.ui.About(NAME, str(VERSION), copyright, COMMENTS, AUTHORS, logo_pixbuf=pixbuf).show()
+	        gnome.ui.About(PROG_NAME, str(VERSION), copyright, COMMENTS, AUTHORS, logo_pixbuf=pixbuf).show()
 
-	def on_quit1_activate(*args):
+	def on_quit1_activate(self, app, event):
 		gtk.main_quit()
 
-	def on_playGame_clicked(*args):
-		if os.access(mySettings.settings['binary'], os.X_OK ):
-			if theGame:
-				launch =  mySettings.settings['binary']
-				if mySettings.settings['commandLineOptions']:
-					launch += ' ' + mySettings.settings['commandLineOptions']
-				launch += ' --config='+ mySettings.confFile()
-				launch += ' "' + os.path.join(mySettings.settings['romsDir'],theGame) + '" &'
+	def on_playGame_clicked(self, button):
+		if os.access(self.mySettings.settings['binary'], os.X_OK ):
+			if self.gameList.theGame:
+				launch =  self.mySettings.settings['binary']
+				if self.mySettings.settings['commandLineOptions']:
+					launch += ' ' + self.mySettings.settings['commandLineOptions']
+				launch += ' --config='+ self.mySettings.confFile()
+				launch += ' "' + os.path.join(self.mySettings.settings['romsDir'], self.gameList.theGame) + '" &'
 				
 				print launch
-				app.appBar.set_status('playing ' + theGame)
+				self.appBar.set_status('playing ' + self.gameList.theGame)
 				os.system(launch)
 			else : 
-				app.appBar.set_status('No game selected')
+				self.appBar.set_status('No game selected')
 		else :  
-			app.appBar.set_status('Invalide path to VBA or not an executable, please fit it in preference')
+			self.appBar.set_status('Invalide path to VBA or not an executable, please fit it in preference')
 
-	def on_reload_gamelist_activate(*args):
-		theGameList.populate(mySettings.settings['romsDir'])
+	def on_reload_gamelist_activate(self, menuItem):
+		self.gameList.populate(self.mySettings.settings['romsDir'])
 	
-	def on_search_changed(*args):
-		tosearch= app.get_widget('searchbox').get_text()
-		theGameList.populate(mySettings.settings['romsDir'],tosearch)
+	def on_search_changed(self, entry):
+		tosearch = self.gladeHandler.get_widget('searchbox').get_text()
+		self.gameList.populate(self.mySettings.settings['romsDir'],tosearch)
 
-	def on_preferences_activate(*args):
-		app.get_widget("preferences_dialog").show()
-		
+	def on_preferences_activate(self, imageMenuItem):
+		self.preferences_dialog.show()
+	
+		#TODO: make the get_widget at the init
 		for widg in ENTRY_WIDG:
-			app.get_widget(widg).set_text( mySettings.settings[widg])
+			self.gladeHandler.get_widget(widg).set_text( self.mySettings.settings[widg])
 
 		for widg in CHOOSE_WIDG:
-			app.get_widget(widg).set_history( int(mySettings.settings[widg]))
+			self.gladeHandler.get_widget(widg).set_history( int(self.mySettings.settings[widg]))
 			
 		#filter	
-		fil = mySettings.settings['filter']
+		fil = self.mySettings.settings['filter']
 		if fil == 'A': fil = '10'
 		elif fil == 'B': fil = '11'
 		elif fil == 'C': fil = '12'
-		app.get_widget('filter').set_history(int(fil))
+		self.gladeHandler.get_widget('filter').set_history(int(fil))
 		
 		#soundQuality
-		snd = mySettings.settings['soundQuality']
+		snd = self.mySettings.settings['soundQuality']
 		if snd == '1': snd=0
 		elif snd == '2': snd=1
 		elif snd == '4': snd=2
-		app.get_widget('soundQuality').set_history(snd)
+		self.gladeHandler.get_widget('soundQuality').set_history(snd)
 
 		#soundEnable
-		snd = mySettings.settings['soundEnable']
+		snd = self.mySettings.settings['soundEnable']
 		if snd == '1': snd=0
 		elif snd == '2': snd=1
 		elif snd == '4': snd=2
@@ -182,37 +158,37 @@ class GUI(gtk.glade.XML):
 		elif snd == '200': snd=5
 		elif snd == '30f': snd=6
 		elif snd == '0': snd=7
-		app.get_widget('soundEnable').set_history(snd)
+		self.gladeHandler.get_widget('soundEnable').set_history(snd)
 
 		for widg in BOOL_WIDG:
 			ok = True
-			if mySettings.settings[widg] == '0': ok =False
-			app.get_widget(widg).set_active(ok)
+			if self.mySettings.settings[widg] == '0': ok =False
+			self.gladeHandler.get_widget(widg).set_active(ok)
 		
 
-	def on_preferences_close_button_clicked(*args):
+	def on_preferences_close_button_clicked(self, button):
 		for widg in ENTRY_WIDG:
-			mySettings.settings[widg] = app.get_widget(widg).get_text()
+			self.mySettings.settings[widg] = self.gladeHandler.get_widget(widg).get_text()
 
 		for widg in CHOOSE_WIDG:
-			mySettings.settings[widg] = `app.get_widget(widg).get_history()`
+			self.mySettings.settings[widg] = `self.gladeHandler.get_widget(widg).get_history()`
 			
 		#filter	
-		fil = `app.get_widget('filter').get_history()`
+		fil = `self.gladeHandler.get_widget('filter').get_history()`
 		if fil == '10': fil = 'A'
 		elif fil == '11': fil = 'B'
 		elif fil == '12': fil = 'C'
-		mySettings.settings['filter'] = fil
+		self.mySettings.settings['filter'] = fil
 		
 		#soundQuality
-		snd = app.get_widget('soundQuality').get_history()
+		snd = self.gladeHandler.get_widget('soundQuality').get_history()
 		if snd == 0: snd='1'
 		elif snd == 1: snd='2'
 		elif snd == 2: snd='4'
-		mySettings.settings['soundQuality'] = snd
+		self.mySettings.settings['soundQuality'] = snd
 
 		#soundEnable
-		snd = app.get_widget('soundEnable').get_history()
+		snd = self.gladeHandler.get_widget('soundEnable').get_history()
 		if snd == 0: snd='1'
 		elif snd == 1: snd='2'
 		elif snd == 2: snd='4'
@@ -221,54 +197,56 @@ class GUI(gtk.glade.XML):
 		elif snd == 5: snd='200'
 		elif snd == 6: snd='30f'
 		elif snd == 7: snd='0'
-		mySettings.settings['soundEnable'] = snd
+		self.mySettings.settings['soundEnable'] = snd
 
 		for widg in BOOL_WIDG:
-			if(app.get_widget(widg).get_active()): ok = '1'
+			if(self.gladeHandler.get_widget(widg).get_active()): ok = '1'
 			else: ok = '0'
-			mySettings.settings[widg] = ok
+			self.mySettings.settings[widg] = ok
+		
+	
+		self.gameList.catpureDir = self.mySettings.settings['captureDir']
 		
 		#check if all is valid
-		msg = mySettings.check()
+		msg = self.mySettings.check()
 		if msg: popupError(msg)
 		else:
-			app.get_widget("preferences_dialog").hide()
-			mySettings.writeGConf()
-			app.appBar.set_status('settings saved')
-			theGameList.populate(mySettings.settings['romsDir'])
+			self.gladeHandler.get_widget("preferences_dialog").hide()
+			self.mySettings.writeGConf()
+			self.appBar.set_status('settings saved')
+			self.gameList.populate(self.mySettings.settings['romsDir'])
 
-	def on_import_activate(*args):
+	def on_import_activate(self, imageMenuItem):
 		fs = gtk.FileSelection('Choose the file to import')
 		result = fs.run()
 		fs.hide()
 		path = fs.get_filename()
 		if result == gtk.RESPONSE_OK:
 			try:
-				mySettings.readFile(path)
+				self.mySettings.readFile(path)
 			except "GBAError", msg:
 				popupError(msg)
-		mySettings.writeGConf()
+		self.mySettings.writeGConf()
 
-	def on_export_activate(*args):
+	def on_export_activate(self, imageMenuItem):
 		fs = gtk.FileSelection('Choose the export directory')
 		result = fs.run()
 		fs.hide()
 		if result == gtk.RESPONSE_OK: 
 			path = fs.get_filename()
 			if os.path.isdir(path): path = os.path.join(path, 'VisualBoyAdvance.cfg')
-			mySettings.writeFile(path)
+			self.mySettings.writeFile(path)
 
-	def on_configure_control_clicked(*args):
-		entry = args[0].get_parent().get_children()[0]
+	def on_configure_control_clicked(self, button):
+		entry = button.get_parent().get_children()[0]
 
-		if joy: 
-			res = joy.get_binding()
+		if self.joy: 
+			res = self.joy.get_binding()
 			#TODO: put a most speakly info to the entry
 			if res: entry.set_text(res)
 		else:
-			dial = app.get_widget("binding_dial")
-			res = dial.run()
-			dial.hide()
+			res = self.binding_dialog.run()
+			self.binding_dialog.hide()
 			if res not in (-4, 65307):  #-4: close the window, 65307: ESC
 				try:
 					res_sdl = gtk_to_sdl[res]
@@ -277,27 +255,24 @@ class GUI(gtk.glade.XML):
 	#			print "name", gtk.gdk.keyval_name(res)
 				entry.set_text("%04x" % res_sdl)
 
-	def on_binding_press_event(*args):
-		event =  args[1]
-		app.get_widget("binding_dial").response(event.keyval)
+	def on_binding_press_event(self, dialog, event):
+		self.binding_dialog.response(event.keyval)
 
-	def on_joy_enable_toggled(*args):
-		global joy
-		but = args[0]
-		if but.get_active():
+	def on_joy_enable_toggled(self, button):
+		if button.get_active():
 			try: import Joystick
 			except ImportError:
 				popupError("You must have pygame installed to use Joystick support.\nThen restart GnomeBoyAdvance")
-				but.set_active(False)
-				but.set_sensitive(False)
+				button.set_active(False)
+				button.set_sensitive(False)
 				return
-			joy = Joystick.Joystick(ICONFILE)
-			label = but.get_label() + " (%d joystick detected)" % joy.nbJoy
-			but.set_label(label)
+			self.joy = Joystick.Joystick(ICONFILE)
+			label = button.get_label() + " (%d joystick detected)" % self.joy.nbJoy
+			button.set_label(label)
 		else:
-			but.set_label("Enable joystick support")
+			button.set_label("Enable joystick support")
 			#TODO: it's dirty. This info is also in the glade file. Correct this!
-			joy = None
+			self.joy = None
 		
 
 		
@@ -306,29 +281,7 @@ def popupError(msg):
 	pop = gtk.MessageDialog(type=gtk.MESSAGE_ERROR, buttons=gtk.BUTTONS_CLOSE, message_format=msg)
 	pop.run()
 	pop.destroy()
-
-#upgrade from old version settings system
-def oldVersion(set):
-	buff = file(SETTINGSFILE).readlines()
-	if len(buff)>0 and os.path.isfile(buff[0][:-1]): 
-		set.readFile(buff[0][:-1])
-	if len(buff)>1 and os.path.isfile(buff[1][:-1]): 
-		set.settings['binary'] = buff[1][:-1]
-	if len(buff)>2 and os.path.isdir(buff[2]): 
-		set.settings['romsDir'] = buff[2]
-	set.writeGConf()
-	
-	os.unlink(SETTINGSFILE)
-
 	
 if __name__ == "__main__":
-	mySettings = Settings()
-	if os.access(SETTINGSFILE,os.R_OK): oldVersion(mySettings)
-
-	app = GUI()
-	theGameList = gameList()
-	
-	gtk.main()
-
-	#end of the program
-	if os.path.isfile( mySettings.path): os.unlink(mySettings.path)
+	gba = GnomeBoyAdvance()
+	gba.run()

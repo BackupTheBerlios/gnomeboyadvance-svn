@@ -137,6 +137,20 @@ class Settings:
 				return msg
 
 		return None
+
+	def oldVersion(path):
+		"""Upgrade from old settings system stockage"""
+		#TODO: remove in futur version
+		buff = file(path).readlines()
+
+		if len(buff)>0 and os.path.isfile(buff[0][:-1]): 
+			self.readFile(buff[0][:-1])
+		if len(buff)>1 and os.path.isfile(buff[1][:-1]): 
+			self.settings['binary'] = buff[1][:-1]
+		if len(buff)>2 and os.path.isdir(buff[2]): 
+			self.settings['romsDir'] = buff[2]
+		self.writeGConf()
+		
 		
 
 if __name__ == "__main__":

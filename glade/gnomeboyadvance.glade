@@ -3841,7 +3841,7 @@
   </child>
 </widget>
 
-<widget class="GtkDialog" id="binding_dial">
+<widget class="GtkDialog" id="binding_dialog">
   <property name="title" translatable="yes">Control configuration</property>
   <property name="type">GTK_WINDOW_TOPLEVEL</property>
   <property name="window_position">GTK_WIN_POS_NONE</property>
