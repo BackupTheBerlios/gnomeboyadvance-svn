@@ -17,7 +17,7 @@ if not os.path.exists(installDir):
 os.system('install -m 755 src/gnomeboyadvance ' + installDir)
 os.system('install -m 644 src/gnomeboyadvance.glade ' + dataDir)
 os.system('install -m 644 data/gba48.png ' + dataDir)
-os.system('install -m 644 data/gnomeboyadvance.desktop ' + dataDir)
+os.system('install -m 644 data/gnomeboyadvance.desktop ' + "/usr/share/applications")
 os.system('install -m 644 data/gnomeboyadvance.png ' + dataDir)
 
 print 'gnomeboyadvance has been installed, happy gaming.'
