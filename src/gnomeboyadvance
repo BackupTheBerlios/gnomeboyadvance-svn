@@ -6,6 +6,8 @@
 import os, sys
 import string, re
 
+sys.path.insert(0, '/usr/lib/gnomeboyadvance')
+
 try:
 	import pygtk
 	pygtk.require('2.0')

@@ -26,7 +26,6 @@ class Settings:
 		self.validity = False
 
 
-
 	def readGConf(self):
 		for elt in GENERAL_OPTIONS:
 			self.settings[elt] = self.client.get_string("/apps/gnomeboyadvance/general/"+ elt)
