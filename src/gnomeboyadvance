@@ -219,7 +219,7 @@ class GUI(gtk.glade.XML):
 		
 		mySettings.writeGConf()
 		app.appBar.set_status('settings saved')
-
+		theGameList.populate(mySettings.settings['romsDir'])
 
 	def on_import_activate(*args):
 		fs = gtk.FileSelection('Choose the file to import')
@@ -262,3 +262,6 @@ if __name__ == "__main__":
 	
 	
 	gtk.main()
+
+	#end of the program
+	if os.path.isfile( mySettings.path): os.unlink(mySettings.path)
