@@ -230,7 +230,7 @@ class GUI(gtk.glade.XML):
                 self.signal_autoconnect(dict(GUI.__dict__))
 		self.appBar = self.get_widget('appbar1')
 
-		if os.path.isfile(ICONFILE):
+		if os.path.isfile(ICONFILE) and hasattr(gnome.ui.App,'set_icon_from_file'):
 			self.get_widget('main').set_icon_from_file(ICONFILE)
 			self.get_widget('preferences_dialog').set_icon_from_file(ICONFILE)
 
@@ -304,6 +304,6 @@ if __name__ == "__main__":
 		else:
 			print mySettings.settings['configFile'] + ' is not a file'
 	else:
-		print "Invalide settings file"
+		print "Invalid settings file"
 	
 	gtk.main()
