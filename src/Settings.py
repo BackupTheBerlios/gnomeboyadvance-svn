@@ -4,7 +4,7 @@ import os
 import pwd
 
 GENERAL_OPTIONS = ['binary', 'captureDir', 'romsDir', 'captureFormat', 'saveDir', 'batteryDir']
-CONTROL_OPTIONS = ['Joy0_Left', 'Joy0_Right', 'Joy0_Up', 'Joy0_Down', 'Joy0_A', 'Joy0_B', 'Joy0_L', 'Joy0_R', 'Joy0_Start', 'Joy0_Select', 'Joy0_Speed', 'Joy0_Capture', 'Motion_Left', 'Motion_Right', 'Motion_Up', 'Motion_Down']
+CONTROL_OPTIONS = ['Joy0_Left', 'Joy0_Right', 'Joy0_Up', 'Joy0_Down', 'Joy0_A', 'Joy0_B', 'Joy0_L', 'Joy0_R', 'Joy0_Start', 'Joy0_Select', 'Joy0_Speed', 'Joy0_Capture']#, 'Motion_Left', 'Motion_Right', 'Motion_Up', 'Motion_Down']
 GRAPHIC_OPTIONS = ['video', 'fullScreen', 'throttle', 'filter', 'gbFrameSkip', 'frameSkip', 'ifbType', 'autoFrameSkip', 'colorOption', 'borderAutomatic']
 SOUND_OPTIONS = ['soundQuality', 'soundVolume', 'soundEnable', 'soundReverse', 'soundOff', 'soundEcho', 'soundLowPass']
 ADVANCED_OPTIONS = ['saveType', 'biosFile', 'flashSize', 'emulatorType', 'showSpeed', 'rewindTimer', 'showSpeedTransparent', 'rtcEnabled', 'useBios', 'skipBios', 'disableStatus', 'pauseWhenInactive', 'agbPrint', 'borderOn', 'disableMMX']

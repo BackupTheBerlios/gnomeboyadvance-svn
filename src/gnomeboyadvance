@@ -36,6 +36,7 @@ BOOL_WIDG = ['fullScreen', 'colorOption', 'borderAutomatic', 'autoFrameSkip', 's
 
 gnome.init('GnomeBoyAdvance', VERSION)
 theGame = None
+joy = None
 
 
 class gameList:
@@ -246,6 +247,46 @@ class GUI(gtk.glade.XML):
 			path = fs.get_filename()
 			if os.path.isdir(path): path = os.path.join(path, 'VisualBoyAdvance.cfg')
 			mySettings.writeFile(path)
+
+	def on_configure_control_clicked(*args):
+		entry = args[0].get_parent().get_children()[0]
+
+		if joy: 
+			print "use SDL"
+			res = joy.get_binding()
+			#TODO: put a most speakly info to the entry
+			if res: entry.set_text(res)
+		else:
+			print "use GTK"
+			dial = app.get_widget("binding_dial")
+			res = dial.run()
+			dial.hide()
+			if res not in (-4, 65307):  #-4: close the window, 65307: ESC
+				print res
+				entry.set_text("%04x" % res)
+
+	def on_binding_press_event(*args):
+		event =  args[1]
+		app.get_widget("binding_dial").response(event.keyval)
+
+	def on_joy_enable_toggled(*args):
+		global joy
+		but = args[0]
+		if but.get_active():
+			try: import Joystick
+			except ImportError:
+				popupError("You must have pygame installed to use Joystick support.\nThen restart GnomeBoyAdvance")
+				but.set_active(False)
+				but.set_sensitive(False)
+				return
+			joy = Joystick.Joystick(ICONFILE)
+			label = but.get_label() + " (%d joystick detected)" % joy.nbJoy
+			but.set_label(label)
+		else:
+			but.set_label("Enable joystick support")
+			#TODO: it's dirty. This info is also in the glade file. Correct this!
+			joy = None
+		
 
 		
 #not callback
