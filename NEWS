@@ -1,7 +1,7 @@
 GnomeBoyAdvance NEWS
 
 version 0.4:
-	* Keyboard binding
+	* Keys configuration
 	* Joystick configuration (necessitate pygame)
 	* soundEnable option is now correctly saved (close #2063)
 	* add a field to pass additionnal command line options to VBA (close feature request #142)
