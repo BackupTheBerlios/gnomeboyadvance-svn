@@ -18,7 +18,8 @@ def gethatcode(ev):
 
 	result = which | hat | value
 	
-	return "%04x" % result
+	#return "%04x" % result
+	return result
 
 def getbuttoncode(ev):
 	which = (ev.joy + 1) << 12
@@ -26,7 +27,8 @@ def getbuttoncode(ev):
 	
 	result = which | button
 
-	return "%04x" % result
+	#return "%04x" % result
+	return result
 
 def getaxiscode(ev):
 	which = (ev.joy+1) << 12
@@ -37,10 +39,12 @@ def getaxiscode(ev):
 
 	result = which | axis | value
 	
-	return "%04x" % result
+	#return "%04x" % result
+	return result
 
 def getkeycode(ev):
-	return "%04x" % ev.key
+	#return "%04x" % ev.key
+	return ev.key
 
 class Joystick:
 	def __init__(self, iconfile=None):
