@@ -1,0 +1,8 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Encoding=UTF-8
+Name=GnomeBoyAdvance
+Icon=gba48.png
+Exec=/usr/games/gnomeboyadvance
+Categories=Application;Game
