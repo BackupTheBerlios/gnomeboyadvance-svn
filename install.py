@@ -13,6 +13,8 @@ if not os.path.exists(dataDir):
 if not os.path.exists(installDir):
 	# really!
 	os.mkdir(installDir)
+#Generate gconf info
+os.system('gconftool-2 --install-schema-file data/gnomeboyadvance.schemas')
 
 os.system('install -m 755 src/gnomeboyadvance ' + installDir)
 os.system('install -m 644 src/gnomeboyadvance.glade ' + dataDir)
