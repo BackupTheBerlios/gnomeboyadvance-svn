@@ -286,8 +286,3 @@ if __name__ == "__main__":
 			print gbaSetting[0][:-1] + ' is not a file'
 	
 	gtk.main()
-
-
-def loadconfig(settings):
-	client = gconf.client_get_default ()
-	client.add_dir ("/apps/basic-gconf-app", gconf.CLIENT_PRELOAD_NONE)
