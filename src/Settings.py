@@ -26,6 +26,9 @@ class Settings:
 
 		self.readGConf()
 
+		self.path = os.path.join('/tmp', 'VisualBoyAdvance_' + os.getlogin() + '.cfg')
+		self.validity = False
+
 
 	def readGConf(self):
 		for elt in GENERAL_OPTIONS:
@@ -45,6 +48,7 @@ class Settings:
 	
 
 	def writeGConf(self):
+		self.validity = False
 		for elt in GENERAL_OPTIONS:
 			self.client.set_string("/apps/gnomeboyadvance/general/"+ elt, self.settings[elt])
 
@@ -94,11 +98,11 @@ class Settings:
 			#	print "FUCK OFF:", tmp[0] #TODO: raise a exception
 			#	sys.exit()
 			self.settings[tmp[0]] = tmp[1]
+		self.writeGConf()
 
 	def confFile(self):
-		path = os.tmpnam()
-		self.writeFile(path)
-		return path
+		if not self.validity: self.writeFile(self.path)
+		return self.path
 
 if __name__ == "__main__":
 	#self test
