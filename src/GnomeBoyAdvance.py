@@ -298,7 +298,7 @@ class GnomeBoyAdvance:
 				button.set_active(False)
 				button.set_sensitive(False)
 				return
-			self.joy = Joystick.Joystick(ICONFILE)
+			self.joy = Joystick.Joystick()
 			label = button.get_label() + " (%d joystick detected)" % self.joy.nbJoy
 			button.set_label(label)
 		else:

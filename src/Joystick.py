@@ -1,5 +1,7 @@
 import pygame
 
+from const import ICONFILE
+
 OK = [pygame.JOYBUTTONDOWN, pygame.JOYHATMOTION, pygame.JOYAXISMOTION, pygame.KEYDOWN]
 WIN_SIZE = (500,40)
 SDL_MSG = "Press the joystick button or key you want to assigne. Escape to cancel"
@@ -47,15 +49,15 @@ def getkeycode(ev):
 	return ev.key
 
 class Joystick:
-	def __init__(self, iconfile=None):
+	def __init__(self):
 		pygame.init()
 
 		self.nbJoy = pygame.joystick.get_count()
 
 		for i in range(self.nbJoy):
 			pygame.joystick.Joystick(i).init()
-		if iconfile: self.icon = pygame.image.load(iconfile)
-		else: self.icon = None
+
+		self.icon = pygame.image.load(ICONFILE)
 
 	def get_binding(self):
 		pygame.display.init()
