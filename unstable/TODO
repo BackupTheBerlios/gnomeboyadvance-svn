@@ -1,0 +1,60 @@
+TODO
+
+* add some of the more advanced settings:
+	** Control:
+		- keys bindings
+		- joystick control
+	** graphics:
+		- gbFrameSkip
+		- filter
+		- colorOption
+		- captureFormat
+		- ifbType
+		- autoFrameSkip
+		- borderAutomatic
+	** sound:
+		- soundQuality
+		- soundEcho
+		- soundLowPass
+		- soundReverse
+		- soundVolume
+		- soundOff
+		- soundEnable
+	** misc:
+		- disableMMX
+		- useBios
+		- biosFile
+		- disableStatus
+		- borderOn
+		- emulatorType
+		- removeIntros
+		- saveType
+		- flashsize	
+		- showSpeed
+		- showSpeedTransparent
+		- pauseWhenInactive
+		- agbPrint
+		- rtcEnabled
+		- skipBios
+		- rewindTimer
+		- enhauncedDetection
+	** dir:
+		- saveDir
+		- batteryDir
+		
+	
+* give default value for the settings
+
+
+* use gconf to save the configuration of gnomeboyadvance
+* remake the install script. Add an icon in to the gnome applications list
+* separate the source in differents files.
+* can easily associate a screenshot to a game
+* add translation support
+* make packages (Debian, Mandrake, ...)
+* make a FAQ and a MAN
+* add a IPS patch tab (??)
+
+DONE :
+* remove tabs and move settings to the menu. 
+* separate the configuration in differents category (gnomeboyadvance conf, graphics, sound, ...)

@@ -1,0 +1,24 @@
+General Information
+===================
+gnomeboyadvance is a gnome frontend for the visual boy advance  emulator.  You can get visual boy advance from http://vboy.emuhq.com/
+
+Installation
+============
+1: make sure you have  at least Python 2.2, and the python-gnome, python-glade packages installed
+2: tar -jxf gnomeboyadvance-x.x.tar.bz2 where ever you like
+3: become root and run the install.py
+
+Usage
+=====
+1: run gnomeboyadvance
+2: go to settings menu and fill in the locations for the visual boy advance binary, config file, roms and shots dirs
+3: select a game
+4: click the "Play Game" button
+
+How to report bugs
+=================
+Use the "Submit A Bug" function here : http://developer.berlios.de/bugs/?group_id=1650
+
+Project Homepage
+================
+http://developer.berlios.de/projects/gnomeboyadvance/
